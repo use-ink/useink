@@ -1,0 +1,12 @@
+name: Spellcheck
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+jobs:
+  spellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: streetsidesoftware/cspell-action@208a6aeb62ac32a25d5f0fda644df16b41aa550d # v2.7.0
