@@ -1,6 +1,7 @@
 {
   "tasks": {
     "dev": "deno run --watch main.ts",
+    "dnt": "deno task run _tasks/dnt.ts",
     "test": "deno test -A -L=info --ignore=target --parallel"
   }
 }
