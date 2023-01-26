@@ -1,0 +1,26 @@
+name: Update Dependencies
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "42 19 * * *"
+jobs:
+  update-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: denoland/setup-deno@9db7f66e8e16b5699a514448ce994936c63f0d54 # v1.1.0
+        with:
+          deno-version: 1.x
+      - name: Update dependencies
+        run: |
+          deno task star && deno task run https://deno.land/x/udd/main.ts target/star.ts
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@2b011faafdcbc9ceb11414d64d0573f37c774b04 # v4.1.1
+        with:
+          commit-message: "Update dependencies and regenerate lockfile"
+          title: "Chore: update dependencies"
+          body: >
+            Dependencies updated by [udd](https://github.com/hayd/deno-udd).
+          branch: deno-dependency-updates
+          author: GitHub <noreply@github.com>
+          delete-branch: true
