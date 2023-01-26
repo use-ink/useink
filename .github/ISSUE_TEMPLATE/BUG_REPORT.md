@@ -1,0 +1,44 @@
+---
+name: Bug
+about: Identify faulty behavior
+title: ""
+labels: bug
+---
+
+## Bug Report
+
+<!-- Please search useInk's issues in case one already exists for this bug. -->
+
+### Current Behavior
+
+<!-- TODO -->
+
+### Expected Behavior
+
+<!-- TODO -->
+
+### Steps To Reproduce
+
+<!--
+Example:
+
+1. In this environment...
+2. ... with this code...
+3. ... run this command.
+-->
+
+### Environment
+
+<!--
+Example:
+
+- Deno: ... (deno --version)
+- Node: ... (node -v)
+- Browser: ...
+- OS: ...
+- Language: TypeScript vX.Y.Z (tsc --version) / JavaScript / ...
+-->
+
+### Additional Information
+
+<!-- Is there anything else that might help us tackle this bug (a public GitHub repo perhaps)? -->
