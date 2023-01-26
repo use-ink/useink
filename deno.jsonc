@@ -1,7 +1,37 @@
 {
+  "compilerOptions": {
+    "checkJs": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "useUnknownInCatchVariables": true
+  },
+  "include": ["."],
+  "lock": false,
+  "lint": {
+    "files": {
+      "exclude": ["target"],
+      "include": ["."]
+    },
+    "rules": {
+      "exclude": [
+        "no-empty-interface",
+        "no-explicit-any",
+        "no-namespace",
+        "no-empty",
+        "no-extra-semi",
+        "ban-types"
+      ],
+      "tags": ["recommended"]
+    }
+  },
   "tasks": {
-    "dev": "deno run --watch main.ts",
     "dnt": "deno task run _tasks/dnt.ts",
-    "test": "deno test -A -L=info --ignore=target --parallel"
+    "run": "deno run -A",
+    "star": "deno task run _tasks/star.ts && deno cache --check target/star.ts",
+    "test": "deno test -A -L=info --ignore=target --parallel",
+    "udd": "deno task star && deno task run https://deno.land/x/udd@0.5.0/main.ts target/star.ts"
   }
 }
+
