@@ -1,14 +1,26 @@
 {
   "compilerOptions": {
     "checkJs": false,
+    "jsx": "react-jsx",
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noUncheckedIndexedAccess": true,
-    "useUnknownInCatchVariables": true
+    "useUnknownInCatchVariables": true,
+    "lib": [
+      "dom",
+      "deno.ns",
+      "deno.unstable"
+    ]
+  },
+  "fmt": {
+    "options": {
+      "singleQuote": true
+    }
   },
   "include": ["."],
   "lock": false,
+  "importMap": "import_map.json",
   "lint": {
     "files": {
       "exclude": ["target"],
@@ -34,4 +46,3 @@
     "udd": "deno task star && deno task run https://deno.land/x/udd@0.5.0/main.ts target/star.ts"
   }
 }
-
