@@ -10,7 +10,8 @@
     "lib": [
       "dom",
       "deno.ns",
-      "deno.unstable"
+      "deno.unstable",
+      "esnext"
     ]
   },
   "fmt": {

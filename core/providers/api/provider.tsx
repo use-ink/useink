@@ -1,16 +1,18 @@
-import { FunctionComponent } from 'deps/preact.ts';
-import { useEffect, useMemo, useState } from 'deps/preact/hooks.ts';
-import { ApiPromise, WsProvider } from 'deps/polkadot.ts';
-import { useConfig } from 'core/hooks/mod.ts';
-
+import React from 'react';
+import { ApiPromise, WsProvider } from '@polkadot/api';
+import { useConfig } from '../../hooks/mod.ts';
 import { APIContext } from './context.ts';
 
-export const APIProvider: FunctionComponent = ({ children }) => {
+export const APIProvider: React.FC<React.PropsWithChildren> = (
+  { children },
+) => {
   const { providerUrl } = useConfig();
-  const provider = useMemo(() => new WsProvider(providerUrl), [providerUrl]);
-  const [api, setApi] = useState<ApiPromise | undefined>();
+  const provider = React.useMemo(() => new WsProvider(providerUrl), [
+    providerUrl,
+  ]);
+  const [api, setApi] = React.useState<ApiPromise | undefined>();
 
-  useEffect(() => {
+  React.useEffect(() => {
     ApiPromise.create({ provider }).then((api) => {
       setApi(api);
     });
