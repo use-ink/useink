@@ -1,7 +1,24 @@
 {
   "imports": {
-    "core/": "./core/",
-    "deps/": "./deps/",
-    "util/": "./util/"
+    "@polkadot/api": "npm:@polkadot/api@9.14.1",
+    "@polkadot/api/types": "npm:@polkadot/api@9.14.1/types",
+    "@polkadot/api-contract": "npm:@polkadot/api-contract@9.14.1",
+    "@polkadot/api-contract/types": "npm:@polkadot/api-contract@9.14.1/types",
+    "@polkadot/api-contract/base/contract": "npm:@polkadot/api-contract@9.14.1/base/Contract",
+    "@polkadot/extension-dapp": "npm:@polkadot/extension-dapp@0.44.8",
+    "@polkadot/extension-inject": "npm:@polkadot/extension-inject@0.44.8",
+    "@polkadot/extension-inject/types": "npm:@polkadot/extension-inject@0.44.8/types",
+    "@polkadot/rpc-provider": "npm:@polkadot/rpc-provider@9.14.1",
+    "@polkadot/api-derive": "npm:@polkadot/api-derive@9.14.1",
+    "@polkadot/api-derive/types": "npm:@polkadot/api-derive@9.14.1/types",
+    "@polkadot/rpc-provider/types": "npm:@polkadot/rpc-provider@9.14.1/types",
+    "@polkadot/types": "npm:@polkadot/types@9.14.1",
+    "@polkadot/types-codec/types": "npm:@polkadot/types-codec@9.14.1/types",
+    "@polkadot/types/interfaces": "npm:@polkadot/types@9.14.1/interfaces",
+    "@polkadot/types/types": "npm:@polkadot/types@9.14.1/types",
+    "@polkadot/util": "npm:@polkadot/util@10.4.1",
+    "bn.js": "npm:bn.js",
+    "nanoid": "npm:nanoid",
+    "react": "https://esm.sh/react@18.2.0"
   }
 }

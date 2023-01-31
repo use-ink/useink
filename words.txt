@@ -55,6 +55,7 @@ devcontainers
 devs
 dico
 discoverability
+dispatch
 dispatchable
 dprint
 edgeware
@@ -124,6 +125,8 @@ nodle
 noninteractive
 notif
 notset
+npm
+npmjs
 offchain
 onfinality
 origintrail
@@ -148,11 +151,11 @@ polkassembly
 polymesh
 polyx
 pontem
-preact
 precommits
 prevotes
 println
 procps
+react
 relaychain
 ristretto
 rlib
@@ -205,6 +208,7 @@ unfollow
 uniarts
 unioned
 unsanitized
+unsub
 useInk
 useink
 vadimcn

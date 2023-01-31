@@ -14,9 +14,22 @@ await Promise.all([
     package: {
       name: 'useink',
       version: Deno.args[0]!,
-      description: 'A React hooks library for Wasm contracts on Substrate',
+      description:
+        'A React hooks library for Substrate and Wasm contracts on Substrate',
       license: 'Apache-2.0',
       repository: 'github:paritytech/useink',
+      dependencies: {
+        '@polkadot/api': '^9.14.1',
+        '@polkadot/api-derive': '^9.14.1',
+        '@polkadot/extension-dapp': '^0.44.8',
+        '@polkadot/extension-inject': '^0.44.8',
+        '@polkadot/api-contract': '^9.14.1',
+        '@polkadot/types': '^9.14.1',
+      },
+      peerDependency: {
+        'react': '^18.2.0',
+        'react-dom': '^18.2.0',
+      },
     },
     compilerOptions: {
       lib: ['dom', 'esnext'],
