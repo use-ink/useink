@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { DeriveBalancesAccount } from '@polkadot/api-derive/types';
-import { useApi } from './useApi.ts';
+import { useApi } from '../useApi.ts';
 import { useBlockHeader } from './useBlockHeader.ts';
 
 export interface WithAddress {

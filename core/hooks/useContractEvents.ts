@@ -8,7 +8,7 @@ import {
 } from '../providers/contractEvents/mod.ts';
 import { getExpiredItem } from '../utils/getExpiredItem.ts';
 import { useApi } from './useApi.ts';
-import { useBlockHeader } from './useBlockHeader.ts';
+import { useBlockHeader } from './substrate/useBlockHeader.ts';
 import { useConfig } from './useConfig.ts';
 import { useInterval } from './useInterval.ts';
 

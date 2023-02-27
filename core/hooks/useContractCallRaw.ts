@@ -7,7 +7,7 @@ import {
   Result,
 } from '../types/mod.ts';
 import { callContractRaw, toContractAbiMessage } from '../utils/mod.ts';
-import { useBlockHeader } from './useBlockHeader.ts';
+import { useBlockHeader } from './substrate/useBlockHeader.ts';
 import { useExtension } from './useExtension.ts';
 
 export function useContractCallRaw(
