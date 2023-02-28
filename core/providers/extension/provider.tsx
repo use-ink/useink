@@ -58,7 +58,7 @@ export const ExtensionProvider: React.FC<React.PropsWithChildren> = (
     [C.extension?.skipAutoConnect],
   );
 
-  const connect = React.useCallback(async (source?: string) => {
+  const connect = React.useCallback(async () => {
     await web3Enable(originName);
 
     const allAccounts = await web3Accounts();
