@@ -1,5 +1,6 @@
 export * from './substrate/useBalance.ts';
 export * from './substrate/useBlockHeader.ts';
+export * from './useAbiMessage.ts';
 export * from './useApi.ts';
 export * from './useConfig.ts';
 export * from './useContract.ts';

@@ -1,13 +1,14 @@
 import { ContractPromise } from '@polkadot/api-contract';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   ContractCallResultRaw,
   ContractExecResult,
   ContractOptions,
   Result,
 } from '../types/mod.ts';
-import { callContractRaw, toContractAbiMessage } from '../utils/mod.ts';
+import { callContractRaw } from '../utils/mod.ts';
 import { useBlockHeader } from './substrate/useBlockHeader.ts';
+import { useAbiMessage } from './useAbiMessage.ts';
 import { useExtension } from './useExtension.ts';
 
 export function useContractCallRaw(
@@ -19,35 +20,30 @@ export function useContractCallRaw(
   const [callResult, setCallResult] = useState<ContractExecResult | null>(null);
   const { blockNumber } = useBlockHeader();
   const { account } = useExtension();
-
-  const abiMsgResult = useMemo(() => {
-    if (!contract) return null;
-    return toContractAbiMessage(contract, message);
-  }, [contract, message]);
+  const abiMessage = useAbiMessage(contract, message);
 
   useEffect(() => {
-    abiMsgResult &&
-      abiMsgResult.ok &&
+    abiMessage &&
       contract &&
       callContractRaw(
         contract,
-        abiMsgResult.value,
+        abiMessage,
         account?.address,
         args,
         options,
       ).then((r) => {
         r && setCallResult(r);
       });
-  }, [contract?.address, blockNumber, account?.address, abiMsgResult]);
+  }, [contract?.address, blockNumber, account?.address, abiMessage]);
 
-  if (!abiMsgResult || !callResult) return null;
-  if (!abiMsgResult.ok) return abiMsgResult;
+  if (!abiMessage || !callResult) return null;
+  if (!abiMessage) return null;
 
   return {
     ok: true,
     value: {
       callResult,
-      abiMessage: abiMsgResult.value,
+      abiMessage,
     },
   };
 }

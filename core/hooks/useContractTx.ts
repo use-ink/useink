@@ -7,24 +7,24 @@ import {
   ContractTxFunc,
   Status,
 } from '../types/mod.ts';
-import {
-  callContractRaw,
-  toContractAbiMessage,
-  toRegistryErrorDecoded,
-} from '../utils/mod.ts';
-import { useConfig } from './useConfig.ts';
+import { callContractRaw, toRegistryErrorDecoded } from '../utils/mod.ts';
+import { useAbiMessage } from './useAbiMessage.ts';
 import { useExtension } from './useExtension.ts';
 import { useNotifications } from './useNotifications.ts';
 
-type ContractTxConfig = {
-  notificationsOff?: boolean;
-  notifications?: {
-    broadcastMessage?: (result: ContractExecResultResult) => string;
-    finalizedMessage?: (result: ContractExecResultResult) => string;
-    inBlockMessage?: (result: ContractExecResultResult) => string;
-    unknownErrorMessage?: (e?: unknown) => string;
-  };
-};
+export type NotificationMessageHandler = (
+  result: ContractExecResultResult,
+) => string;
+
+export interface ContractTxConfig {
+  notifications?:
+    & Partial<Record<Status, NotificationMessageHandler>>
+    & Partial<{
+      None: () => string;
+      PendingSignature: () => string;
+    }>;
+  notificationErrorHandler?: (e?: unknown) => string;
+}
 
 export function useContractTx(
   contract: ContractPromise | undefined,
@@ -33,36 +33,30 @@ export function useContractTx(
 ): ContractTxFunc {
   const { account, extension } = useExtension();
   const { addNotification } = useNotifications();
-  const C = useConfig();
-  const withNotifications = !config?.notificationsOff && !C.notifications?.off;
   const [status, setStatus] = useState<Status>('None');
   const [result, setResult] = useState<ContractSubmittableResult>();
   const [error, setError] = useState<string | null>(null);
-  const {
-    broadcastMessage,
-    inBlockMessage,
-    finalizedMessage,
-    unknownErrorMessage,
-  } = config?.notifications || {};
+  const abiMessage = useAbiMessage(contract, message);
+  const { notificationErrorHandler } = config || {};
 
   const send: (args: unknown[], o?: ContractOptions) => void = useMemo(
     () => (args, options) => {
-      if (!account || !contract || !extension) return;
+      if (!account || !contract || !extension || !abiMessage) return;
 
       error && setError(null);
+
       setStatus('PendingSignature');
-
-      const abiMessage = toContractAbiMessage(contract, message);
-
-      if (!abiMessage.ok) {
-        setError(abiMessage.error);
-        setStatus('Errored');
-        return;
-      }
+      config?.notifications?.PendingSignature &&
+        addNotification({
+          notification: {
+            type: 'PendingSignature',
+            message: config.notifications.PendingSignature(),
+          },
+        });
 
       callContractRaw(
         contract,
-        abiMessage.value,
+        abiMessage,
         account.address,
         args,
         options,
@@ -85,11 +79,11 @@ export function useContractTx(
               setError(dispatchError.docs.join(', '));
               console.error('dispatch error', dispatchError);
 
-              withNotifications &&
+              config?.notificationErrorHandler &&
                 addNotification({
                   notification: {
                     type: 'Errored',
-                    message: dispatchError.docs.join(', '),
+                    message: config.notificationErrorHandler(dispatchError),
                   },
                 });
 
@@ -114,62 +108,32 @@ export function useContractTx(
               { signer: extension.signer },
               (response: ContractSubmittableResult) => {
                 setResult(response);
+                setStatus(response.status.type);
 
-                if (response.status.isBroadcast) {
-                  setStatus('Broadcast');
+                const notificationMessageHandler = config?.notifications
+                  ?.[response.status.type];
 
-                  withNotifications &&
-                    addNotification({
-                      notification: {
-                        type: 'Broadcast',
-                        message: broadcastMessage
-                          ? broadcastMessage(result)
-                          : 'Broadcast',
-                      },
-                    });
-                }
-
-                if (response.status.isInBlock) {
-                  setStatus('InBlock');
-
-                  withNotifications &&
-                    addNotification({
-                      notification: {
-                        type: 'InBlock',
-                        message: inBlockMessage
-                          ? inBlockMessage(result)
-                          : 'In Block',
-                      },
-                    });
-                }
-
-                if (response.status.isFinalized) {
-                  setStatus('Finalized');
-
-                  withNotifications &&
-                    addNotification({
-                      notification: {
-                        type: 'Finalized',
-                        message: finalizedMessage
-                          ? finalizedMessage(result)
-                          : 'Finalized',
-                      },
-                    });
-                }
+                notificationMessageHandler &&
+                  addNotification({
+                    notification: {
+                      type: response.status.type,
+                      message: notificationMessageHandler(result),
+                    },
+                  });
               },
             )
             .catch((e: unknown) => {
               setStatus('None');
               const err = JSON.stringify(e);
               const message = err === '{}'
-                ? (unknownErrorMessage
-                  ? unknownErrorMessage(e)
+                ? (config?.notificationErrorHandler
+                  ? config.notificationErrorHandler(e)
                   : 'Something went wrong')
                 : err;
               setError(message);
               console.error('tx error', message);
 
-              withNotifications &&
+              notificationErrorHandler &&
                 addNotification({
                   notification: {
                     type: 'Errored',
@@ -183,8 +147,8 @@ export function useContractTx(
           const err = JSON.stringify(e);
 
           const message = err === '{}'
-            ? (unknownErrorMessage
-              ? unknownErrorMessage(e)
+            ? (notificationErrorHandler
+              ? notificationErrorHandler(e)
               : 'Something went wrong')
             : err;
           setError(message);
@@ -192,7 +156,7 @@ export function useContractTx(
           console.log('raw-error', e);
           console.error('pre-flight error:', message);
 
-          withNotifications &&
+          notificationErrorHandler &&
             addNotification({
               notification: {
                 type: 'Errored',
@@ -201,7 +165,7 @@ export function useContractTx(
             });
         });
     },
-    [account, extension, contract],
+    [account, extension, contract, abiMessage],
   );
 
   return {
