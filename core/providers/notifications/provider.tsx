@@ -39,7 +39,7 @@ export const NotificationsProvider: React.FC<React.PropsWithChildren> = (
   );
 
   React.useEffect(() => {
-    if (account && !config.notifications?.off) {
+    if (account) {
       addNotification({
         notification: {
           message: `${account.meta.name || account.address} Connected`,
