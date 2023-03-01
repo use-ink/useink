@@ -5,8 +5,8 @@ import {
 } from '../../constants.ts';
 
 export type Config = {
-  dappName: string;
-  providerUrl: string;
+  dappName?: string;
+  providerUrl?: string;
   notifications?: {
     expiration?: number;
     checkInterval?: number;

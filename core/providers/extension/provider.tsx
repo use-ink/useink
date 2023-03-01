@@ -23,24 +23,24 @@ export const ExtensionProvider: React.FC<React.PropsWithChildren<any>> = (
   const [accounts, setAccounts] = React.useState<InjectedAccountWithMeta[]>();
   const [extension, setExtension] = React.useState<InjectedExtension>();
   const [error, setError] = React.useState<ExtensionError>();
-  const originName = C.dappName.trim().length > 0
+  const originName = C.dappName && C.dappName.trim().length > 0
     ? C.dappName
     : 'A dapp built with useInk!';
 
   const enableAutoConnect = React.useCallback((address: string) => {
-    localStorage.setItem(C.dappName, address);
-  }, [C.dappName]);
+    localStorage.setItem(originName, address);
+  }, [originName]);
 
   const disableAutoConnect = React.useCallback(() => {
-    if (getAutoConnectAddress(C.dappName)) localStorage.removeItem(C.dappName);
-  }, [C.dappName]);
+    if (getAutoConnectAddress(originName)) localStorage.removeItem(originName);
+  }, [originName]);
 
   const disconnect = React.useCallback(() => {
     disableAutoConnect();
     setAccounts(undefined);
     setCallerAccount(undefined);
     setExtension(undefined);
-  }, [C.dappName]);
+  }, [originName]);
 
   const setAccount = React.useCallback(
     (newAccount: InjectedAccountWithMeta) => {
@@ -72,7 +72,7 @@ export const ExtensionProvider: React.FC<React.PropsWithChildren<any>> = (
     setAccounts(allAccounts);
 
     if (!account) {
-      const autoConnectAddress = getAutoConnectAddress(C.dappName);
+      const autoConnectAddress = getAutoConnectAddress(originName);
       const initialAccount = !C.extension?.skipAutoConnect
         ? allAccounts.find((a) => a.address === autoConnectAddress) ||
           allAccounts[0]
@@ -97,7 +97,7 @@ export const ExtensionProvider: React.FC<React.PropsWithChildren<any>> = (
   }, []);
 
   React.useEffect(() => {
-    if (getAutoConnectAddress(C.dappName)) {
+    if (getAutoConnectAddress(originName)) {
       connect();
       return;
     }
