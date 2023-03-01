@@ -8,7 +8,7 @@ import {
 import { useIsMounted } from '../../hooks/useIsMounted.ts';
 import { nanoid } from 'nanoid';
 import { notificationReducer } from './reducer.ts';
-import { useConfig, useExtension } from '../../hooks/mod.ts';
+import { useExtension } from '../../hooks/mod.ts';
 
 // @internal
 export const NotificationsProvider: React.FC<React.PropsWithChildren> = (
@@ -19,7 +19,6 @@ export const NotificationsProvider: React.FC<React.PropsWithChildren> = (
     DEFAULT_NOTIFICATIONS,
   );
   const isMounted = useIsMounted();
-  const config = useConfig();
   const { account } = useExtension();
 
   const addNotification = React.useCallback(
