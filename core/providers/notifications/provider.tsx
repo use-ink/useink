@@ -6,9 +6,9 @@ import {
   RemoveNotificationPayload,
 } from './model.ts';
 import { useIsMounted } from '../../hooks/useIsMounted.ts';
-import { nanoid } from 'nanoid';
 import { notificationReducer } from './reducer.ts';
 import { useExtension } from '../../hooks/mod.ts';
+import { pseudoRandomId } from '../../utils/mod.ts';
 
 // @internal
 export const NotificationsProvider: React.FC<React.PropsWithChildren<any>> = (
@@ -28,7 +28,7 @@ export const NotificationsProvider: React.FC<React.PropsWithChildren<any>> = (
           type: 'ADD_NOTIFICATION',
           notification: {
             ...notification,
-            id: nanoid(),
+            id: pseudoRandomId(),
             createdAt: Date.now(),
           },
         });

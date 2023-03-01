@@ -6,8 +6,8 @@ import {
   RemoveContractEventPayload,
 } from './model.ts';
 import { useIsMounted } from '../../hooks/useIsMounted.ts';
-import { nanoid } from 'nanoid';
 import { contractEventReducer } from './reducer.ts';
+import { pseudoRandomId } from '../../utils/mod.ts';
 
 // @internal
 export const ContractEventsProvider: React.FC<React.PropsWithChildren<any>> = (
@@ -25,7 +25,7 @@ export const ContractEventsProvider: React.FC<React.PropsWithChildren<any>> = (
         dispatch({
           type: 'ADD_CONTRACT_EVENT',
           address,
-          event: { ...event, id: nanoid(), createdAt: Date.now() },
+          event: { ...event, id: pseudoRandomId(), createdAt: Date.now() },
         });
       }
     },
