@@ -2,5 +2,4 @@
 .env
 benches.json
 target
-.vscode/
 deno.lock
