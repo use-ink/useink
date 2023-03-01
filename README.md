@@ -10,7 +10,7 @@
 [s2]: https://substrate.stackexchange.com/questions/tagged/useink?tab=Votes
 
 
-`useInk!` is a React hooks library for Substrate and Wasm contracts on Substrate
+`useink` is a React hooks library for Substrate and Wasm contracts on Substrate
 
 ## Getting Started
 
