@@ -19,6 +19,8 @@
     "@polkadot/util": "npm:@polkadot/util@10.4.1",
     "bn.js": "npm:bn.js@5.2.1",
     "nanoid": "npm:nanoid",
-    "react": "https://esm.sh/react@18.2.0"
+    "react": "https://cdn.skypack.dev/react?dts",
+    "react/jsx-runtime": "https://cdn.skypack.dev/react/jsx-runtime?dts",
+    "react/jsx-dev-runtime": "https://cdn.skypack.dev/react/jsx-dev-runtime?dts"
   }
 }

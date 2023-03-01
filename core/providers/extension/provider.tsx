@@ -15,7 +15,7 @@ import { ExtensionError } from './model.ts';
 const getAutoConnectAddress = (key: string): string | null =>
   localStorage.getItem(key);
 
-export const ExtensionProvider: React.FC<React.PropsWithChildren> = (
+export const ExtensionProvider: React.FC<React.PropsWithChildren<any>> = (
   { children },
 ) => {
   const C = useConfig();

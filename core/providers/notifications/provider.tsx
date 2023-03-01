@@ -11,7 +11,7 @@ import { notificationReducer } from './reducer.ts';
 import { useExtension } from '../../hooks/mod.ts';
 
 // @internal
-export const NotificationsProvider: React.FC<React.PropsWithChildren> = (
+export const NotificationsProvider: React.FC<React.PropsWithChildren<any>> = (
   { children },
 ) => {
   const [notifications, dispatch] = React.useReducer(
