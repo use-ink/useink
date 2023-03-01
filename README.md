@@ -1,5 +1,5 @@
 <div align="center" style="margin-bottom: 24px;">
-  <img src="./useInk.svg" alt="ink!" height="136" />
+  <img src="./useink-logo.svg" alt="ink!" height="136" />
 </div>
 
 [![Element][k1]][k2] [![stack-exchange][s1]][s2] 
@@ -8,7 +8,6 @@
 [k2]: https://matrix.to/#/#useink:parity.io
 [s1]: https://img.shields.io/badge/click-white.svg?logo=StackExchange&label=useink%20Support%20on%20StackExchange&labelColor=white&color=blue
 [s2]: https://substrate.stackexchange.com/questions/tagged/useink?tab=Votes
-
 
 `useink` is a React hooks library for Substrate and Wasm contracts on Substrate
 
@@ -24,7 +23,7 @@ import { UseInkProvider } from 'useink';
 root.render(
   <UseInkProvider
     config={{
-      dappName: 'link! - A URL shortener',
+      dappName: 'My Dapp',
       providerUrl: 'wss://rococo-contracts-rpc.polkadot.io',
     }}
   >
