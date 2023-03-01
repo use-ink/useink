@@ -10,6 +10,7 @@ await Promise.all([
   build({
     entryPoints: ['mod.ts'],
     outDir,
+    importMap: 'import_map.json',
     mappings: {},
     package: {
       name: 'useink',
@@ -18,18 +19,6 @@ await Promise.all([
         'A React hooks library for Substrate and Wasm contracts on Substrate',
       license: 'Apache-2.0',
       repository: 'github:paritytech/useink',
-      dependencies: {
-        '@polkadot/api': '^9.14.1',
-        '@polkadot/api-derive': '^9.14.1',
-        '@polkadot/extension-dapp': '^0.44.8',
-        '@polkadot/extension-inject': '^0.44.8',
-        '@polkadot/api-contract': '^9.14.1',
-        '@polkadot/types': '^9.14.1',
-      },
-      peerDependency: {
-        'react': '^18.2.0',
-        'react-dom': '^18.2.0',
-      },
     },
     compilerOptions: {
       lib: ['dom', 'esnext'],
