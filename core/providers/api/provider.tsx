@@ -3,7 +3,7 @@ import { ApiPromise, WsProvider } from '@polkadot/api';
 import { useConfig } from '../../hooks/mod.ts';
 import { APIContext } from './context.ts';
 
-export const APIProvider: React.FC<React.PropsWithChildren> = (
+export const APIProvider: React.FC<React.PropsWithChildren<any>> = (
   { children },
 ) => {
   const { providerUrl } = useConfig();

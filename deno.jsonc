@@ -2,6 +2,7 @@
   "compilerOptions": {
     "checkJs": false,
     "jsx": "react-jsx",
+    "jsxImportSource": "react",
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,

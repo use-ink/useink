@@ -9,12 +9,10 @@ import { useIsMounted } from '../../hooks/useIsMounted.ts';
 import { nanoid } from 'nanoid';
 import { contractEventReducer } from './reducer.ts';
 
-interface Props {
-  children: React.ReactNode;
-}
-
 // @internal
-export const ContractEventsProvider = ({ children }: Props) => {
+export const ContractEventsProvider: React.FC<React.PropsWithChildren<any>> = (
+  { children },
+) => {
   const [events, dispatch] = React.useReducer(
     contractEventReducer,
     DEFAULT_CONTRACT_EVENTS,

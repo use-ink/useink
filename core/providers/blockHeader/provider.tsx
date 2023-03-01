@@ -6,7 +6,7 @@ import { BlockHeader } from './model.ts';
 const toBlockNumber = (valWithComma: string | undefined): number =>
   parseInt(`${valWithComma?.split(',').join('')}`);
 
-export const BlockHeaderProvider: React.FC<React.PropsWithChildren> = (
+export const BlockHeaderProvider: React.FC<React.PropsWithChildren<any>> = (
   { children },
 ) => {
   const { api } = useApi();
