@@ -19,6 +19,7 @@ await Promise.all([
         'A React hooks library for Substrate and Wasm contracts on Substrate',
       license: 'Apache-2.0',
       repository: 'github:paritytech/useink',
+      keywords: ['ink!', 'React', 'hooks', 'Polkadot', 'Substrate'],
     },
     compilerOptions: {
       lib: ['dom', 'esnext'],
