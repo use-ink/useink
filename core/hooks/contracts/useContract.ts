@@ -1,6 +1,6 @@
 import { Abi, ContractPromise } from '@polkadot/api-contract';
 import { useEffect, useMemo, useState } from 'react';
-import { useApi } from './useApi.ts';
+import { useApi } from '../useApi.ts';
 
 export type ContractAbi = string | Record<string, unknown> | Abi;
 

@@ -6,16 +6,15 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "dprint.dprint"
+    "editor.defaultFormatter": "denoland.vscode-deno"
   },
   "deno.codeLens.testArgs": ["-A", "-L=info"],
   "deno.config": "./deno.jsonc",
-  "deno.importMap": "./import_map.json",
+  "deno.path": "~/.cargo/bin/deno",
   "deno.suggest.imports.hosts": {
     "https://deno.land": true,
     "https://x.nest.land": true,
     "https://crux.land": true,
-    "https://capi.dev": true,
     "http://localhost:4646": false
   },
   "deno.enable": true,
@@ -24,14 +23,7 @@
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "prettier.printWidth": 100,
-  "ltex.disabledRules": {
-    "en-US": ["MORFOLOGIK_RULE_EN_US"]
-  },
-  "markdownlint.config": {
-    "MD013": false,
-    "MD033": false
-  },
-  "deno.unstable": false,
+  "deno.unstable": true,
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#3399ff",
     "activityBar.background": "#3399ff",

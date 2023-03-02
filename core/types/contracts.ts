@@ -1,8 +1,12 @@
-import { AbiMessage, ContractOptions } from '@polkadot/api-contract/types';
-import { ContractExecResult } from '@polkadot/types/interfaces';
-import { ContractSubmittableResult } from './mod.ts';
+import { AbiMessage } from '@polkadot/api-contract/types';
+import {
+  Balance,
+  ContractExecResult,
+  DispatchError,
+  StorageDeposit,
+  Weight,
+} from '@polkadot/types/interfaces';
 import { Result } from './result.ts';
-import { Status, StorageDeposit, Weight } from './substrate.ts';
 
 export type {
   ContractExecResult,
@@ -13,25 +17,35 @@ export type { ContractSubmittableResult } from '@polkadot/api-contract/base/cont
 
 export type AccountId = string;
 
-export type DecodedResult<T> = Result<T, string>;
-
 export interface ContractCallResultRaw {
   readonly callResult: ContractExecResult;
   readonly abiMessage: AbiMessage;
 }
 
-export interface ContractExecResultDecoded<T> {
-  readonly gasConsumed: Weight;
-  readonly gasRequired: Weight;
-  readonly storageDeposit: StorageDeposit;
-  readonly debugMessage: string;
-  readonly result: T;
+export interface TxInfo {
+  gasRequired: Weight;
+  gasConsumed: Weight;
+  storageDeposit: StorageDeposit;
+  partialFee: Balance;
 }
 
-export type ContractTxFunc = {
-  send: (args: unknown[], options?: ContractOptions) => any;
-  status: Status;
-  error?: string | null;
-  result: ContractSubmittableResult | undefined;
-  resetState: () => void;
-};
+export interface ContractExecResultDecoded<T>
+  extends Omit<TxInfo, 'partialFee'> {
+  readonly decoded: T;
+  readonly raw: ContractExecResult;
+}
+
+export interface ContractTxExecResultDecoded<T> extends TxInfo {
+  readonly decoded: T;
+  readonly raw: ContractExecResult;
+}
+
+export type DecodedResult<T> = Result<T, DispatchError | undefined>;
+
+export type DecodedContractResult<T> = DecodedResult<
+  ContractExecResultDecoded<T>
+>;
+
+export type DecodedContractTxResult<T> = DecodedResult<
+  ContractTxExecResultDecoded<T>
+>;
