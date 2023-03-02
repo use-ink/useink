@@ -6,8 +6,8 @@ export type Response = {
 
 export const isNone = (tx: { status: Status }): boolean => tx.status === 'None';
 
-export const isPreFlight = (tx: { status: Status }): boolean =>
-  tx.status === 'PreFlight';
+export const isDryRun = (tx: { status: Status }): boolean =>
+  tx.status === 'DryRun';
 
 export const isPendingSignature = (tx: { status: Status }): boolean =>
   tx.status === 'PendingSignature';
@@ -30,7 +30,7 @@ export const isErrored = (tx: { status: Status }): boolean =>
   tx.status === 'Errored';
 
 export const shouldDisable = (tx: { status: Status }): boolean =>
-  hasAny(tx, 'PreFlight', 'PendingSignature', 'Broadcast');
+  hasAny(tx, 'DryRun', 'PendingSignature', 'Broadcast');
 
 export const shouldDisableStrict = (tx: { status: Status }): boolean =>
   shouldDisable(tx) || isInBlock(tx);

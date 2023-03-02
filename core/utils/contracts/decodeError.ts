@@ -1,46 +1,29 @@
-import type { ApiPromise } from '@polkadot/api';
 import type { DispatchError } from '@polkadot/types/interfaces';
 import type { RegistryError } from '@polkadot/types/types';
+import { ApiBase } from '@polkadot/api/types';
 
 export interface DecodedErrorResult {
-  message: string;
+  message?: string;
   registryError?: RegistryError;
 }
 
 type RegistryErrorMethod = string;
 
 const toDefaultMessage = (registryError: RegistryError): string =>
-  `${registryError?.section.toUpperCase()}.${registryError?.method}: ${registryError?.docs}`;
+  `${registryError?.section}.${registryError?.method}: ${registryError?.docs}`;
 
 export const decodeError = (
-  error: DispatchError,
-  api: ApiPromise,
-  customMessages?: Record<RegistryErrorMethod, string>,
+  { error }: { error: DispatchError | undefined },
+  { api }: { api: ApiBase<'promise'> },
+  moduleMessages?: Record<RegistryErrorMethod, string>,
 ): DecodedErrorResult => {
-  let message = 'Unknown dispatch error';
-  let registryError: RegistryError | undefined;
+  if (!error) return { message: 'Unable to decode result' };
+  if (!error.isModule) return {};
 
-  if (error.isModule) {
-    registryError = api?.registry.findMetaError(error.asModule);
+  const registryError = api?.registry.findMetaError(error.asModule);
 
-    if (customMessages) {
-      const errorNames = Object.keys(customMessages || {});
-      for (let i = 0; i <= errorNames.length; i++) {
-        const errorName = errorNames[i];
-        if (errorName && errorName === registryError.method) {
-          return {
-            message: customMessages[errorName] || '',
-            registryError,
-          };
-        }
-      }
-    }
+  const message = moduleMessages?.[registryError.method] ||
+    toDefaultMessage(registryError);
 
-    message = toDefaultMessage(registryError);
-  }
-
-  return {
-    message,
-    registryError,
-  };
+  return { message, registryError };
 };

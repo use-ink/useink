@@ -1,7 +1,7 @@
 import { ContractPromise } from '@polkadot/api-contract';
 import { useMemo } from 'react';
-import { AbiMessage } from '../types/contracts.ts';
-import { toContractAbiMessage } from '../utils/mod.ts';
+import { AbiMessage } from '../../types/contracts.ts';
+import { toContractAbiMessage } from '../../utils/mod.ts';
 
 export function useAbiMessage(
   contract: ContractPromise | undefined,

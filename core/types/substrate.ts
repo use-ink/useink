@@ -10,17 +10,18 @@ export type {
   Balance,
   EventRecord,
   ExtrinsicStatus,
+  RuntimeDispatchInfo,
   StorageDeposit,
   Weight,
   WeightV2,
 } from '@polkadot/types/interfaces';
-export type { SubmittableExtrinsic } from '@polkadot/api/types';
+export type { SignerOptions, SubmittableExtrinsic } from '@polkadot/api/types';
 
 import { ExtrinsicStatus } from '@polkadot/types/interfaces';
 
 export type Status =
   | 'None'
-  | 'PreFlight'
+  | 'DryRun'
   | 'PendingSignature'
   | ExtrinsicStatus['type']
   | 'Errored';

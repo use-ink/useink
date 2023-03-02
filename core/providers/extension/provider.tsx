@@ -25,7 +25,7 @@ export const ExtensionProvider: React.FC<React.PropsWithChildren<any>> = (
   const [error, setError] = React.useState<ExtensionError>();
   const originName = C.dappName && C.dappName.trim().length > 0
     ? C.dappName
-    : 'A dapp built with useInk!';
+    : 'A dapp built with useink!';
 
   const enableAutoConnect = React.useCallback((address: string) => {
     localStorage.setItem(originName, address);
