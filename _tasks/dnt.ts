@@ -11,7 +11,13 @@ await Promise.all([
     entryPoints: ['mod.ts'],
     outDir,
     importMap: 'import_map.json',
-    mappings: {},
+    mappings: {
+      'https://cdn.skypack.dev/react?dts': {
+        name: 'react',
+        version: '^17.0.0',
+        peerDependency: true,
+      },
+    },
     package: {
       name: 'useink',
       version: Deno.args[0]!,
