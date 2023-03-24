@@ -61,8 +61,10 @@ export const Connector = () => {
 There are more features inside of `useExtension` and many more hooks in
 `useink`.
 
-You can find an example in
-[Link - A URL shortener built with ink!](https://github.com/paritytech/link).
+You can find examples and patterns here:
+
+* [useink Kitchen Sink](https://github.com/paritytech/useink-kitchen-sink)
+* [Link - A URL shortener built with ink!](https://github.com/paritytech/link).
 
 ## Code of Conduct
 
