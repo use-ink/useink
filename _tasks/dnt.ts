@@ -33,7 +33,6 @@ await Promise.all([
       sourceMap: true,
       target: 'ES2021',
     },
-    scriptModule: false,
     shims: {
       deno: {
         test: true,
