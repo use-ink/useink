@@ -1,6 +1,15 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
+import { ChainId } from '../../../chains/mod.ts';
+
+export interface IApiProvider {
+  api: ApiPromise;
+  provider: WsProvider;
+}
+
+export type IApiProviders = Partial<
+  Record<ChainId, IApiProvider>
+>;
 
 export interface API {
-  api?: ApiPromise;
-  provider?: WsProvider;
+  apis?: IApiProviders;
 }

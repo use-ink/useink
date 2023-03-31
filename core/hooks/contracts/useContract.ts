@@ -1,15 +1,24 @@
 import { Abi, ContractPromise } from '@polkadot/api-contract';
 import { useEffect, useMemo, useState } from 'react';
 import { useApi } from '../useApi.ts';
+import { ChainId } from '../../../chains/mod.ts';
+import { useChain } from '../useChain.ts';
 
 export type ContractAbi = string | Record<string, unknown> | Abi;
+
+export interface ChainContract<T extends ContractPromise = ContractPromise> {
+  contract: T | undefined;
+  chainId: ChainId;
+}
 
 export function useContract<T extends ContractPromise = ContractPromise>(
   address: string,
   metadata: Record<string, unknown>,
-): T | undefined {
+  chainId?: ChainId,
+): ChainContract<T> | undefined {
   const [contract, setContract] = useState<T | undefined>();
-  const { api } = useApi();
+  const chainConfig = useChain(chainId);
+  const { api } = useApi(chainConfig?.id) || {};
 
   const abi = useMemo(
     () => api && new Abi(metadata, api.registry.getChainProperties()),
@@ -24,5 +33,5 @@ export function useContract<T extends ContractPromise = ContractPromise>(
     }
   }, [abi, address, api]);
 
-  return contract;
+  return chainConfig ? { chainId: chainConfig.id, contract } : undefined;
 }

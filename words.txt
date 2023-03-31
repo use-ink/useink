@@ -13,6 +13,7 @@ astar
 atomf
 autoremove
 aventus
+azero
 azuretools
 baju
 bajun
@@ -58,6 +59,7 @@ discoverability
 dispatch
 dispatchable
 dprint
+dwellir
 edgeware
 efinity
 esbenp
@@ -87,6 +89,7 @@ karura
 katal
 katalchain
 keypair
+khala
 kico
 kint
 kintsugi
@@ -171,6 +174,8 @@ schnorrkel
 secp
 serayuzgur
 serde
+shibuya
+shiden
 shiki
 sibz
 smoldot
@@ -210,6 +215,7 @@ uniarts
 unioned
 unsanitized
 unsub
+unsubs
 useInk
 useink
 vadimcn

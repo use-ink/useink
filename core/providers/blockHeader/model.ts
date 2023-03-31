@@ -1,11 +1,13 @@
 import { Header } from '@polkadot/types/interfaces';
+import { ChainId } from '../../../chains/mod.ts';
 
-export type BlockHeader = {
+export interface BlockHeader {
   blockNumber: number | undefined;
   header: Header | undefined;
-};
+}
 
-export const BLOCK_HEADER_DEFAULTS: BlockHeader = {
-  blockNumber: undefined,
-  header: undefined,
-};
+export type ChainBlockHeaders = Partial<
+  Record<ChainId, BlockHeader>
+>;
+
+export const BLOCK_HEADER_DEFAULTS: ChainBlockHeaders = {};

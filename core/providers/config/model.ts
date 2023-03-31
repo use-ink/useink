@@ -1,12 +1,10 @@
-import {
-  DEFAULT_RPC_URL,
-  FIVE_SECONDS,
-  HALF_A_SECOND,
-} from '../../constants.ts';
+import { ContractsRococo, IChain } from '../../../chains/mod.ts';
+import { FIVE_SECONDS, HALF_A_SECOND } from '../../constants.ts';
+import { ArrayOneOrMore } from '../../types/array.ts';
 
 export type Config = {
   dappName?: string;
-  providerUrl?: string;
+  chains: ArrayOneOrMore<IChain>;
   notifications?: {
     expiration?: number;
     checkInterval?: number;
@@ -22,7 +20,7 @@ export type Config = {
 
 export const DEFAULT_CONFIG: Config = {
   dappName: 'A dapp built with useInk!',
-  providerUrl: DEFAULT_RPC_URL,
+  chains: [ContractsRococo],
   notifications: {
     expiration: FIVE_SECONDS,
     checkInterval: HALF_A_SECOND,
