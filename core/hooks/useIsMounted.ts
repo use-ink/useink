@@ -5,7 +5,6 @@ export function useIsMounted() {
 
   React.useEffect(() => {
     isMounted.current = true;
-
     return () => {
       isMounted.current = false;
     };

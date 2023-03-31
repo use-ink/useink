@@ -1,22 +1,28 @@
-import React from 'react';
-import { ApiPromise, WsProvider } from '@polkadot/api';
-import { useConfig } from '../../hooks/mod.ts';
-import { APIContext } from './context.ts';
+import React, { useEffect, useReducer } from 'react'
+import { ApiPromise, WsProvider } from '@polkadot/api'
+import { useChains } from '../../hooks/mod.ts'
+import { APIContext } from './context.ts'
+import { apiProvidersReducer } from './reducer.ts'
 
-export const APIProvider: React.FC<React.PropsWithChildren<any>> = (
-  { children },
-) => {
-  const { providerUrl } = useConfig();
-  const provider = React.useMemo(() => new WsProvider(providerUrl), [
-    providerUrl,
-  ]);
-  const [api, setApi] = React.useState<ApiPromise | undefined>();
+export const APIProvider: React.FC<React.PropsWithChildren<any>> = ({
+  children,
+}) => {
+  const chains = useChains()
+  const [apis, dispatch] = useReducer(apiProvidersReducer, {})
 
-  React.useEffect(() => {
-    ApiPromise.create({ provider }).then((api) => {
-      setApi(api);
-    });
-  }, [providerUrl, provider]);
+  useEffect(() => {
+    chains.forEach((chain) => {
+      const provider = new WsProvider(chain.rpcUrls[0])
 
-  return <APIContext.Provider value={{ api, provider }} children={children} />;
-};
+      ApiPromise.create({ provider }).then((api) => {
+        dispatch({
+          type: 'ADD_API_PROVIDER',
+          chainId: chain.id,
+          apiProvider: { api, provider },
+        })
+      })
+    })
+  }, [chains])
+
+  return <APIContext.Provider value={{ apis }} children={children} />
+}

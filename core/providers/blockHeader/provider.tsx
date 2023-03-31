@@ -1,48 +1,62 @@
-import React from 'react';
-import { useApi } from '../../hooks/useApi.ts';
-import { BlockHeaderContext } from './context.ts';
-import { BlockHeader } from './model.ts';
+import React, { useEffect, useMemo, useReducer } from 'react'
+import { BlockHeaderContext } from './context.ts'
+import { ChainBlockHeaders } from './model.ts'
+import { useApis } from '../../mod.ts'
+import { ChainId } from '../../../chains/mod.ts'
+import { chainBlockHeaderReducer } from './reducer.ts'
 
 const toBlockNumber = (valWithComma: string | undefined): number =>
-  parseInt(`${valWithComma?.split(',').join('')}`);
+  parseInt(`${valWithComma?.split(',').join('')}`)
 
-export const BlockHeaderProvider: React.FC<React.PropsWithChildren<any>> = (
-  { children },
-) => {
-  const { api } = useApi();
-  const [blockHeader, setBlockHeader] = React.useState<BlockHeader>({
-    blockNumber: undefined,
-    header: undefined,
-  });
+export const BlockHeaderProvider: React.FC<React.PropsWithChildren<any>> = ({
+  children,
+}) => {
+  const chainApis = useApis()
 
-  React.useEffect(() => {
-    // deno-lint-ignore require-await
-    async function listenToBlocks() {
-      return api?.rpc.chain.subscribeNewHeads((header) => {
-        try {
-          const blockNumber = toBlockNumber(
-            header.number.toHuman()?.toString(),
-          );
-          blockNumber && setBlockHeader({ blockNumber, header });
-        } catch (e) {
-          console.error(e);
-        }
-      });
+  const [chainBlockHeaders, dispatch] = useReducer(
+    chainBlockHeaderReducer,
+    {} as ChainBlockHeaders,
+  )
+
+  const chainIds: ChainId[] = useMemo(
+    () => (chainApis.apis ? (Object.keys(chainApis.apis) as ChainId[]) : []),
+    [chainApis],
+  )
+
+  useEffect(() => {
+    function listenToBlocks() {
+      return chainIds.map((chainId) => {
+        return chainApis?.apis?.[chainId]?.api?.rpc.chain.subscribeNewHeads(
+          (header) => {
+            try {
+              const blockNumber = toBlockNumber(
+                header.number.toHuman()?.toString(),
+              )
+              blockNumber &&
+                dispatch({
+                  type: 'ADD_CHAIN_BLOCK_HEADER',
+                  chainId,
+                  blockHeader: { blockNumber, header },
+                })
+            } catch (e) {
+              console.error(e)
+            }
+          },
+        )
+      })
     }
-    let cleanUp: VoidFunction | undefined;
 
-    if (listenToBlocks) {
-      listenToBlocks()
-        .then((unsub) => (cleanUp = unsub))
-        .catch(console.error);
+    let unsubFuncs: (VoidFunction | undefined)[] | undefined
+    Promise.all(listenToBlocks()).then((unsubs) => (unsubFuncs = unsubs))
+
+    return () => {
+      unsubFuncs && unsubFuncs.forEach((unsub) => unsub && unsub())
     }
-
-    return () => cleanUp && cleanUp();
-  }, [api]);
+  }, [chainApis])
 
   return (
-    <BlockHeaderContext.Provider value={blockHeader}>
+    <BlockHeaderContext.Provider value={chainBlockHeaders}>
       {children}
     </BlockHeaderContext.Provider>
-  );
-};
+  )
+}

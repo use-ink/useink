@@ -8,7 +8,13 @@ await fs.emptyDir(outDir);
 
 await Promise.all([
   build({
-    entryPoints: ['mod.ts'],
+    entryPoints: [
+      'mod.ts',
+      {
+        name: './chains',
+        path: 'chains/mod.ts',
+      },
+    ],
     outDir,
     importMap: 'import_map.json',
     mappings: {
@@ -25,7 +31,18 @@ await Promise.all([
         'A React hooks library for Substrate and Wasm contracts on Substrate',
       license: 'Apache-2.0',
       repository: 'github:paritytech/useink',
-      keywords: ['ink!', 'React', 'hooks', 'Polkadot', 'Substrate'],
+      keywords: [
+        'useink',
+        'ink!',
+        'Polkadot',
+        'Kusama',
+        'Substrate',
+        'AlephZero',
+        'Astar',
+        'Phala',
+        'React',
+        'hooks',
+      ],
     },
     compilerOptions: {
       lib: ['dom', 'esnext'],
