@@ -19,12 +19,13 @@
 
 ```ts
 import { UseInkProvider } from 'useink';
+import { ContractsRococo } from 'useink/chains';
 
 root.render(
   <UseInkProvider
     config={{
       dappName: 'My Dapp',
-      providerUrl: 'wss://rococo-contracts-rpc.polkadot.io',
+      chains: [ContractsRococo],
     }}
   >
     {children}
