@@ -6,11 +6,11 @@ import {
 } from '../providers/notifications/mod.ts';
 import { getExpiredItem } from '../utils/mod.ts';
 import { useConfig } from './useConfig.ts';
-import { useExtension } from './useExtension.ts';
+import { useWallet } from './useWallet.ts';
 import { useInterval } from './useInterval.ts';
 
 export function useNotifications() {
-  const { account } = useExtension();
+  const { account } = useWallet();
   const { addNotification, notifications, removeNotification } = useContext(
     NotificationsContext,
   );

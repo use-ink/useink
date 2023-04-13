@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { ContractPromise } from '@polkadot/api-contract';
 import { ContractOptions } from '../../types/contracts.ts';
-import { useExtension } from '../useExtension.ts';
+import { useWallet } from '../useWallet.ts';
 import { RuntimeDispatchInfo, SignerOptions } from '../../types/substrate.ts';
 
 type Send = (
@@ -23,7 +23,7 @@ export function useTxPaymentInfo(
 ): PaymentInfoResult {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [result, setResult] = useState<RuntimeDispatchInfo>();
-  const { account } = useExtension();
+  const { account } = useWallet();
 
   const send = useCallback<Send>(async (options, params, signerOptions) => {
     const tx = contract?.tx?.[message];

@@ -1,29 +1,28 @@
-import React from 'react';
-import { APIProvider } from './api/provider.tsx';
-import { BlockHeaderProvider } from './blockHeader/mod.ts';
-import { Config, ConfigProvider } from './config/mod.ts';
-import { ContractEventsProvider } from './contractEvents/mod.ts';
-import { ExtensionProvider } from './extension/mod.ts';
-import { NotificationsProvider } from './notifications/mod.ts';
+import React from 'react'
+import { APIProvider } from './api/provider.tsx'
+import { BlockHeaderProvider } from './blockHeader/mod.ts'
+import { Config, ConfigProvider } from './config/mod.ts'
+import { ContractEventsProvider } from './contractEvents/mod.ts'
+import { WalletProvider } from './wallet/mod.ts'
+import { NotificationsProvider } from './notifications/mod.ts'
 
 export type InkConfig = {
-  config?: Config;
-};
+  config?: Config
+}
 
-export const UseInkProvider: React.FC<React.PropsWithChildren<InkConfig>> = (
-  { children, config },
-) => (
+export const UseInkProvider: React.FC<React.PropsWithChildren<InkConfig>> = ({
+  children,
+  config,
+}) => (
   <ConfigProvider config={config}>
-    <ExtensionProvider>
+    <WalletProvider>
       <APIProvider>
         <BlockHeaderProvider>
           <ContractEventsProvider>
-            <NotificationsProvider>
-              {children}
-            </NotificationsProvider>
+            <NotificationsProvider>{children}</NotificationsProvider>
           </ContractEventsProvider>
         </BlockHeaderProvider>
       </APIProvider>
-    </ExtensionProvider>
+    </WalletProvider>
   </ConfigProvider>
-);
+)

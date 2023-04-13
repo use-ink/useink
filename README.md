@@ -33,18 +33,18 @@ root.render(
 );
 ```
 
-2. Connecting a wallet - `useink` provides a hook called `useExtension` that
+2. Connecting a wallet - `useink` provides a hook called `useWallet` that
    uses [@polkadot/extension-dapp]. Once a wallet is connected the account is
    stored in local storage so that if the page refreshes the Dapp will auto
    connect. You can turn this feature off by passing in
-   `{ extensions: { skipAutoConnect: true } }` to the config in
+   `{ wallet: { skipAutoConnect: true } }` to the config in
    `UseInkProvider`.
 
 ```ts
-import { useExtension } from 'useink';
+import { useWallet } from 'useink';
 
 export const Connector = () => {
-  const { account, connect, disconnect } = useExtension();
+  const { account, connect, disconnect } = useWallet();
 
   if (!account) {
     return <button onClick={connect}>Connect</button>;
@@ -59,7 +59,7 @@ export const Connector = () => {
 };
 ```
 
-There are more features inside of `useExtension` and many more hooks in
+There are more features inside of `useWallet` and many more hooks in
 `useink`.
 
 You can find examples and patterns here:

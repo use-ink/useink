@@ -3,7 +3,7 @@ import {
   InjectedExtension,
 } from '@polkadot/extension-inject/types';
 
-export enum ExtensionError {
+export enum WalletError {
   AccountFetchFailed = 'AccountFetchFailed',
   AccountNotFound = 'AccountNotFound',
   AccountsNotEnabled = 'AccountsNotEnabled',
@@ -12,17 +12,17 @@ export enum ExtensionError {
   SettingNewAccountFailed = 'SettingNewAccountFailed',
 }
 
-export type Extension = {
+export type Wallet = {
   account?: InjectedAccountWithMeta | undefined;
   accounts: InjectedAccountWithMeta[] | undefined;
-  connect: () => void;
+  connect: (walletName?: string) => void;
   disconnect: () => void;
-  error?: ExtensionError;
+  error?: WalletError;
   extension?: InjectedExtension | undefined;
   setAccount: (account: InjectedAccountWithMeta) => void;
 };
 
-export const EXTENSION_DEFAULTS: Extension = {
+export const WALLET_DEFAULTS: Wallet = {
   connect: () => null,
   disconnect: () => null,
   account: undefined,

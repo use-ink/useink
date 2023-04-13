@@ -1,25 +1,25 @@
-import React from 'react';
-import { NotificationsContext } from './context.ts';
+import React from 'react'
+import { NotificationsContext } from './context.ts'
 import {
   AddNotificationPayload,
   DEFAULT_NOTIFICATIONS,
   RemoveNotificationPayload,
-} from './model.ts';
-import { useIsMounted } from '../../hooks/useIsMounted.ts';
-import { notificationReducer } from './reducer.ts';
-import { useExtension } from '../../hooks/mod.ts';
-import { pseudoRandomId } from '../../utils/mod.ts';
+} from './model.ts'
+import { useIsMounted } from '../../hooks/useIsMounted.ts'
+import { notificationReducer } from './reducer.ts'
+import { useWallet } from '../../hooks/mod.ts'
+import { pseudoRandomId } from '../../utils/mod.ts'
 
 // @internal
-export const NotificationsProvider: React.FC<React.PropsWithChildren<any>> = (
-  { children },
-) => {
+export const NotificationsProvider: React.FC<React.PropsWithChildren<any>> = ({
+  children,
+}) => {
   const [notifications, dispatch] = React.useReducer(
     notificationReducer,
     DEFAULT_NOTIFICATIONS,
-  );
-  const isMounted = useIsMounted();
-  const { account } = useExtension();
+  )
+  const isMounted = useIsMounted()
+  const { account } = useWallet()
 
   const addNotification = React.useCallback(
     ({ notification }: AddNotificationPayload) => {
@@ -31,11 +31,11 @@ export const NotificationsProvider: React.FC<React.PropsWithChildren<any>> = (
             id: pseudoRandomId(),
             createdAt: Date.now(),
           },
-        });
+        })
       }
     },
     [dispatch],
-  );
+  )
 
   React.useEffect(() => {
     if (account) {
@@ -44,9 +44,9 @@ export const NotificationsProvider: React.FC<React.PropsWithChildren<any>> = (
           message: `${account.meta.name || account.address} Connected`,
           type: 'WalletConnected',
         },
-      });
+      })
     }
-  }, [account?.address]);
+  }, [account?.address])
 
   const removeNotification = React.useCallback(
     ({ notificationId }: RemoveNotificationPayload) => {
@@ -54,16 +54,16 @@ export const NotificationsProvider: React.FC<React.PropsWithChildren<any>> = (
         dispatch({
           type: 'REMOVE_NOTIFICATION',
           notificationId,
-        });
+        })
       }
     },
     [dispatch],
-  );
+  )
 
   return (
     <NotificationsContext.Provider
       value={{ addNotification, notifications, removeNotification }}
       children={children}
     />
-  );
-};
+  )
+}

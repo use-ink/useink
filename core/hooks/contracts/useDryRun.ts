@@ -5,7 +5,7 @@ import { DecodedContractTxResult } from '../../types/contracts.ts';
 import { SignerOptions } from '../../types/mod.ts';
 import { call } from '../../utils/mod.ts';
 import { useAbiMessage } from './useAbiMessage.ts';
-import { useExtension } from '../useExtension.ts';
+import { useWallet } from '../useWallet.ts';
 
 export type DryRunResult<T> = DecodedContractTxResult<T>;
 
@@ -27,7 +27,7 @@ export function useDryRun<T>(
   contract: ContractPromise | undefined,
   message: string,
 ): DryRun<T> {
-  const { account, extension } = useExtension();
+  const { account, extension } = useWallet();
   const [result, setResult] = useState<DecodedContractTxResult<T>>();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const abiMessage = useAbiMessage(contract, message);

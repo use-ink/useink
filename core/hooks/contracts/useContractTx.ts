@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { ContractSubmittableResult } from '../../types/mod.ts';
 import { Status } from '../../types/mod.ts';
 import { useAbiMessage } from './useAbiMessage.ts';
-import { useExtension } from '../useExtension.ts';
+import { useWallet } from '../useWallet.ts';
 import { ApiBase } from '@polkadot/api/types';
 import { useDryRun } from './useDryRun.ts';
 
@@ -30,7 +30,7 @@ export function useContractTx<T>(
   contract: ContractPromise | undefined,
   message: string,
 ): ContractTx<T> {
-  const { account, extension } = useExtension();
+  const { account, extension } = useWallet();
   const [status, setStatus] = useState<Status>('None');
   const [result, setResult] = useState<ContractSubmittableResult>();
   const abiMessage = useAbiMessage(contract, message);
