@@ -13,7 +13,7 @@ export type Config = {
     expiration?: number;
     checkInterval?: number;
   };
-  extension?: {
+  wallet?: {
     skipAutoConnect?: boolean;
   };
 };

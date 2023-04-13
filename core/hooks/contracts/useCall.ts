@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 import { call } from '../../utils/mod.ts';
 import { ContractOptions } from '../../types/mod.ts';
 import { useAbiMessage } from './useAbiMessage.ts';
-import { useExtension } from '../useExtension.ts';
+import { useWallet } from '../useWallet.ts';
 import { DecodedContractResult } from '../../types/contracts.ts';
 
 export type CallSend<T> = (
@@ -34,7 +34,7 @@ export function useCall<T>(
   const [result, setResult] = useState<DecodedContractResult<T>>();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const abiMessage = useAbiMessage(contract, message);
-  const { account } = useExtension();
+  const { account } = useWallet();
 
   const send = useCallback(
     async (
