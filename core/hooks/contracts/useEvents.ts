@@ -2,20 +2,20 @@ import { Bytes } from '@polkadot/types';
 import { useContext, useEffect } from 'react';
 import { FIVE_SECONDS, HALF_A_SECOND } from '../../constants.ts';
 import {
-  ContractEvent,
-  ContractEventsContext,
-} from '../../providers/contractEvents/mod.ts';
+  Event,
+  EventsContext,
+} from '../../providers/events/mod.ts';
 import { getExpiredItem } from '../../utils/getExpiredItem.ts';
 import { useBlockHeader } from '../substrate/useBlockHeader.ts';
 import { useConfig } from '../useConfig.ts';
 import { useInterval } from '../useInterval.ts';
 import { ChainContract } from './useContract.ts';
 
-export const useContractEvents = (
+export const useEvents = (
   chainContract?: ChainContract,
-): ContractEvent[] => {
-  const { events, addContractEvent, removeContractEvent } = useContext(
-    ContractEventsContext,
+): Event[] => {
+  const { events, addEvent, removeEvent } = useContext(
+    EventsContext,
   );
   const { blockNumber, header } = useBlockHeader(chainContract?.chainId) || {};
   const C = useConfig();
@@ -55,7 +55,7 @@ export const useContractEvents = (
                       },
                     };
 
-                    addContractEvent(eventItem);
+                    addEvent(eventItem);
                   } catch (e) {
                     console.error(e);
                   }
@@ -67,12 +67,12 @@ export const useContractEvents = (
   }, [chainContract, blockNumber]);
 
   useInterval(() => {
-    const expiredEvents = getExpiredItem<ContractEvent>(
+    const expiredEvents = getExpiredItem<Event>(
       eventsForAddress,
       C.notifications?.expiration || FIVE_SECONDS,
     );
-    for (const contractEvent of expiredEvents) {
-      removeContractEvent({ eventId: contractEvent.id, address });
+    for (const event of expiredEvents) {
+      removeEvent({ eventId: event.id, address });
     }
   }, C.notifications?.checkInterval || HALF_A_SECOND);
 
