@@ -27,7 +27,7 @@ export function useDryRun<T>(
   contract: ContractPromise | undefined,
   message: string,
 ): DryRun<T> {
-  const { account, extension } = useWallet();
+  const { account } = useWallet();
   const [result, setResult] = useState<DecodedTxResult<T>>();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const abiMessage = useAbiMessage(contract, message);
@@ -35,7 +35,7 @@ export function useDryRun<T>(
   const send: Send<T> = useMemo(
     () => async (params, options) => {
       const tx = contract?.tx?.[message];
-      if (!account || !contract || !extension || !abiMessage || !tx) return;
+      if (!account || !contract || !abiMessage || !tx) return;
 
       setIsSubmitting(true);
 
@@ -79,7 +79,7 @@ export function useDryRun<T>(
         return;
       }
     },
-    [account, extension, contract, abiMessage],
+    [account, contract, abiMessage],
   );
 
   return {

@@ -41,7 +41,7 @@ export const NotificationsProvider: React.FC<React.PropsWithChildren<any>> = ({
     if (account) {
       addNotification({
         notification: {
-          message: `${account.meta.name || account.address} Connected`,
+          message: `${account.name || account.address} Connected`,
           type: 'WalletConnected',
         },
       })

@@ -1,32 +1,36 @@
-import {
-  InjectedAccountWithMeta,
-  InjectedExtension,
-} from '@polkadot/extension-inject/types';
+import { getWallets, getWalletBySource, WalletAccount } from "@talisman/connect-wallets";
 
 export enum WalletError {
-  AccountFetchFailed = 'AccountFetchFailed',
-  AccountNotFound = 'AccountNotFound',
-  AccountsNotEnabled = 'AccountsNotEnabled',
   ConnectionError = 'ConnectionError',
-  ExtensionsNotFound = 'ExtensionsNotFound',
-  SettingNewAccountFailed = 'SettingNewAccountFailed',
+  EnableFailed = 'EnableFailed',
+  WalletNotInstalled = 'WalletNotInstalled',
+  NoAccountsEnabled = 'NoAccountsEnabled',
 }
 
-export type Wallet = {
-  account?: InjectedAccountWithMeta | undefined;
-  accounts: InjectedAccountWithMeta[] | undefined;
-  connect: (walletName?: string) => void;
+export interface WalletState {
+  account?: WalletAccount | undefined;
+  accounts: WalletAccount[] | undefined;
+  connect: (walletName: WalletName) => void;
   disconnect: () => void;
-  error?: WalletError;
-  extension?: InjectedExtension | undefined;
-  setAccount: (account: InjectedAccountWithMeta) => void;
-};
+  walletError?: WalletError;
+  setAccount: (account: WalletAccount) => void;
+  getWallets: typeof getWallets;
+  getWalletBySource: typeof getWalletBySource;
+}
 
-export const WALLET_DEFAULTS: Wallet = {
-  connect: () => null,
-  disconnect: () => null,
+export const WALLET_DEFAULTS: WalletState = {
+  connect: () => undefined,
+  disconnect: () => undefined,
   account: undefined,
   accounts: undefined,
-  extension: undefined,
-  setAccount: () => null,
-};
+  setAccount: () => undefined,
+  getWallets,
+  getWalletBySource,
+}
+
+export type WalletName = string
+
+export interface AutoConnect {
+  address: string;
+  wallet: WalletName;
+}

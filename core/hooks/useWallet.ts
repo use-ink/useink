@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { Wallet, WalletContext } from '../providers/wallet/mod.ts';
+import { WalletState, WalletContext } from '../providers/wallet/mod.ts';
 
-export type { Wallet } from '../providers/wallet/mod.ts';
+export type { WalletState } from '../providers/wallet/mod.ts';
 
-export const useWallet: () => Wallet = () =>
-  useContext<Wallet>(WalletContext);
+export const useWallet: () => WalletState = () =>
+  useContext<WalletState>(WalletContext);
