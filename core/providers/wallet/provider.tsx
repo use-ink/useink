@@ -1,117 +1,149 @@
-import React from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useConfig } from '../../hooks/useConfig.ts'
-import {
-  InjectedAccountWithMeta,
-  InjectedExtension,
-} from '@polkadot/extension-inject/types'
 import { WalletContext } from './context.ts'
+import { AutoConnect, WalletError, WalletName } from './model.ts'
 import {
-  web3Accounts,
-  web3Enable,
-  web3FromAddress,
-} from '@polkadot/extension-dapp'
-import { WalletError } from './model.ts'
+  getWallets,
+  getWalletBySource,
+  WalletAccount,
+} from '@talisman/connect-wallets'
+import { Unsub } from '../../types/mod.ts'
 
-const getAutoConnectAddress = (key: string): string | null =>
-  localStorage.getItem(key)
+function getAutoConnectWalletInfo(key: string): AutoConnect | null {
+  const item = typeof window !== 'undefined' && window.localStorage.getItem(key)
+  return item ? (JSON.parse(item) as AutoConnect) : null
+}
 
 export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
   children,
 }) => {
   const C = useConfig()
-  const [account, setCallerAccount] = React.useState<InjectedAccountWithMeta>()
-  const [accounts, setAccounts] = React.useState<InjectedAccountWithMeta[]>()
-  const [extension, setExtension] = React.useState<InjectedExtension>()
-  const [error, setError] = React.useState<WalletError>()
-  const originName =
-    C.dappName && C.dappName.trim().length > 0
-      ? C.dappName
-      : 'A dapp built with useink!'
+  const [activeWallet, setActiveWallet] = useState<WalletName>()
+  const [account, setWalletAccount] = useState<WalletAccount>()
+  const [accounts, setAccounts] = useState<WalletAccount[]>()
+  const [walletError, setWalletError] = useState<WalletError>()
+  const dappName = useMemo(
+    () =>
+      C.dappName && C.dappName.trim().length > 0
+        ? C.dappName
+        : 'A Dapp built in useink',
+    [C.dappName],
+  )
 
   const enableAutoConnect = React.useCallback(
-    (address: string) => {
-      localStorage.setItem(originName, address)
+    (a: AutoConnect) => {
+      localStorage.setItem(dappName, JSON.stringify(a))
     },
-    [originName],
+    [dappName],
   )
 
   const disableAutoConnect = React.useCallback(() => {
-    if (getAutoConnectAddress(originName)) localStorage.removeItem(originName)
-  }, [originName])
+    if (getAutoConnectWalletInfo(dappName)) localStorage.removeItem(dappName)
+  }, [dappName])
 
-  const disconnect = React.useCallback(() => {
+  const disconnect = useCallback(() => {
     disableAutoConnect()
     setAccounts(undefined)
-    setCallerAccount(undefined)
-    setExtension(undefined)
-  }, [originName])
+    setWalletAccount(undefined)
+    setActiveWallet(undefined)
+    setWalletError(undefined)
+  }, [dappName])
 
-  const setAccount = React.useCallback(
-    (newAccount: InjectedAccountWithMeta) => {
-      web3FromAddress(newAccount.address)
-        .then((ext) => {
-          setExtension(ext)
-          setCallerAccount(newAccount)
-          if (!C.wallet?.skipAutoConnect) {
-            enableAutoConnect(newAccount.address)
-          }
+  const setAccount = useCallback(
+    (newAccount: WalletAccount) => {
+      walletError !== undefined && setWalletError(undefined)
+      setWalletAccount(newAccount)
+
+      if (!C.wallet?.skipAutoConnect) {
+        enableAutoConnect({
+          address: newAccount.address,
+          wallet: newAccount.source,
         })
-        .catch((e: unknown) => {
-          console.error('Account not found in any extensions', e)
-          setError(WalletError.AccountNotFound)
-        })
+      }
     },
     [C.wallet?.skipAutoConnect],
   )
 
-  const connect = React.useCallback(async () => {
-    await web3Enable(originName)
+  const connectWallet = useCallback(async (walletName: WalletName): Promise<
+    Unsub | undefined
+  > => {
+    walletError && setWalletError(undefined)
 
-    const allAccounts = await web3Accounts()
+    const w = getWalletBySource(walletName)
 
-    if (!allAccounts.length) {
-      setAccounts([])
-      console.error('No accounts found for connected extensions')
+    if (!w) {
+      setWalletError(WalletError.WalletNotInstalled)
+      setActiveWallet(undefined)
       return
     }
 
-    setAccounts(allAccounts)
+    try {
+      await w.enable(dappName)
+    } catch (e) {
+      setWalletError(WalletError.EnableFailed)
+      setActiveWallet(undefined)
+      return
+    }
 
-    if (!account) {
-      const autoConnectAddress = getAutoConnectAddress(originName)
-      const initialAccount = !C.wallet?.skipAutoConnect
-        ? allAccounts.find((a) => a.address === autoConnectAddress) ||
-          allAccounts[0]
-        : allAccounts[0]
+    const unsub = (await w.subscribeAccounts((accts) => {
+      setAccounts(accts)
 
-      if (!initialAccount) {
-        console.error('Account undefined')
+      const firstAccount = accts?.[0]
+
+      const noAccountsEnabled = !accts || !firstAccount
+      if (noAccountsEnabled) {
+        setWalletError(WalletError.NoAccountsEnabled)
+        setWalletAccount(undefined)
+        disableAutoConnect()
         return
       }
 
-      if (!C.wallet?.skipAutoConnect && initialAccount) {
-        enableAutoConnect(initialAccount.address)
+      const activeAccountNoLongerConnected =
+        account && !accts?.find((a) => a.address === account?.address)
+
+      if (activeAccountNoLongerConnected) {
+        setAccount(firstAccount)
+        return
       }
 
-      web3FromAddress(initialAccount.address)
-        .then((ext) => {
-          setCallerAccount(initialAccount)
-          setExtension(ext)
-        })
-        .catch((e: unknown) => {
-          console.error('connection error', e)
-        })
-    }
+      const autoConnect = getAutoConnectWalletInfo(dappName)
+
+      const autoConnectAccount =
+        autoConnect && accts.find((a) => a.address === autoConnect.address)
+
+      setAccount(autoConnectAccount || firstAccount)
+    })) as Unsub
+
+    return unsub
   }, [])
 
-  React.useEffect(() => {
-    if (getAutoConnectAddress(originName)) {
-      connect()
+  const connect = useCallback((walletName: WalletName) => {
+    setActiveWallet(walletName)
+  }, [])
+
+  // Check for autoConnect on page load
+  useEffect(() => {
+    const autoConnect = getAutoConnectWalletInfo(dappName)
+
+    if (autoConnect?.wallet) {
+      connect(autoConnect.wallet)
       return
     }
 
     disconnect()
   }, [])
+
+  // We must unsubscribe when the component unmounts so we use `activeWallet` state to
+  // trigger re-renders in useEffect. useEffect will automatically call the returned
+  // unsubscribe() function on unmount
+  useEffect(() => {
+    if (!activeWallet) return
+
+    let unsubFunc: (Unsub | undefined) | undefined
+    connectWallet(activeWallet).then((unsub) => (unsubFunc = unsub))
+
+    return () => unsubFunc?.()
+  }, [activeWallet])
 
   return (
     <WalletContext.Provider
@@ -120,9 +152,10 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
         accounts,
         connect,
         disconnect,
-        error,
-        extension,
+        walletError,
         setAccount,
+        getWallets,
+        getWalletBySource,
       }}
     >
       {children}

@@ -1,6 +1,6 @@
 import { createContext } from 'react';
-import { Wallet, WALLET_DEFAULTS } from './model.ts';
+import { WalletState, WALLET_DEFAULTS } from './model.ts';
 
-export const WalletContext = createContext<Wallet>({
+export const WalletContext = createContext<WalletState>({
   ...WALLET_DEFAULTS,
 });

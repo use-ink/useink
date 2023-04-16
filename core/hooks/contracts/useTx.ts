@@ -30,7 +30,7 @@ export function useTx<T>(
   contract: ContractPromise | undefined,
   message: string,
 ): Tx<T> {
-  const { account, extension } = useWallet();
+  const { account } = useWallet();
   const [status, setStatus] = useState<Status>('None');
   const [result, setResult] = useState<ContractSubmittableResult>();
   const abiMessage = useAbiMessage(contract, message);
@@ -38,7 +38,7 @@ export function useTx<T>(
 
   const signAndSend: SignAndSend = useMemo(
     () => (params, options, cb) => {
-      if (!contract || !account || !extension) return;
+      if (!contract || !account || !account.wallet?.extension) return;
 
       dryRun.send(params, options).then((response) => {
         if (!response || !response.ok) return;
@@ -52,15 +52,13 @@ export function useTx<T>(
           return;
         }
 
-        extension.
-
         tx(
           { gasLimit: gasRequired, ...(options || {}) },
           ...(params || []),
         )
           .signAndSend(
             account.address,
-            { signer: extension.signer },
+            { signer: account.wallet?.extension?.signer },
             (response: ContractSubmittableResult) => {
               setResult(response);
               setStatus(response.status.type);
@@ -77,7 +75,7 @@ export function useTx<T>(
           setStatus('None');
         });
     },
-    [account, extension, contract, abiMessage],
+    [account, account?.wallet?.extension?.signer, contract, abiMessage],
   );
 
   return {
