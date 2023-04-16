@@ -19,17 +19,17 @@ export type SignAndSend = (
   cb?: ContractSubmittableResultCallback,
 ) => void;
 
-export interface ContractTx<T> {
+export interface Tx<T> {
   signAndSend: SignAndSend;
   status: Status;
   result: ContractSubmittableResult | undefined;
   resetState: () => void;
 }
 
-export function useContractTx<T>(
+export function useTx<T>(
   contract: ContractPromise | undefined,
   message: string,
-): ContractTx<T> {
+): Tx<T> {
   const { account, extension } = useWallet();
   const [status, setStatus] = useState<Status>('None');
   const [result, setResult] = useState<ContractSubmittableResult>();
@@ -45,14 +45,16 @@ export function useContractTx<T>(
         setStatus('PendingSignature');
 
         const { gasRequired } = response.value.raw;
-        const contractTx = contract.tx[message];
+        const tx = contract.tx[message];
 
-        if (!contractTx) {
+        if (!tx) {
           console.error(`'${message}' not found on contract instance`);
           return;
         }
 
-        contractTx(
+        extension.
+
+        tx(
           { gasLimit: gasRequired, ...(options || {}) },
           ...(params || []),
         )

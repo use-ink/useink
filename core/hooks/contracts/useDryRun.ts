@@ -1,13 +1,13 @@
 import { ContractPromise } from '@polkadot/api-contract';
 import { ContractOptions } from '@polkadot/api-contract/types';
 import { useMemo, useState } from 'react';
-import { DecodedContractTxResult } from '../../types/contracts.ts';
+import { DecodedTxResult } from '../../types/contracts.ts';
 import { SignerOptions } from '../../types/mod.ts';
 import { call } from '../../utils/mod.ts';
 import { useAbiMessage } from './useAbiMessage.ts';
 import { useWallet } from '../useWallet.ts';
 
-export type DryRunResult<T> = DecodedContractTxResult<T>;
+export type DryRunResult<T> = DecodedTxResult<T>;
 
 export type Send<T> = (
   args?: unknown[],
@@ -28,7 +28,7 @@ export function useDryRun<T>(
   message: string,
 ): DryRun<T> {
   const { account, extension } = useWallet();
-  const [result, setResult] = useState<DecodedContractTxResult<T>>();
+  const [result, setResult] = useState<DecodedTxResult<T>>();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const abiMessage = useAbiMessage(contract, message);
 
