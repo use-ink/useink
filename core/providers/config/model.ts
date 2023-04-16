@@ -9,7 +9,7 @@ export type Config = {
     expiration?: number;
     checkInterval?: number;
   };
-  contractEvents?: {
+  events?: {
     expiration?: number;
     checkInterval?: number;
   };
@@ -25,7 +25,7 @@ export const DEFAULT_CONFIG: Config = {
     expiration: FIVE_SECONDS,
     checkInterval: HALF_A_SECOND,
   },
-  contractEvents: {
+  events: {
     expiration: FIVE_SECONDS,
     checkInterval: HALF_A_SECOND,
   },
