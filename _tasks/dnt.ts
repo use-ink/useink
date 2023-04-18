@@ -28,7 +28,7 @@ await Promise.all([
     mappings: {
       'https://cdn.skypack.dev/react?dts': {
         name: 'react',
-        version: '^17.0.0',
+        version: '^18.0.0',
         peerDependency: true,
       },
     },
