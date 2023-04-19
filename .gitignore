@@ -4,3 +4,4 @@ benches.json
 target
 deno.lock
 .vscode
+node_modules

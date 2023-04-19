@@ -1,0 +1,22 @@
+{
+  "name": "useink/chains",
+  "license": "MIT",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup ./src/index.ts --format cjs,esm --dts",
+    "release": "pnpm run build && changeset publish",
+    "lint": "tsc"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.26.1",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.4",
+    "useink/core": "workspace:useink/core@*"
+  },
+  "dependencies": {
+    "@polkadot/extension-dapp": "^0.45.5"
+  }
+}
