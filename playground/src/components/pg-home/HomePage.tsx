@@ -28,7 +28,7 @@ export const HomePage: React.FC = () => {
   const balance = useBalance(account);
   const cRococoContract = useContract(CONTRACTS_ROCOCO_ADDRESS, metadata);
   const get = useCall<boolean>(cRococoContract?.contract, 'get');
-  const getSubcription = useCallSubscription<boolean>(cRococoContract, 'get');
+  const getSubscription = useCallSubscription<boolean>(cRococoContract, 'get');
   const flipTx = useContractTx(cRococoContract?.contract, 'flip');
   const flipDryRun = useDryRun(cRococoContract?.contract, 'flip');
   const flipPaymentInfo = useTxPaymentInfo(cRococoContract?.contract, 'flip');
@@ -37,7 +37,7 @@ export const HomePage: React.FC = () => {
   const mood = useCall<MoodResult>(cRococoContract?.contract, 'mood');
   const shibuyaContract = useContract(SHIBUYA_CONTRACT_ADDRESS, metadata, 'Shibuya');
   const shibuyaFlipTx = useContractTx(shibuyaContract?.contract, 'flip');
-  const shibuyaGetSubcription = useCallSubscription<boolean>(shibuyaContract, 'get');
+  const shibuyaGetSubscription = useCallSubscription<boolean>(shibuyaContract, 'get');
 
   if (!cRococoContract?.contract) {
     return (
@@ -140,7 +140,7 @@ export const HomePage: React.FC = () => {
               <li className="flex items-center gap-4">
                 <h3 className="text-xl">
                   get() will update on new blocks:{' '}
-                  {getSubcription.result?.ok ? getSubcription.result.value.decoded.toString() : '--'}
+                  {getSubscription.result?.ok ? getSubscription.result.value.decoded.toString() : '--'}
                 </h3>
               </li>
 
@@ -171,7 +171,7 @@ export const HomePage: React.FC = () => {
 
                 <h3 className="text-xl">
                   Shibuya Flipped:{' '}
-                  {shibuyaGetSubcription.result?.ok ? shibuyaGetSubcription.result.value.decoded.toString() : '--'}
+                  {shibuyaGetSubscription.result?.ok ? shibuyaGetSubscription.result.value.decoded.toString() : '--'}
                 </h3>
 
                 <button
