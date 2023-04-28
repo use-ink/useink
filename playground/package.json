@@ -17,8 +17,8 @@
     "react-dom": "18.2.0",
     "react": "18.2.0",
     "typescript": "5.0.2",
-    "useink/core": "workspace:useink/core@*",
-    "useink/chains": "workspace:useink/chains@*"
+    "useink/core": "workspace:@useink/core@*",
+    "useink/chains": "workspace:@useink/chains@*"
   },
   "devDependencies": {
     "@types/node": "18.15.6",

@@ -1,5 +1,5 @@
 {
-  "name": "useink/core",
+  "name": "@useink/core",
   "license": "MIT",
   "version": "0.0.1",
   "main": "dist/index.js",
@@ -18,7 +18,7 @@
     "@types/react": "^18.0.37",
     "tsup": "^6.7.0",
     "typescript": "^5.0.4",
-    "useink/chains": "workspace:useink/chains@*"
+    "useink/chains": "workspace:@useink/chains@*"
   },
   "dependencies": {
     "@polkadot/api": "^10.3.4",
