@@ -1,10 +1,10 @@
 import { ContractPromise } from "@polkadot/api-contract";
 import { useCallback, useState } from "react";
-import { call } from "../../utils";
 import { ContractOptions } from "../../types";
-import { useAbiMessage } from "./useAbiMessage.ts";
-import { useWallet } from "../useWallet.ts";
 import { DecodedContractResult } from "../../types/contracts.ts";
+import { call } from "../../utils";
+import { useWallet } from "../useWallet.ts";
+import { useAbiMessage } from "./useAbiMessage.ts";
 
 export type CallSend<T> = (
   args?: unknown[],

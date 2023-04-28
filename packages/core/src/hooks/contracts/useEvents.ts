@@ -1,26 +1,19 @@
-import { Bytes } from '@polkadot/types';
-import { useContext, useEffect } from 'react';
-import { FIVE_SECONDS, HALF_A_SECOND } from '../../constants.ts';
-import {
-  Event,
-  EventsContext,
-} from '../../providers/events';
-import { getExpiredItem } from '../../utils/getExpiredItem.ts';
-import { useBlockHeader } from '../substrate/useBlockHeader.ts';
-import { useConfig } from '../useConfig.ts';
-import { useInterval } from '../useInterval.ts';
-import { ChainContract } from './useContract.ts';
+import { Bytes } from "@polkadot/types";
+import { useContext, useEffect } from "react";
+import { FIVE_SECONDS, HALF_A_SECOND } from "../../constants.ts";
+import { Event, EventsContext } from "../../providers/events";
+import { getExpiredItem } from "../../utils/getExpiredItem.ts";
+import { useBlockHeader } from "../substrate/useBlockHeader.ts";
+import { useConfig } from "../useConfig.ts";
+import { useInterval } from "../useInterval.ts";
+import { ChainContract } from "./useContract.ts";
 
-export const useEvents = (
-  chainContract?: ChainContract,
-): Event[] => {
-  const { events, addEvent, removeEvent } = useContext(
-    EventsContext,
-  );
+export const useEvents = (chainContract?: ChainContract): Event[] => {
+  const { events, addEvent, removeEvent } = useContext(EventsContext);
   const { blockNumber, header } = useBlockHeader(chainContract?.chainId) || {};
   const C = useConfig();
 
-  const address = chainContract?.contract?.address?.toString() || '';
+  const address = chainContract?.contract?.address?.toString() || "";
 
   const eventsForAddress = chainContract ? events[address] || [] : [];
 
@@ -38,13 +31,14 @@ export const useEvents = (
               ) {
                 const [contractAddress, contractEvent] = event.data;
                 if (
-                  address && contractAddress &&
+                  address &&
+                  contractAddress &&
                   contractAddress.toString().toLowerCase() ===
                     address.toLowerCase()
                 ) {
                   try {
                     const decodedEvent = contract.abi.decodeEvent(
-                      contractEvent as Bytes,
+                      contractEvent as Bytes
                     );
 
                     const eventItem = {
@@ -69,7 +63,7 @@ export const useEvents = (
   useInterval(() => {
     const expiredEvents = getExpiredItem<Event>(
       eventsForAddress,
-      C.notifications?.expiration || FIVE_SECONDS,
+      C.notifications?.expiration || FIVE_SECONDS
     );
     for (const event of expiredEvents) {
       removeEvent({ eventId: event.id, address });
