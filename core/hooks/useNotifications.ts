@@ -5,7 +5,7 @@ import {
   NotificationsContext,
 } from '../providers/notifications/mod.ts';
 import { getExpiredItem } from '../utils/mod.ts';
-import { useConfig } from './useConfig.ts';
+import { useConfig } from './config/useConfig.ts';
 import { useWallet } from './useWallet.ts';
 import { useInterval } from './useInterval.ts';
 

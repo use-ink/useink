@@ -1,13 +1,10 @@
 import { Bytes } from '@polkadot/types';
 import { useContext, useEffect } from 'react';
 import { FIVE_SECONDS, HALF_A_SECOND } from '../../constants.ts';
-import {
-  Event,
-  EventsContext,
-} from '../../providers/events/mod.ts';
+import { Event, EventsContext } from '../../providers/events/mod.ts';
 import { getExpiredItem } from '../../utils/getExpiredItem.ts';
 import { useBlockHeader } from '../substrate/useBlockHeader.ts';
-import { useConfig } from '../useConfig.ts';
+import { useConfig } from '../config/useConfig.ts';
 import { useInterval } from '../useInterval.ts';
 import { ChainContract } from './useContract.ts';
 

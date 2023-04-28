@@ -2,7 +2,7 @@ import { Abi, ContractPromise } from '@polkadot/api-contract';
 import { useEffect, useMemo, useState } from 'react';
 import { useApi } from '../useApi.ts';
 import { ChainId } from '../../../chains/mod.ts';
-import { useChain } from '../useChain.ts';
+import { useChain } from '../config/useChain.ts';
 
 export type ContractAbi = string | Record<string, unknown> | Abi;
 

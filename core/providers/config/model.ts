@@ -1,10 +1,12 @@
-import { ContractsRococo, IChain } from '../../../chains/mod.ts';
+import { ChainId, ChainRPCs } from '../../../chains/mod.ts';
+import { RococoContractsTestnet } from '../../../chains/testnet-chaindata.ts';
+import { Chain } from '../../../chains/mod.ts';
 import { FIVE_SECONDS, HALF_A_SECOND } from '../../constants.ts';
 import { ArrayOneOrMore } from '../../types/array.ts';
 
-export type Config = {
+export type ConfigProps = {
   dappName?: string;
-  chains: ArrayOneOrMore<IChain>;
+  chains: ArrayOneOrMore<Chain>;
   notifications?: {
     expiration?: number;
     checkInterval?: number;
@@ -18,9 +20,18 @@ export type Config = {
   };
 };
 
+export type SetChainRpc = (rpc: string, chain?: ChainId) => void;
+
+export interface ChainConfig {
+  setChainRpc: SetChainRpc;
+  chainRpcs: ChainRPCs;
+}
+
+export type Config = ChainConfig & ConfigProps;
+
 export const DEFAULT_CONFIG: Config = {
   dappName: 'A dapp built with useInk!',
-  chains: [ContractsRococo],
+  chains: [RococoContractsTestnet],
   notifications: {
     expiration: FIVE_SECONDS,
     checkInterval: HALF_A_SECOND,
@@ -29,4 +40,6 @@ export const DEFAULT_CONFIG: Config = {
     expiration: FIVE_SECONDS,
     checkInterval: HALF_A_SECOND,
   },
+  setChainRpc: () => null,
+  chainRpcs: {},
 };

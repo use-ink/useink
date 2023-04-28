@@ -8,12 +8,7 @@
     "noImplicitReturns": true,
     "noUncheckedIndexedAccess": true,
     "useUnknownInCatchVariables": true,
-    "lib": [
-      "dom",
-      "deno.ns",
-      "deno.unstable",
-      "esnext"
-    ]
+    "lib": ["dom", "deno.ns", "deno.unstable", "esnext"]
   },
   "fmt": {
     "options": {
