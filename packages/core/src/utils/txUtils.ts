@@ -1,22 +1,22 @@
-import { Status } from "../types";
+import { Status } from '../types';
 
 export type Response = {
   status: Status;
 };
 
-export const isNone = (tx: { status: Status }): boolean => tx.status === "None";
+export const isNone = (tx: { status: Status }): boolean => tx.status === 'None';
 
 export const isDryRun = (tx: { status: Status }): boolean =>
-  tx.status === "DryRun";
+  tx.status === 'DryRun';
 
 export const isPendingSignature = (tx: { status: Status }): boolean =>
-  tx.status === "PendingSignature";
+  tx.status === 'PendingSignature';
 
 export const isBroadcasting = (tx: { status: Status }): boolean =>
-  tx.status === "Broadcast";
+  tx.status === 'Broadcast';
 
 export const isInBlock = (tx: { status: Status }): boolean =>
-  tx.status === "InBlock";
+  tx.status === 'InBlock';
 
 export const hasAny = (
   tx: { status: Status },
@@ -24,13 +24,13 @@ export const hasAny = (
 ): boolean => statuses.includes(tx.status);
 
 export const isFinalized = (tx: { status: Status }): boolean =>
-  tx.status === "Finalized";
+  tx.status === 'Finalized';
 
 export const isErrored = (tx: { status: Status }): boolean =>
-  tx.status === "Errored";
+  tx.status === 'Errored';
 
 export const shouldDisable = (tx: { status: Status }): boolean =>
-  hasAny(tx, "DryRun", "PendingSignature", "Broadcast");
+  hasAny(tx, 'DryRun', 'PendingSignature', 'Broadcast');
 
 export const shouldDisableStrict = (tx: { status: Status }): boolean =>
   shouldDisable(tx) || isInBlock(tx);

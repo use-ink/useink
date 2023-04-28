@@ -1,7 +1,3 @@
-Curto
-DoubleOTheven
-Lxkf
-Tpeyg
 abortable
 acala
 ajun
@@ -39,6 +35,7 @@ contramap
 creds
 cummon
 curto
+Curto
 darwinia
 datahighway
 datetime
@@ -58,6 +55,7 @@ dico
 discoverability
 dispatch
 dispatchable
+DoubleOTheven
 dprint
 dwellir
 edgeware
@@ -103,6 +101,7 @@ litentry
 lldb
 lparachain
 ltex
+Lxkf
 mathchain
 matklad
 merkle
@@ -191,7 +190,7 @@ sufficients
 suri
 syncer
 syncstate
-tailaiw
+talismn
 tcess
 teer
 tidefi
@@ -201,6 +200,7 @@ tnkr
 todos
 tomaka
 tostring
+Tpeyg
 transcoders
 trufflehog
 trufflesecurity
@@ -216,8 +216,8 @@ unioned
 unsanitized
 unsub
 unsubs
-useInk
 useink
+useInk
 vadimcn
 valiu
 wasmbuild

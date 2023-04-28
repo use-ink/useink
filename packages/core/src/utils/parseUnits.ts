@@ -1,3 +1,2 @@
-export const stringNumberToBN = (valWithCommas: string): BigInt => {
-  return BigInt(valWithCommas.split(",").join(""));
-};
+export const stringNumberToBN = (valWithCommas: string): BigInt =>
+  BigInt(valWithCommas.split(',').join(''));

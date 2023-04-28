@@ -1,6 +1,6 @@
-import { Codec } from "@polkadot/types-codec/types";
-import type { ISubmittableResult } from "@polkadot/types/types";
-import { NotificationType } from "../../types";
+import { Codec } from '@polkadot/types-codec/types';
+import type { ISubmittableResult } from '@polkadot/types/types';
+import { NotificationType } from '../../types';
 
 export type NotificationPayload = {
   createdAt: number;
@@ -10,7 +10,7 @@ export type NotificationPayload = {
 };
 
 export type AddNotificationPayload = {
-  notification: Omit<NotificationPayload, "createdAt">;
+  notification: Omit<NotificationPayload, 'createdAt'>;
 };
 
 export type RemoveNotificationPayload = {

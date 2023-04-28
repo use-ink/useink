@@ -1,6 +1,6 @@
-import { ContractsRococo, IChain } from "useink/chains";
-import { FIVE_SECONDS, HALF_A_SECOND } from "../../constants.ts";
-import { ArrayOneOrMore } from "../../types/array.ts";
+import { ContractsRococo, IChain } from 'useink/chains';
+import { FIVE_SECONDS, HALF_A_SECOND } from '../../constants.ts';
+import { ArrayOneOrMore } from '../../types/array.ts';
 
 export type Config = {
   dappName?: string;
@@ -9,23 +9,23 @@ export type Config = {
     expiration?: number;
     checkInterval?: number;
   };
-  contractEvents?: {
+  events?: {
     expiration?: number;
     checkInterval?: number;
   };
-  extension?: {
+  wallet?: {
     skipAutoConnect?: boolean;
   };
 };
 
 export const DEFAULT_CONFIG: Config = {
-  dappName: "A dapp built with useInk!",
+  dappName: 'A dapp built with useInk!',
   chains: [ContractsRococo],
   notifications: {
     expiration: FIVE_SECONDS,
     checkInterval: HALF_A_SECOND,
   },
-  contractEvents: {
+  events: {
     expiration: FIVE_SECONDS,
     checkInterval: HALF_A_SECOND,
   },

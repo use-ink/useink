@@ -1,11 +1,11 @@
-import { ContractPromise } from "@polkadot/api-contract";
-import { useMemo } from "react";
-import { AbiMessage } from "../../types/contracts.ts";
-import { toContractAbiMessage } from "../../utils";
+import { ContractPromise } from '@polkadot/api-contract';
+import { useMemo } from 'react';
+import { AbiMessage } from '../../types/contracts.ts';
+import { toContractAbiMessage } from '../../utils';
 
 export function useAbiMessage(
   contract: ContractPromise | undefined,
-  message: string
+  message: string,
 ): AbiMessage | undefined {
   const abiMessage = useMemo(() => {
     if (!contract) return;

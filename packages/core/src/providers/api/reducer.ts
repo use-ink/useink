@@ -1,4 +1,4 @@
-import { ChainId } from '../../../chains/types.ts';
+import { ChainId } from 'useink/chains/types.ts';
 import { IApiProvider, IApiProviders } from './model.ts';
 
 interface AddApiProvider {

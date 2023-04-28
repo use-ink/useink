@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { DeriveBalancesAccount } from "@polkadot/api-derive/types";
-import { useApi } from "../useApi.ts";
-import { useBlockHeader } from "./useBlockHeader.ts";
-import { ChainId } from "useink/chains";
-import { useChain } from "../useChain.ts";
+import { useEffect, useState } from 'react';
+import { DeriveBalancesAccount } from '@polkadot/api-derive/types';
+import { useApi } from '../useApi.ts';
+import { useBlockHeader } from './useBlockHeader.ts';
+import { ChainId } from 'useink/chains';
+import { useChain } from '../useChain.ts';
 
 export interface WithAddress {
   address: string | undefined;
@@ -11,7 +11,7 @@ export interface WithAddress {
 
 export const useBalance = (
   account: WithAddress | undefined,
-  chainId?: ChainId
+  chainId?: ChainId,
 ): DeriveBalancesAccount | undefined => {
   const [balance, setBalance] = useState<DeriveBalancesAccount>();
   const { blockNumber } = useBlockHeader(chainId) || {};
@@ -20,10 +20,9 @@ export const useBalance = (
 
   useEffect(() => {
     if (!chain?.api || !account || !account.address) return;
-    chain.api.derive.balances
-      .account(account.address)
-      .then(setBalance)
-      .catch(console.error);
+    chain.api.derive.balances.account(account.address).then(setBalance).catch(
+      console.error,
+    );
   }, [blockNumber, account]);
 
   return balance;

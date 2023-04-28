@@ -26,6 +26,7 @@
     "@polkadot/api-derive": "^10.3.4",
     "@polkadot/extension-dapp": "^0.45.5",
     "@polkadot/extension-inject": "^0.45.5",
+    "@talismn/connect-wallets": "^1.2.3",
     "react": "^18.2.0"
   }
 }

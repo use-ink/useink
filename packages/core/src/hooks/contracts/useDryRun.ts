@@ -1,18 +1,18 @@
-import { ContractPromise } from "@polkadot/api-contract";
-import { ContractOptions } from "@polkadot/api-contract/types";
-import { useMemo, useState } from "react";
-import { DecodedContractTxResult } from "../../types/contracts.ts";
-import { SignerOptions } from "../../types";
-import { call } from "../../utils";
-import { useAbiMessage } from "./useAbiMessage.ts";
-import { useExtension } from "../useExtension.ts";
+import { ContractPromise } from '@polkadot/api-contract';
+import { ContractOptions } from '@polkadot/api-contract/types';
+import { useMemo, useState } from 'react';
+import { DecodedTxResult } from '../../types/contracts.ts';
+import { SignerOptions } from '../../types';
+import { call } from '../../utils';
+import { useAbiMessage } from './useAbiMessage.ts';
+import { useWallet } from '../useWallet.ts';
 
-export type DryRunResult<T> = DecodedContractTxResult<T>;
+export type DryRunResult<T> = DecodedTxResult<T>;
 
 export type Send<T> = (
   args?: unknown[],
   o?: ContractOptions,
-  signerOptions?: SignerOptions
+  signerOptions?: SignerOptions,
 ) => Promise<DryRunResult<T> | undefined>;
 
 interface DryRun<T> {
@@ -25,17 +25,17 @@ interface DryRun<T> {
 
 export function useDryRun<T>(
   contract: ContractPromise | undefined,
-  message: string
+  message: string,
 ): DryRun<T> {
-  const { account, extension } = useExtension();
-  const [result, setResult] = useState<DecodedContractTxResult<T>>();
+  const { account } = useWallet();
+  const [result, setResult] = useState<DecodedTxResult<T>>();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const abiMessage = useAbiMessage(contract, message);
 
   const send: Send<T> = useMemo(
     () => async (params, options) => {
       const tx = contract?.tx?.[message];
-      if (!account || !contract || !extension || !abiMessage || !tx) return;
+      if (!account || !contract || !abiMessage || !tx) return;
 
       setIsSubmitting(true);
 
@@ -45,7 +45,7 @@ export function useDryRun<T>(
           abiMessage,
           account.address,
           params,
-          options
+          options,
         );
 
         if (!resp || !resp.ok) return;
@@ -55,8 +55,8 @@ export function useDryRun<T>(
         const requiresNoArguments = tx.meta.args.length === 0;
         const { partialFee } = await (requiresNoArguments
           ? tx(options || {})
-          : tx(options || {}, params)
-        ).paymentInfo(account.address);
+          : tx(options || {}, params))
+          .paymentInfo(account.address);
 
         const r = {
           ...resp,
@@ -79,7 +79,7 @@ export function useDryRun<T>(
         return;
       }
     },
-    [account, extension, contract, abiMessage]
+    [account, contract, abiMessage],
   );
 
   return {

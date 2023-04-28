@@ -35,7 +35,7 @@ export interface ContractExecResultDecoded<T>
   readonly raw: ContractExecResult;
 }
 
-export interface ContractTxExecResultDecoded<T> extends TxInfo {
+export interface TxExecResultDecoded<T> extends TxInfo {
   readonly decoded: T;
   readonly raw: ContractExecResult;
 }
@@ -46,6 +46,6 @@ export type DecodedContractResult<T> = DecodedResult<
   ContractExecResultDecoded<T>
 >;
 
-export type DecodedContractTxResult<T> = DecodedResult<
-  ContractTxExecResultDecoded<T>
+export type DecodedTxResult<T> = DecodedResult<
+  TxExecResultDecoded<T>
 >;

@@ -1,10 +1,5 @@
 import Head from 'next/head';
-
-import dynamic from 'next/dynamic';
-
-const HomePage = dynamic(() => import('../components/pg-home'), {
-  ssr: false,
-});
+import HomePage from '@/components/pg-home';
 
 export default function Index() {
   return (

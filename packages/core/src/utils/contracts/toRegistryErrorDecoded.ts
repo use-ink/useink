@@ -1,8 +1,12 @@
-import { ContractExecResultResult, Registry, RegistryError } from "../../types";
+import {
+  ContractExecResultResult,
+  Registry,
+  RegistryError,
+} from '../../types';
 
 export const toRegistryErrorDecoded = (
   registry: Registry,
-  result: ContractExecResultResult
+  result: ContractExecResultResult,
 ): RegistryError | undefined => {
   try {
     return result.isErr && result.asErr.isModule

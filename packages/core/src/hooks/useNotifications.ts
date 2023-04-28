@@ -1,15 +1,19 @@
-import { useContext, useMemo } from "react";
-import { HALF_A_SECOND } from "../constants.ts";
-import { Notification, NotificationsContext } from "../providers/notifications";
-import { getExpiredItem } from "../utils";
-import { useConfig } from "./useConfig.ts";
-import { useExtension } from "./useExtension.ts";
-import { useInterval } from "./useInterval.ts";
+import { useContext, useMemo } from 'react';
+import { HALF_A_SECOND } from '../constants.ts';
+import {
+  Notification,
+  NotificationsContext,
+} from '../providers/notifications';
+import { getExpiredItem } from '../utils';
+import { useConfig } from './useConfig.ts';
+import { useWallet } from './useWallet.ts';
+import { useInterval } from './useInterval.ts';
 
 export function useNotifications() {
-  const { account } = useExtension();
-  const { addNotification, notifications, removeNotification } =
-    useContext(NotificationsContext);
+  const { account } = useWallet();
+  const { addNotification, notifications, removeNotification } = useContext(
+    NotificationsContext,
+  );
   const config = useConfig();
 
   const parachainNotifications = useMemo(() => {
@@ -20,7 +24,7 @@ export function useNotifications() {
   useInterval(() => {
     const expiredNotifications = getExpiredItem<Notification>(
       parachainNotifications,
-      config.notifications?.expiration
+      config.notifications?.expiration,
     );
     for (const notification of expiredNotifications) {
       removeNotification({ notificationId: notification.id });

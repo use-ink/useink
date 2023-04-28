@@ -12,10 +12,7 @@ interface RemoveNotification {
 
 type Action = AddNotification | RemoveNotification;
 
-export function notificationReducer(
-  state: Notifications,
-  action: Action,
-): Notifications {
+export function notificationReducer(state: Notifications, action: Action): Notifications {
   const chainState = state ?? [];
 
   switch (action.type) {

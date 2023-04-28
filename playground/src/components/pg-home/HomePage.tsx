@@ -1,19 +1,21 @@
+/* eslint-disable @next/next/no-img-element */
 import {
   useBlockHeader,
   useCall,
   useCallSubscription,
   useContract,
-  useContractTx,
-  useExtension,
+  useTx,
   useBalance,
   useDryRun,
   useTxPaymentInfo,
   shouldDisable,
   decodeError,
   useBlockHeaders,
+  useWallet,
 } from 'useink/core';
 import metadata from '../../metadata/playground.json';
 import { ChainId } from 'useink/chains';
+import { useMemo } from 'react';
 
 const CONTRACTS_ROCOCO_ADDRESS = '5HiKMysYx7npX4cngjvdkygKaPgJYirPh9UG1cJpBssayxys';
 const SHIBUYA_CONTRACT_ADDRESS = 'Z91HMz88MfDjY4uKzAbcYvXeAHjwJWTLNzt52eHCNjotpMS';
@@ -21,23 +23,26 @@ const SHIBUYA_CONTRACT_ADDRESS = 'Z91HMz88MfDjY4uKzAbcYvXeAHjwJWTLNzt52eHCNjotpM
 type MoodResult = { Ok?: { mood: string }; Err?: { BadMood: { mood: string } } };
 
 export const HomePage: React.FC = () => {
-  const { account, connect, disconnect } = useExtension();
+  const { account, accounts, setAccount, connect, disconnect, getWallets } = useWallet();
   const block = useBlockHeader(); // with no arguments it defaults to the first item in the chains config
   const astarBlockNumber = useBlockHeader('Astar');
   const allChainBlockHeaders = useBlockHeaders();
   const balance = useBalance(account);
   const cRococoContract = useContract(CONTRACTS_ROCOCO_ADDRESS, metadata);
   const get = useCall<boolean>(cRococoContract?.contract, 'get');
-  const getSubscription = useCallSubscription<boolean>(cRococoContract, 'get');
-  const flipTx = useContractTx(cRococoContract?.contract, 'flip');
+  const getSubcription = useCallSubscription<boolean>(cRococoContract, 'get');
+  const flipTx = useTx(cRococoContract?.contract, 'flip');
   const flipDryRun = useDryRun(cRococoContract?.contract, 'flip');
   const flipPaymentInfo = useTxPaymentInfo(cRococoContract?.contract, 'flip');
   const panic = useCall<boolean>(cRococoContract?.contract, 'panic');
   const assertBoom = useCall<boolean>(cRococoContract?.contract, 'assertBoom');
   const mood = useCall<MoodResult>(cRococoContract?.contract, 'mood');
   const shibuyaContract = useContract(SHIBUYA_CONTRACT_ADDRESS, metadata, 'Shibuya');
-  const shibuyaFlipTx = useContractTx(shibuyaContract?.contract, 'flip');
-  const shibuyaGetSubscription = useCallSubscription<boolean>(shibuyaContract, 'get');
+  const shibuyaFlipTx = useTx(shibuyaContract?.contract, 'flip');
+  const shibuyaGetSubcription = useCallSubscription<boolean>(shibuyaContract, 'get');
+
+  const installedWallets = useMemo(() => getWallets().filter((w) => w.installed), [getWallets]);
+  const uninstalledWallets = useMemo(() => getWallets().filter((w) => !w.installed), [getWallets]);
 
   if (!cRococoContract?.contract) {
     return (
@@ -66,12 +71,46 @@ export const HomePage: React.FC = () => {
 
         <div className="mt-8">
           {!account ? (
-            <button
-              onClick={connect}
-              className="rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 transition duration-75"
-            >
-              Connect Wallet
-            </button>
+            <ul className="flex flex-col gap-4">
+              {installedWallets.length > 0 ? (
+                <>
+                  <h2 className="text-xl font-bold">Connect a Wallet</h2>
+                  <h3 className="text-md">Installed Wallets</h3>
+                  {installedWallets.map((w) => (
+                    <li key={w.title}>
+                      <button
+                        onClick={() => connect(w.extensionName)}
+                        className="flex items-center w-full rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 transition duration-75"
+                      >
+                        <img className="w-12 mr-2" src={w.logo.src} alt={w.logo.alt} />
+                        Connect to {w.title}
+                      </button>
+                    </li>
+                  ))}
+                </>
+              ) : (
+                <h2 className="text-xl font-bold">You don&apos;t have any wallets installed...</h2>
+              )}
+
+              {uninstalledWallets.length > 0 && (
+                <>
+                  <h3 className="text-md">Uninstalled Wallets</h3>
+
+                  {uninstalledWallets.map((w) => (
+                    <li key={w.title}>
+                      <a
+                        href={w.installUrl}
+                        target="_blank"
+                        className="flex items-center w-full rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 transition duration-75"
+                      >
+                        <img className="w-12 mr-2" src={w.logo.src} alt={w.logo.alt} />
+                        Install {w.title}
+                      </a>
+                    </li>
+                  ))}
+                </>
+              )}
+            </ul>
           ) : (
             <ul className="list-none flex flex-col gap-12">
               <li>
@@ -85,8 +124,25 @@ export const HomePage: React.FC = () => {
 
               <li>
                 <b>You are connected as:</b>
-                <span className="ml-4 dark:bg-slate-600 bg-slate-200 rounded-lg py-2 px-2">{account.address}</span>
+                <span className="ml-4 dark:bg-slate-600 bg-slate-200 rounded-lg py-2 px-2">
+                  {account.name || account.address}
+                </span>
               </li>
+
+              {accounts?.map(
+                (acc) =>
+                  account !== acc && (
+                    <li key={acc.address} className="flex flex-col">
+                      <b>Connect to {acc.name ? acc.name : 'another wallet'}</b>
+                      <button
+                        onClick={() => setAccount(acc)}
+                        className="rounded-2xl text-white px-4 py-2 mt-2 bg-blue-500 hover:bg-blue-600 transition duration-75"
+                      >
+                        {acc.address}
+                      </button>
+                    </li>
+                  ),
+              )}
 
               <li>
                 <b>Your Free Balance:</b>
@@ -140,7 +196,7 @@ export const HomePage: React.FC = () => {
               <li className="flex items-center gap-4">
                 <h3 className="text-xl">
                   get() will update on new blocks:{' '}
-                  {getSubscription.result?.ok ? getSubscription.result.value.decoded.toString() : '--'}
+                  {getSubcription.result?.ok ? getSubcription.result.value.decoded.toString() : '--'}
                 </h3>
               </li>
 
@@ -171,7 +227,7 @@ export const HomePage: React.FC = () => {
 
                 <h3 className="text-xl">
                   Shibuya Flipped:{' '}
-                  {shibuyaGetSubscription.result?.ok ? shibuyaGetSubscription.result.value.decoded.toString() : '--'}
+                  {shibuyaGetSubcription.result?.ok ? shibuyaGetSubcription.result.value.decoded.toString() : '--'}
                 </h3>
 
                 <button

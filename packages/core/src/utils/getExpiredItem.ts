@@ -1,17 +1,11 @@
-import { FIVE_SECONDS } from "../constants.ts";
+import { FIVE_SECONDS } from '../constants.ts';
 
 export type CreatedItem = { createdAt: number };
 
-const timeFromCreation = (creationTime: CreatedItem["createdAt"]) =>
-  Date.now() - creationTime;
-
-export function getExpiredItem<T extends CreatedItem>(
-  items: T[],
-  expirationPeriod = FIVE_SECONDS
-): T[] {
+export function getExpiredItem<T>(items: CreatedItem[], expirationPeriod?: number): T[] {
   if (expirationPeriod === 0) return [];
 
-  return items.filter(
-    (item) => timeFromCreation(item.createdAt) >= expirationPeriod
-  ) as T[];
+  const timeFromCreation = (creationTime: number) => Date.now() - creationTime;
+
+  return items.filter((item) => timeFromCreation(item.createdAt) >= (expirationPeriod || FIVE_SECONDS)) as T[];
 }

@@ -1,21 +1,21 @@
 export type ChainId =
-  | "AlephZero"
-  | "AlephZeroTestnet"
-  | "Astar"
-  | "ContractsRococo"
-  | "Development"
-  | "Khala"
-  | "Phala"
-  | "PhalaTestnet"
-  | "Rococo"
-  | "Shibuya"
-  | "Shiden";
+  | 'AlephZero'
+  | 'AlephZeroTestnet'
+  | 'Astar'
+  | 'ContractsRococo'
+  | 'Development'
+  | 'Khala'
+  | 'Phala'
+  | 'PhalaTestnet'
+  | 'Rococo'
+  | 'Shibuya'
+  | 'Shiden';
 
 export interface IChain {
   id: ChainId;
   name: string;
   ss58Prefix: number;
-  rpcUrls: string[];
+  rpcUrls: Array<string>;
   explorerUrls: string[];
   testnet?: boolean;
   coingeckoId?: string;
