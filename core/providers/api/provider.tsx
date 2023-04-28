@@ -3,16 +3,18 @@ import { ApiPromise, WsProvider } from '@polkadot/api'
 import { useChains } from '../../hooks/mod.ts'
 import { APIContext } from './context.ts'
 import { apiProvidersReducer } from './reducer.ts'
+import { useConfig } from '../../mod.ts'
 
 export const APIProvider: React.FC<React.PropsWithChildren<any>> = ({
   children,
 }) => {
   const chains = useChains()
+  const { chainRpcs } = useConfig()
   const [apis, dispatch] = useReducer(apiProvidersReducer, {})
 
   useEffect(() => {
     chains.forEach((chain) => {
-      const provider = new WsProvider(chain.rpcUrls[0])
+      const provider = new WsProvider(chainRpcs[chain.id] || chain.rpcs[0])
 
       ApiPromise.create({ provider }).then((api) => {
         dispatch({
@@ -22,7 +24,7 @@ export const APIProvider: React.FC<React.PropsWithChildren<any>> = ({
         })
       })
     })
-  }, [chains])
+  }, [chains, chainRpcs])
 
   return <APIContext.Provider value={{ apis }} children={children} />
 }

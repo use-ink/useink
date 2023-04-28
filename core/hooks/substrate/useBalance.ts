@@ -3,7 +3,7 @@ import { DeriveBalancesAccount } from '@polkadot/api-derive/types';
 import { useApi } from '../useApi.ts';
 import { useBlockHeader } from './useBlockHeader.ts';
 import { ChainId } from '../../../chains/mod.ts';
-import { useChain } from '../useChain.ts';
+import { useChain } from '../mod.ts';
 
 export interface WithAddress {
   address: string | undefined;

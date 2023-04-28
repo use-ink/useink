@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
-import { ChainId, IChain } from '../../chains/mod.ts';
+import { ChainId } from '../../../chains/mod.ts';
 import { useConfig } from './useConfig.ts';
+import { Chain } from '../../../chains/mod.ts';
 
-export const useChain = (chainId?: ChainId): IChain | undefined => {
+export const useChain = (chainId?: ChainId): Chain | undefined => {
   const { chains } = useConfig();
 
   return useMemo(() => {

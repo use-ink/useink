@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { useConfig } from '../../hooks/useConfig.ts'
+import { useConfig } from '../../hooks/mod.ts'
 import { WalletContext } from './context.ts'
 import { AutoConnect, WalletError, WalletName } from './model.ts'
 import {

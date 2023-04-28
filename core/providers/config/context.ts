@@ -1,4 +1,6 @@
 import React from 'react';
-import { Config, DEFAULT_CONFIG } from './model.ts';
+import { ChainConfig, ConfigProps, DEFAULT_CONFIG } from './model.ts';
 
-export const ConfigContext = React.createContext<Config>(DEFAULT_CONFIG);
+export const ConfigContext = React.createContext<ConfigProps & ChainConfig>(
+  DEFAULT_CONFIG,
+);
