@@ -1,15 +1,15 @@
-import { ContractPromise } from '@polkadot/api-contract';
-import { useCallback, useState } from 'react';
-import { call } from '../../utils';
-import { ContractOptions } from '../../types';
-import { useAbiMessage } from './useAbiMessage.ts';
-import { useWallet } from '../useWallet.ts';
-import { DecodedContractResult } from '../../types/contracts.ts';
+import { ContractPromise } from "@polkadot/api-contract";
+import { useCallback, useState } from "react";
+import { call } from "../../utils";
+import { ContractOptions } from "../../types";
+import { useAbiMessage } from "./useAbiMessage.ts";
+import { useWallet } from "../useWallet.ts";
+import { DecodedContractResult } from "../../types/contracts.ts";
 
 export type CallSend<T> = (
   args?: unknown[],
   options?: ContractOptions,
-  caller?: string,
+  caller?: string
 ) => Promise<DecodedContractResult<T> | undefined>;
 
 export interface UseCall<T> {
@@ -18,9 +18,9 @@ export interface UseCall<T> {
 }
 
 export enum CallError {
-  ContractUndefined = 'Contract is undefined',
-  InvalidAbiMessage = 'Invalid ABI Message',
-  NoResponse = 'No response',
+  ContractUndefined = "Contract is undefined",
+  InvalidAbiMessage = "Invalid ABI Message",
+  NoResponse = "No response",
 }
 
 export interface UseCallResponse<T> extends UseCall<T> {
@@ -29,18 +29,18 @@ export interface UseCallResponse<T> extends UseCall<T> {
 
 export function useCall<T>(
   contract: ContractPromise | undefined,
-  message: string,
+  message: string
 ): UseCallResponse<T> {
   const [result, setResult] = useState<DecodedContractResult<T>>();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const abiMessage = useAbiMessage(contract, message);
   const { account } = useWallet();
 
-  const send = useCallback(
+  const send: CallSend<T> = useCallback(
     async (
       args,
       options,
-      caller,
+      caller
     ): Promise<DecodedContractResult<T> | undefined> => {
       const callingAddress = caller ? caller : account?.address;
       if (!abiMessage || !contract || !callingAddress) return;
@@ -52,7 +52,7 @@ export function useCall<T>(
           abiMessage,
           callingAddress,
           args,
-          options,
+          options
         );
         setResult(callResult);
         setIsSubmitting(false);
@@ -64,7 +64,7 @@ export function useCall<T>(
         return;
       }
     },
-    [account, abiMessage],
+    [account, abiMessage]
   );
 
   return { send, isSubmitting, result };
