@@ -17,11 +17,21 @@ export type {
 } from '@polkadot/types/interfaces';
 export type { SignerOptions, SubmittableExtrinsic } from '@polkadot/api/types';
 
-import { ExtrinsicStatus } from '@polkadot/types/interfaces';
+export type ExtrinsicStatusTypes =
+  | 'Future'
+  | 'Ready'
+  | 'Broadcast'
+  | 'InBlock'
+  | 'Retracted'
+  | 'FinalityTimeout'
+  | 'Finalized'
+  | 'Usurped'
+  | 'Dropped'
+  | 'Invalid';
 
 export type Status =
+  | ExtrinsicStatusTypes
   | 'None'
   | 'DryRun'
   | 'PendingSignature'
-  | ExtrinsicStatus['type']
   | 'Errored';

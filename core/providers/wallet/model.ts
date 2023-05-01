@@ -1,4 +1,10 @@
-import { getWallets, getWalletBySource, WalletAccount } from "@talisman/connect-wallets";
+import {
+  getWalletBySource,
+  getWallets,
+  WalletAccount,
+} from '@talisman/connect-wallets';
+
+export type { WalletAccount } from '@talisman/connect-wallets';
 
 export enum WalletError {
   ConnectionError = 'ConnectionError',
@@ -26,9 +32,9 @@ export const WALLET_DEFAULTS: WalletState = {
   setAccount: () => undefined,
   getWallets,
   getWalletBySource,
-}
+};
 
-export type WalletName = string
+export type WalletName = string;
 
 export interface AutoConnect {
   address: string;

@@ -8,10 +8,6 @@ export type ChainRPCs = Partial<Record<ChainId, string>>;
 export type ConfigProps = {
   dappName?: string;
   chains: ArrayOneOrMore<Chain>;
-  notifications?: {
-    expiration?: number;
-    checkInterval?: number;
-  };
   events?: {
     expiration?: number;
     checkInterval?: number;
@@ -33,10 +29,6 @@ export type Config = ChainConfig & ConfigProps;
 export const DEFAULT_CONFIG: Config = {
   dappName: 'A dapp built with useInk!',
   chains: [RococoContractsTestnet],
-  notifications: {
-    expiration: FIVE_SECONDS,
-    checkInterval: HALF_A_SECOND,
-  },
   events: {
     expiration: FIVE_SECONDS,
     checkInterval: HALF_A_SECOND,
