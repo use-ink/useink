@@ -66,12 +66,12 @@ export const useEvents = (
   useInterval(() => {
     const expiredEvents = getExpiredItem<Event>(
       eventsForAddress,
-      C.notifications?.expiration || FIVE_SECONDS,
+      C.events?.expiration || FIVE_SECONDS,
     );
     for (const event of expiredEvents) {
       removeEvent({ eventId: event.id, address });
     }
-  }, C.notifications?.checkInterval || HALF_A_SECOND);
+  }, C.events?.checkInterval || HALF_A_SECOND);
 
   return eventsForAddress;
 };

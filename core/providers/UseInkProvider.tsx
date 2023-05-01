@@ -4,7 +4,6 @@ import { BlockHeaderProvider } from './blockHeader/mod.ts'
 import { ConfigProps, ConfigProvider } from './config/mod.ts'
 import { EventsProvider } from './events/mod.ts'
 import { WalletProvider } from './wallet/mod.ts'
-import { NotificationsProvider } from './notifications/mod.ts'
 
 export type InkConfig = {
   config: ConfigProps
@@ -18,9 +17,7 @@ export const UseInkProvider: React.FC<React.PropsWithChildren<InkConfig>> = ({
     <WalletProvider>
       <APIProvider>
         <BlockHeaderProvider>
-          <EventsProvider>
-            <NotificationsProvider>{children}</NotificationsProvider>
-          </EventsProvider>
+          <EventsProvider>{children}</EventsProvider>
         </BlockHeaderProvider>
       </APIProvider>
     </WalletProvider>
