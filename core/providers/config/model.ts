@@ -1,8 +1,9 @@
-import { ChainId, ChainRPCs } from '../../../chains/mod.ts';
-import { RococoContractsTestnet } from '../../../chains/testnet-chaindata.ts';
+import { ChainId, RococoContractsTestnet } from '../../../chains/mod.ts';
 import { Chain } from '../../../chains/mod.ts';
 import { FIVE_SECONDS, HALF_A_SECOND } from '../../constants.ts';
 import { ArrayOneOrMore } from '../../types/array.ts';
+
+export type ChainRPCs = Partial<Record<ChainId, string>>;
 
 export type ConfigProps = {
   dappName?: string;

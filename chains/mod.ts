@@ -1,3 +1,2 @@
-export * from './chaindata.ts';
-export * from './testnet-chaindata.ts';
+export * from './data/mod.ts';
 export * from './types.ts';

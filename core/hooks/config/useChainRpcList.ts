@@ -4,7 +4,7 @@ import { useChain } from './useChain.ts';
 import { useConfig } from './useConfig.ts';
 
 export interface RpcList {
-  rpcs: string[];
+  rpcs: readonly string[];
   setChainRpc: SetChainRpc;
 }
 
