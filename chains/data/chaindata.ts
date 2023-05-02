@@ -1,53 +1,6 @@
-import { Chain } from './types.ts';
+import { IChain } from './types.ts';
 
-export const Polkadot: Chain = {
-  id: 'polkadot',
-  name: 'Polkadot',
-  account: '*25519',
-  subscanUrl: 'https://polkadot.subscan.io/',
-  chainspecQrUrl: 'https://metadata.parity.io/qr/polkadot_specs.png',
-  latestMetadataQrUrl:
-    'https://metadata.parity.io/qr/polkadot_metadata_latest.apng',
-  rpcs: [
-    'wss://rpc.polkadot.io',
-    'wss://polkadot.api.onfinality.io/public-ws',
-    'wss://polkadot-rpc.dwellir.com',
-    'wss://polkadot-rpc-tn.dwellir.com',
-    'wss://public-rpc.pinknode.io/polkadot',
-    'wss://polkadot.public.curie.radiumblock.co/ws',
-    'wss://1rpc.io/dot',
-    'wss://rpc.dotters.network/polkadot',
-  ],
-};
-
-export const Kusama: Chain = {
-  id: 'kusama',
-  name: 'Kusama',
-  account: '*25519',
-  subscanUrl: 'https://kusama.subscan.io/',
-  chainspecQrUrl: 'https://metadata.parity.io/qr/kusama_specs.png',
-  latestMetadataQrUrl:
-    'https://metadata.parity.io/qr/kusama_metadata_latest.apng',
-  rpcs: [
-    'wss://kusama-rpc.polkadot.io',
-    'wss://kusama.api.onfinality.io/public-ws',
-    'wss://kusama-rpc.dwellir.com',
-    'wss://kusama-rpc-tn.dwellir.com',
-    'wss://kusama.public.curie.radiumblock.co/ws',
-    'wss://public-rpc.pinknode.io/kusama',
-    'wss://1rpc.io/ksm',
-    'wss://rpc.dotters.network/kusama',
-  ],
-};
-
-export const _3Dpass: Chain = {
-  id: '3-dpass',
-  name: '3DPass',
-  account: '*25519',
-  rpcs: ['wss://rpc2.3dpass.org'],
-};
-
-export const Acala: Chain = {
+export const Acala: IChain<'acala'> = {
   id: 'acala',
   name: 'Acala',
   account: '*25519',
@@ -72,183 +25,183 @@ export const Acala: Chain = {
         {
           symbol: 'aUSD',
           decimals: 12,
-          ed: '100000000000',
+          existentialDeposit: '100000000000',
           onChainId: '{"Token":"AUSD"}',
           coingeckoId: 'acala-dollar',
         },
         {
           symbol: 'TAP',
           decimals: 12,
-          ed: '1000000000000',
+          existentialDeposit: '1000000000000',
           onChainId: '{"Token":"TAP"}',
           coingeckoId: 'tapio-protocol',
         },
         {
           symbol: 'lcDOT',
           decimals: 10,
-          ed: '100000000',
+          existentialDeposit: '100000000',
           onChainId: '{"LiquidCrowdloan":13}',
           coingeckoId: 'liquid-crowdloan-dot',
         },
         {
           symbol: 'LDOT',
           decimals: 10,
-          ed: '500000000',
+          existentialDeposit: '500000000',
           onChainId: '{"Token":"LDOT"}',
           coingeckoId: 'liquid-staking-dot',
         },
         {
           symbol: 'DOT',
           decimals: 10,
-          ed: '100000000',
+          existentialDeposit: '100000000',
           onChainId: '{"Token":"DOT"}',
           coingeckoId: 'polkadot',
         },
         {
           symbol: 'EQD',
           decimals: 9,
-          ed: '1000000000',
+          existentialDeposit: '1000000000',
           onChainId: '{"ForeignAsset":8}',
         },
         {
           symbol: 'INTR',
           decimals: 10,
-          ed: '1000000000',
+          existentialDeposit: '1000000000',
           onChainId: '{"ForeignAsset":4}',
           coingeckoId: 'interlay',
         },
         {
           symbol: 'WETH',
           decimals: 18,
-          ed: '500000000000000',
+          existentialDeposit: '500000000000000',
           onChainId: '{"ForeignAsset":6}',
         },
         {
           symbol: 'ASTR',
           decimals: 18,
-          ed: '100000000000000000',
+          existentialDeposit: '100000000000000000',
           onChainId: '{"ForeignAsset":2}',
           coingeckoId: 'astar',
         },
         {
           symbol: 'PHA',
           decimals: 12,
-          ed: '100000000000',
+          existentialDeposit: '100000000000',
           onChainId: '{"ForeignAsset":9}',
           coingeckoId: 'pha',
         },
         {
           symbol: 'PARA',
           decimals: 12,
-          ed: '100000000000',
+          existentialDeposit: '100000000000',
           onChainId: '{"ForeignAsset":1}',
         },
         {
           symbol: 'GLMR',
           decimals: 18,
-          ed: '100000000000000000',
+          existentialDeposit: '100000000000000000',
           onChainId: '{"ForeignAsset":0}',
           coingeckoId: 'moonbeam',
         },
         {
           symbol: 'WBTC',
           decimals: 8,
-          ed: '3000',
+          existentialDeposit: '3000',
           onChainId: '{"ForeignAsset":5}',
         },
         {
           symbol: 'EQ',
           decimals: 9,
-          ed: '1000000000',
+          existentialDeposit: '1000000000',
           onChainId: '{"ForeignAsset":7}',
           coingeckoId: 'equilibrium-token',
         },
         {
           symbol: 'IBTC',
           decimals: 8,
-          ed: '100',
+          existentialDeposit: '100',
           onChainId: '{"ForeignAsset":3}',
           coingeckoId: 'interbtc',
         },
         {
           symbol: 'tDOT',
           decimals: 10,
-          ed: '100000000',
+          existentialDeposit: '100000000',
           onChainId: '{"StableAssetPoolToken":0}',
         },
         {
           symbol: 'USDCet',
           decimals: 6,
-          ed: '10000',
+          existentialDeposit: '10000',
           onChainId: '{"Erc20":"0x07df96d1341a7d16ba1ad431e2c847d978bc2bce"}',
         },
         {
           symbol: 'APE',
           decimals: 18,
-          ed: '3000000000000000',
+          existentialDeposit: '3000000000000000',
           onChainId: '{"Erc20":"0xf4c723e61709d90f89939c1852f516e373d418a8"}',
         },
         {
           symbol: 'DAI',
           decimals: 18,
-          ed: '10000000000000000',
+          existentialDeposit: '10000000000000000',
           onChainId: '{"Erc20":"0x54a37a01cd75b616d63e0ab665bffdb0143c52ae"}',
           coingeckoId: 'dai',
         },
         {
           symbol: 'WETH',
           decimals: 18,
-          ed: '8500000000000',
+          existentialDeposit: '8500000000000',
           onChainId: '{"Erc20":"0x5a4d6acdc4e3e5ab15717f407afe957f7a242578"}',
         },
         {
           symbol: 'WBTC',
           decimals: 8,
-          ed: '60',
+          existentialDeposit: '60',
           onChainId: '{"Erc20":"0xc80084af223c8b598536178d9361dc55bfda6818"}',
         },
         {
           symbol: 'lp AUSD-LDOT',
           decimals: 12,
-          ed: '100000000000',
+          existentialDeposit: '100000000000',
           onChainId: '{"DexShare":[{"Token":"AUSD"},{"Token":"LDOT"}]}',
         },
         {
           symbol: 'lp AUSD-IBTC',
           decimals: 12,
-          ed: '100000000000',
+          existentialDeposit: '100000000000',
           onChainId: '{"DexShare":[{"Token":"AUSD"},{"ForeignAsset":3}]}',
         },
         {
           symbol: 'lp AUSD-lcDOT',
           decimals: 12,
-          ed: '100000000000',
+          existentialDeposit: '100000000000',
           onChainId: '{"DexShare":[{"Token":"AUSD"},{"LiquidCrowdloan":13}]}',
         },
         {
           symbol: 'lp ACA-AUSD',
           decimals: 12,
-          ed: '100000000000',
+          existentialDeposit: '100000000000',
           onChainId: '{"DexShare":[{"Token":"ACA"},{"Token":"AUSD"}]}',
         },
         {
           symbol: 'lp DOT-lcDOT',
           decimals: 10,
-          ed: '100000000',
+          existentialDeposit: '100000000',
           onChainId: '{"DexShare":[{"Token":"DOT"},{"LiquidCrowdloan":13}]}',
         },
         {
           symbol: 'lp AUSD-INTR',
           decimals: 12,
-          ed: '100000000000',
+          existentialDeposit: '100000000000',
           onChainId: '{"DexShare":[{"Token":"AUSD"},{"ForeignAsset":4}]}',
         },
       ],
     },
   },
-};
+} as const;
 
-export const Ajuna: Chain = {
+export const Ajuna: IChain<'ajuna'> = {
   id: 'ajuna',
   name: 'Ajuna',
   account: '*25519',
@@ -258,9 +211,9 @@ export const Ajuna: Chain = {
   ],
   paraId: 2051,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Aleph: Chain = {
+export const Aleph: IChain<'aleph'> = {
   id: 'aleph',
   name: 'Aleph Zero',
   coingeckoId: 'aleph-zero',
@@ -270,9 +223,9 @@ export const Aleph: Chain = {
   latestMetadataQrUrl:
     'https://metadata.novasama.io/qr/aleph-node_metadata_latest.apng',
   rpcs: ['wss://ws.azero.dev'],
-};
+} as const;
 
-export const Altair: Chain = {
+export const Altair: IChain<'altair'> = {
   id: 'altair',
   name: 'Altair',
   account: '*25519',
@@ -287,9 +240,9 @@ export const Altair: Chain = {
   ],
   paraId: 2088,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Amplitude: Chain = {
+export const Amplitude: IChain<'amplitude'> = {
   id: 'amplitude',
   name: 'Amplitude',
   account: '*25519',
@@ -302,16 +255,16 @@ export const Amplitude: Chain = {
   ],
   paraId: 2124,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const AresOdyssey: Chain = {
+export const AresOdyssey: IChain<'ares-odyssey'> = {
   id: 'ares-odyssey',
   name: 'Ares Odyssey Standalone',
   account: '*25519',
   rpcs: ['wss://odyssey.aresprotocol.io'],
-};
+} as const;
 
-export const Astar: Chain = {
+export const Astar: IChain<'astar'> = {
   id: 'astar',
   name: 'Astar',
   account: '*25519',
@@ -392,25 +345,25 @@ export const Astar: Chain = {
       ],
     },
   },
-};
+} as const;
 
-export const Automata: Chain = {
+export const Automata: IChain<'automata'> = {
   id: 'automata',
   name: 'Automata',
   account: '*25519',
   rpcs: ['wss://api.ata.network', 'wss://automata.api.onfinality.io/public-ws'],
-};
+} as const;
 
-export const Aventus: Chain = {
+export const Aventus: IChain<'aventus'> = {
   id: 'aventus',
   name: 'Aventus',
   account: '*25519',
   rpcs: [],
   paraId: 2056,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Bajun: Chain = {
+export const Bajun: IChain<'bajun'> = {
   id: 'bajun',
   name: 'Bajun',
   account: '*25519',
@@ -422,9 +375,9 @@ export const Bajun: Chain = {
   ],
   paraId: 2119,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Basilisk: Chain = {
+export const Basilisk: IChain<'basilisk'> = {
   id: 'basilisk',
   name: 'Basilisk',
   account: '*25519',
@@ -441,66 +394,71 @@ export const Basilisk: Chain = {
         {
           symbol: 'KSM',
           decimals: 12,
-          ed: '100000000',
+          existentialDeposit: '100000000',
           onChainId: 1,
           coingeckoId: 'kusama',
         },
         {
           symbol: 'aUSD',
           decimals: 12,
-          ed: '10000000000',
+          existentialDeposit: '10000000000',
           onChainId: 2,
           coingeckoId: 'acala-dollar',
         },
-        { symbol: 'TNKR', decimals: 12, ed: '1000000000', onChainId: 6 },
+        {
+          symbol: 'TNKR',
+          decimals: 12,
+          existentialDeposit: '1000000000',
+          onChainId: 6,
+        },
         {
           symbol: 'USDCet',
           decimals: 6,
-          ed: '10000',
+          existentialDeposit: '10000',
           onChainId: 9,
           coingeckoId: 'usd-coin-wormhole-from-ethereum',
         },
         {
           symbol: 'wETH',
           decimals: 18,
-          ed: '10000000',
+          existentialDeposit: '10000000',
           onChainId: 10,
           coingeckoId: 'ethereum',
         },
         {
           symbol: 'wBTC',
           decimals: 8,
-          ed: '1000000',
+          existentialDeposit: '1000000',
           onChainId: 11,
           coingeckoId: 'bitcoin',
         },
         {
           symbol: 'wUSDT',
           decimals: 6,
-          ed: '10000000000',
+          existentialDeposit: '10000000000',
           onChainId: 12,
           coingeckoId: 'tether',
         },
         {
           symbol: 'DAI',
           decimals: 18,
-          ed: '10000000000',
+          existentialDeposit: '10000000000',
           onChainId: 13,
           coingeckoId: 'dai',
         },
         {
           symbol: 'USDT',
           decimals: 6,
-          ed: '10000',
+          existentialDeposit: '10000',
           onChainId: 14,
           coingeckoId: 'tether',
         },
       ],
     },
   },
-};
+} as const;
 
-export const BifrostKusama: Chain = {
+export const BifrostKusama: IChain<'bifrost-kusama'> = {
   id: 'bifrost-kusama',
   name: 'Bifrost Kusama',
   account: '*25519',
@@ -519,41 +477,41 @@ export const BifrostKusama: Chain = {
         {
           symbol: 'aUSD',
           decimals: 12,
-          ed: '10000000000',
+          existentialDeposit: '10000000000',
           onChainId: '{"Stable":"KUSD"}',
           coingeckoId: 'acala-dollar',
         },
         {
           symbol: 'USDT',
           decimals: 6,
-          ed: '10000',
+          existentialDeposit: '10000',
           onChainId: '{"Token2":0}',
           coingeckoId: 'tether',
         },
         {
           symbol: 'vBNC',
           decimals: 12,
-          ed: '8000000000',
+          existentialDeposit: '8000000000',
           onChainId: '{"VToken":"BNC"}',
         },
         {
           symbol: 'vKSM',
           decimals: 12,
-          ed: '100000000',
+          existentialDeposit: '100000000',
           onChainId: '{"VToken":"KSM"}',
         },
         {
           symbol: 'vsKSM',
           decimals: 12,
-          ed: '100000000',
+          existentialDeposit: '100000000',
           onChainId: '{"VSToken":"KSM"}',
         },
       ],
     },
   },
-};
+} as const;
 
-export const BifrostPolkadot: Chain = {
+export const BifrostPolkadot: IChain<'bifrost-polkadot'> = {
   id: 'bifrost-polkadot',
   name: 'Bifrost Polkadot',
   account: '*25519',
@@ -573,35 +531,35 @@ export const BifrostPolkadot: Chain = {
         {
           symbol: 'DOT',
           decimals: 10,
-          ed: '1000000',
+          existentialDeposit: '1000000',
           onChainId: '{"Token2":0}',
           coingeckoId: 'polkadot',
         },
         {
           symbol: 'GLMR',
           decimals: 18,
-          ed: '1000000000000',
+          existentialDeposit: '1000000000000',
           onChainId: '{"Token2":1}',
           coingeckoId: 'moonbeam',
         },
         {
           symbol: 'vDOT',
           decimals: 10,
-          ed: '100000000',
+          existentialDeposit: '100000000',
           onChainId: '{"VToken":"DOT"}',
         },
         {
           symbol: 'vsDOT',
           decimals: 10,
-          ed: '100000000',
+          existentialDeposit: '100000000',
           onChainId: '{"VSToken":"DOT"}',
         },
       ],
     },
   },
-};
+} as const;
 
-export const BitcountryPioneer: Chain = {
+export const BitcountryPioneer: IChain<'bitcountry-pioneer'> = {
   id: 'bitcountry-pioneer',
   name: 'Bit.Country Pioneer',
   account: '*25519',
@@ -618,53 +576,53 @@ export const BitcountryPioneer: Chain = {
         {
           symbol: 'KSM',
           decimals: 12,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: '{"NativeToken":1}',
           coingeckoId: 'kusama',
         },
         {
           symbol: 'KAR',
           decimals: 12,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: '{"NativeToken":2}',
           coingeckoId: 'karura',
         },
         {
           symbol: 'aUSD',
           decimals: 12,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: '{"Stable":0}',
           coingeckoId: 'acala-dollar',
         },
         {
           symbol: 'BIT',
           decimals: 18,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: '{"MiningResource":0}',
           coingeckoId: 'bit',
         },
       ],
     },
   },
-};
+} as const;
 
-export const Bitgreen: Chain = {
+export const Bitgreen: IChain<'bitgreen'> = {
   id: 'bitgreen',
   name: 'Bitgreen',
   account: '*25519',
   rpcs: ['wss://mainnet.bitgreen.org'],
   paraId: 2048,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Bittensor: Chain = {
+export const Bittensor: IChain<'bittensor'> = {
   id: 'bittensor',
   name: 'Bittensor',
   account: '*25519',
   rpcs: ['wss://entrypoint-finney.opentensor.ai'],
-};
+} as const;
 
-export const Calamari: Chain = {
+export const Calamari: IChain<'calamari'> = {
   id: 'calamari',
   name: 'Calamari',
   account: '*25519',
@@ -675,9 +633,9 @@ export const Calamari: Chain = {
   rpcs: ['wss://ws.calamari.systems/'],
   paraId: 2084,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const CentrifugePolkadot: Chain = {
+export const CentrifugePolkadot: IChain<'centrifuge-polkadot'> = {
   id: 'centrifuge-polkadot',
   name: 'Centrifuge',
   account: '*25519',
@@ -692,17 +650,17 @@ export const CentrifugePolkadot: Chain = {
   ],
   paraId: 2031,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Chainx: Chain = {
+export const Chainx: IChain<'chainx'> = {
   id: 'chainx',
   name: 'ChainX',
   account: '*25519',
   subscanUrl: 'https://chainx.subscan.io/',
   rpcs: ['wss://mainnet.chainx.org/ws'],
-};
+} as const;
 
-export const Clover: Chain = {
+export const Clover: IChain<'clover'> = {
   id: 'clover',
   name: 'Clover',
   account: '*25519',
@@ -713,25 +671,25 @@ export const Clover: Chain = {
   rpcs: ['wss://rpc-para.clover.finance'],
   paraId: 2002,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Coinversation: Chain = {
+export const Coinversation: IChain<'coinversation'> = {
   id: 'coinversation',
   name: 'Coinversation',
   account: '*25519',
   rpcs: [],
   paraId: 2027,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const CompetitorsClub: Chain = {
+export const CompetitorsClub: IChain<'competitors-club'> = {
   id: 'competitors-club',
   name: 'Competitors Club',
   account: '*25519',
   rpcs: [],
-};
+} as const;
 
-export const ComposableFinance: Chain = {
+export const ComposableFinance: IChain<'composable-finance'> = {
   id: 'composable-finance',
   name: 'Composable Finance',
   account: '*25519',
@@ -746,80 +704,85 @@ export const ComposableFinance: Chain = {
         {
           symbol: 'DOT',
           decimals: 10,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: 6,
           coingeckoId: 'polkadot',
         },
         {
           symbol: 'KSM',
           decimals: 12,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: 4,
           coingeckoId: 'kusama',
         },
         {
           symbol: 'KAR',
           decimals: 12,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: 101,
           coingeckoId: 'karura',
         },
         {
           symbol: 'BNC',
           decimals: 12,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: 102,
           coingeckoId: 'bifrost-native-coin',
         },
-        { symbol: 'vKSM', decimals: 12, ed: '0', onChainId: 103 },
+        {
+          symbol: 'vKSM',
+          decimals: 12,
+          existentialDeposit: '0',
+          onChainId: 103,
+        },
         {
           symbol: 'MOVR',
           decimals: 18,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: 104,
           coingeckoId: 'moonriver',
         },
         {
           symbol: 'aUSD',
           decimals: 12,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: 129,
           coingeckoId: 'acala-dollar',
         },
         {
           symbol: 'USDT',
           decimals: 6,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: 130,
           coingeckoId: 'tether',
         },
         {
           symbol: 'USDC',
           decimals: 6,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: 131,
           coingeckoId: 'usd-coin',
         },
         {
           symbol: 'wBTC',
           decimals: 8,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: 132,
           coingeckoId: 'bitcoin',
         },
         {
           symbol: 'wETH',
           decimals: 18,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: 133,
           coingeckoId: 'ethereum',
         },
       ],
     },
   },
-};
+} as const;
 
-export const CrabKusama: Chain = {
+export const CrabKusama: IChain<'crab-kusama'> = {
   id: 'crab-kusama',
   name: 'Darwinia Crab',
   account: '*25519',
@@ -828,9 +791,9 @@ export const CrabKusama: Chain = {
   rpcs: ['wss://crab-parachain-rpc.darwinia.network/'],
   paraId: 2105,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const CrabStandalone: Chain = {
+export const CrabStandalone: IChain<'crab-standalone'> = {
   id: 'crab-standalone',
   name: 'Darwinia Crab Standalone',
   account: '*25519',
@@ -840,23 +803,23 @@ export const CrabStandalone: Chain = {
     'wss://darwiniacrab-rpc.dwellir.com',
     'wss://crab.api.onfinality.io/public-ws',
   ],
-};
+} as const;
 
-export const Creditcoin: Chain = {
+export const Creditcoin: IChain<'creditcoin'> = {
   id: 'creditcoin',
   name: 'Creditcoin',
   account: '*25519',
   rpcs: ['wss://rpc.mainnet.creditcoin.network/ws'],
-};
+} as const;
 
-export const CrownSterling: Chain = {
+export const CrownSterling: IChain<'crown-sterling'> = {
   id: 'crown-sterling',
   name: 'Crown Sterling',
   account: '*25519',
   rpcs: ['wss://blockchain.crownsterling.io'],
-};
+} as const;
 
-export const Crust: Chain = {
+export const Crust: IChain<'crust'> = {
   id: 'crust',
   name: 'Crust Standalone',
   account: '*25519',
@@ -866,18 +829,25 @@ export const Crust: Chain = {
     'wss://crust.api.onfinality.io/public-ws',
     'wss://rpc-crust-mainnet.decoo.io',
   ],
-};
+} as const;
 
-export const CrustParachain: Chain = {
+export const CrustParachain: IChain<'crust-parachain'> = {
   id: 'crust-parachain',
   name: 'Crust',
   account: '*25519',
   rpcs: ['wss://crust-parachain.crustapps.net'],
   paraId: 2008,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const DarwiniaPolkadot: Chain = {
+export const Custom: IChain<'custom'> = {
+  id: 'custom',
+  name: 'Custom',
+  account: '*25519',
+  rpcs: [],
+} as const;
+
+export const DarwiniaPolkadot: IChain<'darwinia-polkadot'> = {
   id: 'darwinia-polkadot',
   name: 'Darwinia',
   account: '*25519',
@@ -889,40 +859,40 @@ export const DarwiniaPolkadot: Chain = {
   rpcs: ['wss://parachain-rpc.darwinia.network'],
   paraId: 2046,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const DarwiniaPolkadot2: Chain = {
+export const DarwiniaPolkadot2: IChain<'darwinia-polkadot-2'> = {
   id: 'darwinia-polkadot-2',
   name: 'Darwinia Backup',
   account: '*25519',
   rpcs: [],
   paraId: 2003,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const DarwiniaStandalone: Chain = {
+export const DarwiniaStandalone: IChain<'darwinia-standalone'> = {
   id: 'darwinia-standalone',
   name: 'Darwinia Standalone',
   account: '*25519',
   rpcs: ['wss://rpc.darwinia.network', 'wss://darwinia-rpc.dwellir.com'],
-};
+} as const;
 
-export const Debio: Chain = {
+export const Debio: IChain<'debio'> = {
   id: 'debio',
   name: 'DeBio',
   account: '*25519',
   rpcs: ['wss://ws-rpc.debio.network'],
-};
+} as const;
 
-export const DockPosMainnet: Chain = {
+export const DockPosMainnet: IChain<'dock-pos-mainnet'> = {
   id: 'dock-pos-mainnet',
   name: 'Dock',
   account: '*25519',
   subscanUrl: 'https://dock.subscan.io/',
   rpcs: ['wss://mainnet-node.dock.io'],
-};
+} as const;
 
-export const Dorafactory: Chain = {
+export const Dorafactory: IChain<'dorafactory'> = {
   id: 'dorafactory',
   name: 'Dora Factory',
   account: '*25519',
@@ -933,9 +903,9 @@ export const Dorafactory: Chain = {
   rpcs: ['wss://kusama.dorafactory.org'],
   paraId: 2115,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Edgeware: Chain = {
+export const Edgeware: IChain<'edgeware'> = {
   id: 'edgeware',
   name: 'Edgeware',
   account: '*25519',
@@ -952,9 +922,9 @@ export const Edgeware: Chain = {
     'wss://mainnet5.edgewa.re',
     'wss://edgeware-rpc.dwellir.com',
   ],
-};
+} as const;
 
-export const EfinityPolkadot: Chain = {
+export const EfinityPolkadot: IChain<'efinity-polkadot'> = {
   id: 'efinity-polkadot',
   name: 'Efinity',
   account: 'Sr25519',
@@ -969,16 +939,16 @@ export const EfinityPolkadot: Chain = {
   ],
   paraId: 2021,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const EfinityStandalone: Chain = {
+export const EfinityStandalone: IChain<'efinity-standalone'> = {
   id: 'efinity-standalone',
   name: 'Efinity Standalone',
   account: '*25519',
   rpcs: [],
-};
+} as const;
 
-export const Encointer: Chain = {
+export const Encointer: IChain<'encointer'> = {
   id: 'encointer',
   name: 'Encointer',
   account: '*25519',
@@ -993,9 +963,9 @@ export const Encointer: Chain = {
   ],
   paraId: 1001,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const EquilibriumPolkadot: Chain = {
+export const EquilibriumPolkadot: IChain<'equilibrium-polkadot'> = {
   id: 'equilibrium-polkadot',
   name: 'Equilibrium',
   account: '*25519',
@@ -1008,27 +978,27 @@ export const EquilibriumPolkadot: Chain = {
     'substrate-native': { disable: true },
     'substrate-equilibrium': { disable: false },
   },
-};
+} as const;
 
-export const Frequency: Chain = {
+export const Frequency: IChain<'frequency'> = {
   id: 'frequency',
   name: 'Frequency',
   account: '*25519',
   rpcs: ['wss://0.rpc.frequency.xyz', 'wss://1.rpc.frequency.xyz'],
   paraId: 2091,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Geminis: Chain = {
+export const Geminis: IChain<'geminis'> = {
   id: 'geminis',
   name: 'Geminis',
   account: '*25519',
   rpcs: ['wss://rpc.geminis.network'],
   paraId: 2038,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const GenshiroKusama: Chain = {
+export const GenshiroKusama: IChain<'genshiro-kusama'> = {
   id: 'genshiro-kusama',
   name: 'Genshiro',
   account: '*25519',
@@ -1039,9 +1009,9 @@ export const GenshiroKusama: Chain = {
     'substrate-native': { disable: true },
     'substrate-equilibrium': { disable: false },
   },
-};
+} as const;
 
-export const Gm: Chain = {
+export const Gm: IChain<'gm'> = {
   id: 'gm',
   name: 'GM',
   account: '*25519',
@@ -1060,30 +1030,30 @@ export const Gm: Chain = {
   balanceModuleConfigs: {
     'substrate-tokens': {
       tokens: [
-        { symbol: 'GM', decimals: 0, ed: '0', onChainId: 1 },
-        { symbol: 'GN', decimals: 0, ed: '0', onChainId: 2 },
+        { symbol: 'GM', decimals: 0, existentialDeposit: '0', onChainId: 1 },
+        { symbol: 'GN', decimals: 0, existentialDeposit: '0', onChainId: 2 },
       ],
     },
   },
-};
+} as const;
 
-export const Hanonycash: Chain = {
+export const Hanonycash: IChain<'hanonycash'> = {
   id: 'hanonycash',
   name: 'Hanonycash',
   account: '*25519',
   rpcs: [],
-};
+} as const;
 
-export const Hashed: Chain = {
+export const Hashed: IChain<'hashed'> = {
   id: 'hashed',
   name: 'Hashed',
   account: '*25519',
   rpcs: ['wss://c1.hashed.network'],
   paraId: 2093,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const HeikoKusama: Chain = {
+export const HeikoKusama: IChain<'heiko-kusama'> = {
   id: 'heiko-kusama',
   name: 'Parallel Heiko',
   account: '*25519',
@@ -1097,9 +1067,9 @@ export const HeikoKusama: Chain = {
   ],
   paraId: 2085,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Hydra: Chain = {
+export const Hydra: IChain<'hydra'> = {
   id: 'hydra',
   name: 'HydraDX',
   account: '*25519',
@@ -1117,55 +1087,60 @@ export const Hydra: Chain = {
   balanceModuleConfigs: {
     'substrate-tokens': {
       tokens: [
-        { symbol: 'LRNA', decimals: 12, ed: '400000000', onChainId: 1 },
+        {
+          symbol: 'LRNA',
+          decimals: 12,
+          existentialDeposit: '400000000',
+          onChainId: 1,
+        },
         {
           symbol: 'DAI',
           decimals: 18,
-          ed: '10000000000000000',
+          existentialDeposit: '10000000000000000',
           onChainId: 2,
           coingeckoId: 'dai',
         },
         {
           symbol: 'WBTC',
           decimals: 8,
-          ed: '44',
+          existentialDeposit: '44',
           onChainId: 3,
           coingeckoId: 'bitcoin',
         },
         {
           symbol: 'WETH',
           decimals: 18,
-          ed: '7000000000000',
+          existentialDeposit: '7000000000000',
           onChainId: 4,
           coingeckoId: 'ethereum',
         },
         {
           symbol: 'DOT',
           decimals: 10,
-          ed: '17540000',
+          existentialDeposit: '17540000',
           onChainId: 5,
           coingeckoId: 'polkadot',
         },
         {
           symbol: 'APE',
           decimals: 18,
-          ed: '2518891687657430',
+          existentialDeposit: '2518891687657430',
           onChainId: 6,
           coingeckoId: 'apecoin',
         },
         {
           symbol: 'USDC',
           decimals: 6,
-          ed: '10000',
+          existentialDeposit: '10000',
           onChainId: 7,
           coingeckoId: 'usd-coin',
         },
       ],
     },
   },
-};
+} as const;
 
-export const Imbue: Chain = {
+export const Imbue: IChain<'imbue'> = {
   id: 'imbue',
   name: 'Imbue',
   account: '*25519',
@@ -1175,9 +1150,9 @@ export const Imbue: Chain = {
   rpcs: ['wss://imbue-kusama.imbue.network'],
   paraId: 2121,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const IntegriteeKusama: Chain = {
+export const IntegriteeKusama: IChain<'integritee-kusama'> = {
   id: 'integritee-kusama',
   name: 'Integritee',
   account: '*25519',
@@ -1193,18 +1168,18 @@ export const IntegriteeKusama: Chain = {
   ],
   paraId: 2015,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const IntegriteePolkadot: Chain = {
+export const IntegriteePolkadot: IChain<'integritee-polkadot'> = {
   id: 'integritee-polkadot',
   name: 'Integritee Shell',
   account: '*25519',
   rpcs: ['wss://polkadot.api.integritee.network'],
   paraId: 2039,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Interlay: Chain = {
+export const Interlay: IChain<'interlay'> = {
   id: 'interlay',
   name: 'Interlay',
   account: '*25519',
@@ -1220,9 +1195,9 @@ export const Interlay: Chain = {
   ],
   paraId: 2032,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Ipci: Chain = {
+export const Ipci: IChain<'ipci'> = {
   id: 'ipci',
   name: 'DAO IPCI',
   account: '*25519',
@@ -1232,16 +1207,16 @@ export const Ipci: Chain = {
     'https://metadata.novasama.io/qr/ipci_metadata_latest.apng',
   paraId: 2222,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Joystream: Chain = {
+export const Joystream: IChain<'joystream'> = {
   id: 'joystream',
   name: 'Joystream',
   account: '*25519',
   rpcs: ['wss://rpc.joystream.org'],
-};
+} as const;
 
-export const Kabocha: Chain = {
+export const Kabocha: IChain<'kabocha'> = {
   id: 'kabocha',
   name: 'Kabocha',
   account: '*25519',
@@ -1251,9 +1226,9 @@ export const Kabocha: Chain = {
   rpcs: ['wss://kabocha.jelliedowl.net'],
   paraId: 2113,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Kapex: Chain = {
+export const Kapex: IChain<'kapex'> = {
   id: 'kapex',
   name: 'Kapex',
   account: '*25519',
@@ -1263,9 +1238,9 @@ export const Kapex: Chain = {
   rpcs: ['wss://k-ui.kapex.network'],
   paraId: 2007,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Karura: Chain = {
+export const Karura: IChain<'karura'> = {
   id: 'karura',
   name: 'Karura',
   account: '*25519',
@@ -1291,349 +1266,349 @@ export const Karura: Chain = {
         {
           symbol: 'LKSM',
           decimals: 12,
-          ed: '500000000',
+          existentialDeposit: '500000000',
           onChainId: '{"Token":"LKSM"}',
           coingeckoId: 'liquid-ksm',
         },
         {
           symbol: 'BNC',
           decimals: 12,
-          ed: '8000000000',
+          existentialDeposit: '8000000000',
           onChainId: '{"Token":"BNC"}',
           coingeckoId: 'bifrost-native-coin',
         },
         {
           symbol: 'TAI',
           decimals: 12,
-          ed: '1000000000000',
+          existentialDeposit: '1000000000000',
           onChainId: '{"Token":"TAI"}',
           coingeckoId: 'taiga',
         },
         {
           symbol: 'PHA',
           decimals: 12,
-          ed: '40000000000',
+          existentialDeposit: '40000000000',
           onChainId: '{"Token":"PHA"}',
           coingeckoId: 'pha',
         },
         {
           symbol: 'KINT',
           decimals: 12,
-          ed: '133330000',
+          existentialDeposit: '133330000',
           onChainId: '{"Token":"KINT"}',
           coingeckoId: 'kintsugi',
         },
         {
           symbol: 'VSKSM',
           decimals: 12,
-          ed: '100000000',
+          existentialDeposit: '100000000',
           onChainId: '{"Token":"VSKSM"}',
         },
         {
           symbol: 'KSM',
           decimals: 12,
-          ed: '100000000',
+          existentialDeposit: '100000000',
           onChainId: '{"Token":"KSM"}',
           coingeckoId: 'kusama',
         },
         {
           symbol: 'aUSD',
           decimals: 12,
-          ed: '10000000000',
+          existentialDeposit: '10000000000',
           onChainId: '{"Token":"KUSD"}',
           coingeckoId: 'acala-dollar',
         },
         {
           symbol: 'KBTC',
           decimals: 8,
-          ed: '66',
+          existentialDeposit: '66',
           onChainId: '{"Token":"KBTC"}',
           coingeckoId: 'kintsugi-btc',
         },
         {
           symbol: 'KMA',
           decimals: 12,
-          ed: '100000000000',
+          existentialDeposit: '100000000000',
           onChainId: '{"ForeignAsset":10}',
           coingeckoId: 'calamari-network',
         },
         {
           symbol: 'GENS',
           decimals: 9,
-          ed: '1000000000000',
+          existentialDeposit: '1000000000000',
           onChainId: '{"ForeignAsset":14}',
           coingeckoId: 'genshiro',
         },
         {
           symbol: 'LT',
           decimals: 12,
-          ed: '1000000000000',
+          existentialDeposit: '1000000000000',
           onChainId: '{"ForeignAsset":19}',
         },
         {
           symbol: 'TEER',
           decimals: 12,
-          ed: '100000000000',
+          existentialDeposit: '100000000000',
           onChainId: '{"ForeignAsset":8}',
           coingeckoId: 'integritee',
         },
         {
           symbol: 'TUR',
           decimals: 10,
-          ed: '40000000000',
+          existentialDeposit: '40000000000',
           onChainId: '{"ForeignAsset":16}',
         },
         {
           symbol: 'HKO',
           decimals: 12,
-          ed: '100000000000',
+          existentialDeposit: '100000000000',
           onChainId: '{"ForeignAsset":4}',
         },
         {
           symbol: 'KICO',
           decimals: 14,
-          ed: '100000000000000',
+          existentialDeposit: '100000000000000',
           onChainId: '{"ForeignAsset":6}',
         },
         {
           symbol: 'QTZ',
           decimals: 18,
-          ed: '1000000000000000000',
+          existentialDeposit: '1000000000000000000',
           onChainId: '{"ForeignAsset":2}',
           coingeckoId: 'quartz',
         },
         {
           symbol: 'LIT',
           decimals: 12,
-          ed: '100000000000',
+          existentialDeposit: '100000000000',
           onChainId: '{"ForeignAsset":20}',
           coingeckoId: 'litentry',
         },
         {
           symbol: 'NEER',
           decimals: 18,
-          ed: '100000000000000000',
+          existentialDeposit: '100000000000000000',
           onChainId: '{"ForeignAsset":9}',
           coingeckoId: 'metaverse-network-pioneer',
         },
         {
           symbol: 'ARIS',
           decimals: 8,
-          ed: '1000000000000',
+          existentialDeposit: '1000000000000',
           onChainId: '{"ForeignAsset":1}',
         },
         {
           symbol: 'RMRK',
           decimals: 10,
-          ed: '100000000',
+          existentialDeposit: '100000000',
           onChainId: '{"ForeignAsset":0}',
           coingeckoId: 'rmrk',
         },
         {
           symbol: 'CSM',
           decimals: 12,
-          ed: '1000000000000',
+          existentialDeposit: '1000000000000',
           onChainId: '{"ForeignAsset":5}',
           coingeckoId: 'crust-storage-market',
         },
         {
           symbol: 'PCHU',
           decimals: 18,
-          ed: '100000000000000000',
+          existentialDeposit: '100000000000000000',
           onChainId: '{"ForeignAsset":17}',
         },
         {
           symbol: 'CRAB',
           decimals: 18,
-          ed: '1000000000000000000',
+          existentialDeposit: '1000000000000000000',
           onChainId: '{"ForeignAsset":13}',
         },
         {
           symbol: 'BSX',
           decimals: 12,
-          ed: '1000000000000',
+          existentialDeposit: '1000000000000',
           onChainId: '{"ForeignAsset":11}',
           coingeckoId: 'basilisk',
         },
         {
           symbol: 'AIR',
           decimals: 18,
-          ed: '100000000000000000',
+          existentialDeposit: '100000000000000000',
           onChainId: '{"ForeignAsset":12}',
           coingeckoId: 'altair',
         },
         {
           symbol: 'USDT',
           decimals: 6,
-          ed: '10000',
+          existentialDeposit: '10000',
           onChainId: '{"ForeignAsset":7}',
           coingeckoId: 'tether',
         },
         {
           symbol: 'SDN',
           decimals: 18,
-          ed: '10000000000000000',
+          existentialDeposit: '10000000000000000',
           onChainId: '{"ForeignAsset":18}',
           coingeckoId: 'shiden',
         },
         {
           symbol: 'EQD',
           decimals: 9,
-          ed: '10000000000',
+          existentialDeposit: '10000000000',
           onChainId: '{"ForeignAsset":15}',
         },
         {
           symbol: 'MOVR',
           decimals: 18,
-          ed: '1000000000000000',
+          existentialDeposit: '1000000000000000',
           onChainId: '{"ForeignAsset":3}',
           coingeckoId: 'moonriver',
         },
         {
           symbol: 'taiKSM',
           decimals: 12,
-          ed: '100000000',
+          existentialDeposit: '100000000',
           onChainId: '{"StableAssetPoolToken":0}',
         },
         {
           symbol: '3USD',
           decimals: 12,
-          ed: '10000000000',
+          existentialDeposit: '10000000000',
           onChainId: '{"StableAssetPoolToken":1}',
         },
         {
           symbol: 'USDCet',
           decimals: 6,
-          ed: '10000',
+          existentialDeposit: '10000',
           onChainId: '{"Erc20":"0x1f3a10587a20114ea25ba1b388ee2dd4a337ce27"}',
         },
         {
           symbol: 'DAI',
           decimals: 18,
-          ed: '10000000000000000',
+          existentialDeposit: '10000000000000000',
           onChainId: '{"Erc20":"0x4bb6afb5fa2b07a5d1c499e1c3ddb5a15e709a71"}',
         },
         {
           symbol: 'waUSD',
           decimals: 12,
-          ed: '100000000000',
+          existentialDeposit: '100000000000',
           onChainId: '{"Erc20":"0xe20683ad1ed8bbeed7e1ae74be10f19d8045b530"}',
         },
         {
           symbol: 'lp KSM-RMRK',
           decimals: 12,
-          ed: '100000000',
+          existentialDeposit: '100000000',
           onChainId: '{"DexShare":[{"Token":"KSM"},{"ForeignAsset":0}]}',
         },
         {
           symbol: 'lp KSM-LKSM',
           decimals: 12,
-          ed: '100000000',
+          existentialDeposit: '100000000',
           onChainId: '{"DexShare":[{"Token":"KSM"},{"Token":"LKSM"}]}',
         },
         {
           symbol: 'lp KAR-KUSD',
           decimals: 12,
-          ed: '100000000000',
+          existentialDeposit: '100000000000',
           onChainId: '{"DexShare":[{"Token":"KAR"},{"Token":"KUSD"}]}',
         },
         {
           symbol: 'lp KAR-QTZ',
           decimals: 12,
-          ed: '100000000000',
+          existentialDeposit: '100000000000',
           onChainId: '{"DexShare":[{"Token":"KAR"},{"ForeignAsset":2}]}',
         },
         {
           symbol: 'lp KUSD-KSM',
           decimals: 12,
-          ed: '10000000000',
+          existentialDeposit: '10000000000',
           onChainId: '{"DexShare":[{"Token":"KUSD"},{"Token":"KSM"}]}',
         },
         {
           symbol: 'lp KUSD-BNC',
           decimals: 12,
-          ed: '10000000000',
+          existentialDeposit: '10000000000',
           onChainId: '{"DexShare":[{"Token":"KUSD"},{"Token":"BNC"}]}',
         },
         {
           symbol: 'lp KUSD-CSM',
           decimals: 12,
-          ed: '10000000000',
+          existentialDeposit: '10000000000',
           onChainId: '{"DexShare":[{"Token":"KUSD"},{"ForeignAsset":5}]}',
         },
         {
           symbol: 'lp KUSD-RMRK',
           decimals: 12,
-          ed: '10000000000',
+          existentialDeposit: '10000000000',
           onChainId: '{"DexShare":[{"Token":"KUSD"},{"ForeignAsset":0}]}',
         },
         {
           symbol: 'lp KSM-ARIS',
           decimals: 12,
-          ed: '100000000',
+          existentialDeposit: '100000000',
           onChainId: '{"DexShare":[{"Token":"KSM"},{"ForeignAsset":1}]}',
         },
         {
           symbol: 'lp KUSD-KINT',
           decimals: 12,
-          ed: '10000000000',
+          existentialDeposit: '10000000000',
           onChainId: '{"DexShare":[{"Token":"KUSD"},{"Token":"KINT"}]}',
         },
         {
           symbol: 'lp TAI-taiKSM',
           decimals: 12,
-          ed: '1000000000000',
+          existentialDeposit: '1000000000000',
           onChainId:
             '{"DexShare":[{"Token":"TAI"},{"StableAssetPoolToken":0}]}',
         },
         {
           symbol: 'lp KAR-KSM',
           decimals: 12,
-          ed: '100000000000',
+          existentialDeposit: '100000000000',
           onChainId: '{"DexShare":[{"Token":"KAR"},{"Token":"KSM"}]}',
         },
         {
           symbol: 'lp KUSD-AIR',
           decimals: 12,
-          ed: '10000000000',
+          existentialDeposit: '10000000000',
           onChainId: '{"DexShare":[{"Token":"KUSD"},{"ForeignAsset":12}]}',
         },
         {
           symbol: 'lp KAR-LKSM',
           decimals: 12,
-          ed: '100000000000',
+          existentialDeposit: '100000000000',
           onChainId: '{"DexShare":[{"Token":"KAR"},{"Token":"LKSM"}]}',
         },
         {
           symbol: 'lp KUSD-QTZ',
           decimals: 12,
-          ed: '10000000000',
+          existentialDeposit: '10000000000',
           onChainId: '{"DexShare":[{"Token":"KUSD"},{"ForeignAsset":2}]}',
         },
         {
           symbol: 'lp KUSD-PHA',
           decimals: 12,
-          ed: '10000000000',
+          existentialDeposit: '10000000000',
           onChainId: '{"DexShare":[{"Token":"KUSD"},{"Token":"PHA"}]}',
         },
         {
           symbol: 'lp KUSD-LKSM',
           decimals: 12,
-          ed: '10000000000',
+          existentialDeposit: '10000000000',
           onChainId: '{"DexShare":[{"Token":"KUSD"},{"Token":"LKSM"}]}',
         },
         {
           symbol: 'lp KUSD-KBTC',
           decimals: 12,
-          ed: '10000000000',
+          existentialDeposit: '10000000000',
           onChainId: '{"DexShare":[{"Token":"KUSD"},{"Token":"KBTC"}]}',
         },
       ],
     },
   },
-};
+} as const;
 
-export const Khala: Chain = {
+export const Khala: IChain<'khala'> = {
   id: 'khala',
   name: 'Khala',
   account: '*25519',
@@ -1647,18 +1622,18 @@ export const Khala: Chain = {
   ],
   paraId: 2004,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Kico: Chain = {
+export const Kico: IChain<'kico'> = {
   id: 'kico',
   name: 'Kico',
   account: '*25519',
   rpcs: ['wss://rpc.kico.dico.io'],
   paraId: 2107,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const KiltSpiritnet: Chain = {
+export const KiltSpiritnet: IChain<'kilt-spiritnet'> = {
   id: 'kilt-spiritnet',
   name: 'KILT Spiritnet',
   account: '*25519',
@@ -1673,9 +1648,9 @@ export const KiltSpiritnet: Chain = {
   ],
   paraId: 2086,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Kintsugi: Chain = {
+export const Kintsugi: IChain<'kintsugi'> = {
   id: 'kintsugi',
   name: 'Kintsugi',
   account: '*25519',
@@ -1692,42 +1667,62 @@ export const Kintsugi: Chain = {
   ],
   paraId: 2092,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Kpron: Chain = {
+export const Kpron: IChain<'kpron'> = {
   id: 'kpron',
   name: 'Kpron',
   account: '*25519',
   rpcs: ['wss://kusama-kpron-rpc.apron.network/'],
   paraId: 2019,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Kulupu: Chain = {
+export const Kulupu: IChain<'kulupu'> = {
   id: 'kulupu',
   name: 'Kulupu',
   account: '*25519',
   subscanUrl: 'https://kulupu.subscan.io/',
   rpcs: ['wss://rpc.kulupu.corepaper.org/ws'],
-};
+} as const;
 
-export const KusamaBridgeHub: Chain = {
+export const Kusama: IChain<'kusama'> = {
+  id: 'kusama',
+  name: 'Kusama',
+  account: '*25519',
+  subscanUrl: 'https://kusama.subscan.io/',
+  chainspecQrUrl: 'https://metadata.parity.io/qr/kusama_specs.png',
+  latestMetadataQrUrl:
+    'https://metadata.parity.io/qr/kusama_metadata_latest.apng',
+  rpcs: [
+    'wss://kusama-rpc.polkadot.io',
+    'wss://kusama.api.onfinality.io/public-ws',
+    'wss://kusama-rpc.dwellir.com',
+    'wss://kusama-rpc-tn.dwellir.com',
+    'wss://kusama.public.curie.radiumblock.co/ws',
+    'wss://public-rpc.pinknode.io/kusama',
+    'wss://1rpc.io/ksm',
+    'wss://rpc.dotters.network/kusama',
+  ],
+} as const;
+
+export const KusamaBridgeHub: IChain<'kusama-bridge-hub'> = {
   id: 'kusama-bridge-hub',
   name: 'BridgeHub',
   account: '*25519',
   rpcs: ['wss://kusama-bridge-hub-rpc.polkadot.io'],
   paraId: 1002,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Kusari: Chain = {
+export const Kusari: IChain<'kusari'> = {
   id: 'kusari',
   name: 'Kusari',
   account: '*25519',
   rpcs: ['wss://ws.kusari.network'],
-};
+} as const;
 
-export const Kylin: Chain = {
+export const Kylin: IChain<'kylin'> = {
   id: 'kylin',
   name: 'Kylin',
   account: '*25519',
@@ -1737,18 +1732,18 @@ export const Kylin: Chain = {
   rpcs: ['wss://polkadot.kylin-node.co.uk'],
   paraId: 2052,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Listen: Chain = {
+export const Listen: IChain<'listen'> = {
   id: 'listen',
   name: 'Listen',
   account: '*25519',
   rpcs: ['wss://rpc.mainnet.listen.io', 'wss://wss.mainnet.listen.io'],
   paraId: 2118,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Litentry: Chain = {
+export const Litentry: IChain<'litentry'> = {
   id: 'litentry',
   name: 'Litentry',
   account: '*25519',
@@ -1762,9 +1757,9 @@ export const Litentry: Chain = {
   ],
   paraId: 2013,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Litmus: Chain = {
+export const Litmus: IChain<'litmus'> = {
   id: 'litmus',
   name: 'Litmus',
   account: '*25519',
@@ -1775,34 +1770,34 @@ export const Litmus: Chain = {
   rpcs: ['wss://rpc.litmus-parachain.litentry.io'],
   paraId: 2106,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Logion: Chain = {
+export const Logion: IChain<'logion'> = {
   id: 'logion',
   name: 'Logion',
   account: '*25519',
   rpcs: ['wss://rpc01.logion.network'],
-};
+} as const;
 
-export const LoomNetwork: Chain = {
+export const LoomNetwork: IChain<'loom-network'> = {
   id: 'loom-network',
   name: 'Loom',
   account: '*25519',
   rpcs: ['wss://kusama.dappchains.com'],
   paraId: 2080,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Luhn: Chain = {
+export const Luhn: IChain<'luhn'> = {
   id: 'luhn',
   name: 'Luhn',
   account: '*25519',
   rpcs: ['wss://c1.luhn.network'],
   paraId: 2232,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Mangata: Chain = {
+export const Mangata: IChain<'mangata'> = {
   id: 'mangata',
   name: 'MangataX',
   coingeckoId: null,
@@ -1820,30 +1815,32 @@ export const Mangata: Chain = {
   relay: { id: 'kusama' },
   balanceModuleConfigs: {
     'substrate-tokens': {
-      tokens: [{ symbol: 'MGX', decimals: 18, ed: '0', onChainId: 0 }],
+      tokens: [
+        { symbol: 'MGX', decimals: 18, existentialDeposit: '0', onChainId: 0 },
+      ],
     },
   },
-};
+} as const;
 
-export const Manta: Chain = {
+export const Manta: IChain<'manta'> = {
   id: 'manta',
   name: 'Manta',
   account: '*25519',
   rpcs: [],
   paraId: 2015,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Mars: Chain = {
+export const Mars: IChain<'mars'> = {
   id: 'mars',
   name: 'Mars',
   account: '*25519',
   rpcs: ['wss://wss.mars.aresprotocol.io'],
   paraId: 2008,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Mathchain: Chain = {
+export const Mathchain: IChain<'mathchain'> = {
   id: 'mathchain',
   name: 'MathChain',
   account: '*25519',
@@ -1851,16 +1848,16 @@ export const Mathchain: Chain = {
     'wss://mathchain-asia.maiziqianbao.net/ws',
     'wss://mathchain-us.maiziqianbao.net/ws',
   ],
-};
+} as const;
 
-export const Minix: Chain = {
+export const Minix: IChain<'minix'> = {
   id: 'minix',
   name: 'MiniX',
   account: '*25519',
   rpcs: [],
-};
+} as const;
 
-export const Moonbeam: Chain = {
+export const Moonbeam: IChain<'moonbeam'> = {
   id: 'moonbeam',
   name: 'Moonbeam',
   account: 'secp256k1',
@@ -1874,9 +1871,9 @@ export const Moonbeam: Chain = {
   ],
   paraId: 2004,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Moonriver: Chain = {
+export const Moonriver: IChain<'moonriver'> = {
   id: 'moonriver',
   name: 'Moonriver',
   account: 'secp256k1',
@@ -1889,9 +1886,9 @@ export const Moonriver: Chain = {
   ],
   paraId: 2023,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Myriad: Chain = {
+export const Myriad: IChain<'myriad'> = {
   id: 'myriad',
   name: 'Myriad',
   chainspecQrUrl: 'https://metadata.novasama.io/qr/appchain_specs.png',
@@ -1899,23 +1896,23 @@ export const Myriad: Chain = {
     'https://metadata.novasama.io/qr/appchain_metadata_latest.apng',
   account: '*25519',
   rpcs: ['wss://ws-rpc.myriad.social'],
-};
+} as const;
 
-export const Neatcoin: Chain = {
+export const Neatcoin: IChain<'neatcoin'> = {
   id: 'neatcoin',
   name: 'Neatcoin',
   account: '*25519',
   rpcs: ['wss://rpc.neatcoin.org/ws'],
-};
+} as const;
 
-export const Nftmart: Chain = {
+export const Nftmart: IChain<'nftmart'> = {
   id: 'nftmart',
   name: 'NFTMart',
   account: '*25519',
   rpcs: ['wss://mainnet.nftmart.io/rpc/ws'],
-};
+} as const;
 
-export const NodlePolkadot: Chain = {
+export const NodlePolkadot: IChain<'nodle-polkadot'> = {
   id: 'nodle-polkadot',
   name: 'Nodle',
   account: '*25519',
@@ -1930,36 +1927,36 @@ export const NodlePolkadot: Chain = {
   ],
   paraId: 2026,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Oak: Chain = {
+export const Oak: IChain<'oak'> = {
   id: 'oak',
   name: 'Oak',
   account: '*25519',
   rpcs: ['wss://rpc.oak.tech'],
   paraId: 2090,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Odyssey: Chain = {
+export const Odyssey: IChain<'odyssey'> = {
   id: 'odyssey',
   name: 'Ares Odyssey',
   account: '*25519',
   rpcs: ['wss://wss.odyssey.aresprotocol.io'],
   paraId: 2028,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Omnibtc: Chain = {
+export const Omnibtc: IChain<'omnibtc'> = {
   id: 'omnibtc',
   name: 'OmniBTC',
   account: '*25519',
   rpcs: ['wss://psc-parachain.coming.chat'],
   paraId: 2053,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const OrigintrailParachain: Chain = {
+export const OrigintrailParachain: IChain<'origintrail-parachain'> = {
   id: 'origintrail-parachain',
   name: 'OriginTrail',
   account: '*25519',
@@ -1970,9 +1967,9 @@ export const OrigintrailParachain: Chain = {
   rpcs: ['wss://parachain-rpc.origin-trail.network'],
   paraId: 2043,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Parallel: Chain = {
+export const Parallel: IChain<'parallel'> = {
   id: 'parallel',
   name: 'Parallel',
   account: '*25519',
@@ -1983,18 +1980,18 @@ export const Parallel: Chain = {
   rpcs: ['wss://rpc.parallel.fi'],
   paraId: 2012,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Pendulum: Chain = {
+export const Pendulum: IChain<'pendulum'> = {
   id: 'pendulum',
   name: 'Pendulum',
   account: '*25519',
   rpcs: ['wss://rpc-pendulum.prd.pendulumchain.tech'],
   paraId: 2094,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Phala: Chain = {
+export const Phala: IChain<'phala'> = {
   id: 'phala',
   name: 'Phala',
   account: '*25519',
@@ -2008,9 +2005,9 @@ export const Phala: Chain = {
   ],
   paraId: 2035,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Picasso: Chain = {
+export const Picasso: IChain<'picasso'> = {
   id: 'picasso',
   name: 'Picasso',
   account: '*25519',
@@ -2026,80 +2023,85 @@ export const Picasso: Chain = {
         {
           symbol: 'DOT',
           decimals: 10,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: 6,
           coingeckoId: 'polkadot',
         },
         {
           symbol: 'KSM',
           decimals: 12,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: 4,
           coingeckoId: 'kusama',
         },
         {
           symbol: 'KAR',
           decimals: 12,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: 101,
           coingeckoId: 'karura',
         },
         {
           symbol: 'BNC',
           decimals: 12,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: 102,
           coingeckoId: 'bifrost-native-coin',
         },
-        { symbol: 'vKSM', decimals: 12, ed: '0', onChainId: 103 },
+        {
+          symbol: 'vKSM',
+          decimals: 12,
+          existentialDeposit: '0',
+          onChainId: 103,
+        },
         {
           symbol: 'MOVR',
           decimals: 18,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: 104,
           coingeckoId: 'moonriver',
         },
         {
           symbol: 'aUSD',
           decimals: 12,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: 129,
           coingeckoId: 'acala-dollar',
         },
         {
           symbol: 'USDT',
           decimals: 6,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: 130,
           coingeckoId: 'tether',
         },
         {
           symbol: 'USDC',
           decimals: 6,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: 131,
           coingeckoId: 'usd-coin',
         },
         {
           symbol: 'wBTC',
           decimals: 8,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: 132,
           coingeckoId: 'bitcoin',
         },
         {
           symbol: 'wETH',
           decimals: 18,
-          ed: '0',
+          existentialDeposit: '0',
           onChainId: 133,
           coingeckoId: 'ethereum',
         },
       ],
     },
   },
-};
+} as const;
 
-export const Pichiu: Chain = {
+export const Pichiu: IChain<'pichiu'> = {
   id: 'pichiu',
   name: 'Pichiu',
   account: '*25519',
@@ -2109,18 +2111,18 @@ export const Pichiu: Chain = {
   rpcs: ['wss://kusama.kylin-node.co.uk'],
   paraId: 2102,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const PolkadexPolkadot: Chain = {
+export const PolkadexPolkadot: IChain<'polkadex-polkadot'> = {
   id: 'polkadex-polkadot',
   name: 'Polkadex',
   account: '*25519',
   rpcs: [],
   paraId: 2040,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const PolkadexStandalone: Chain = {
+export const PolkadexStandalone: IChain<'polkadex-standalone'> = {
   id: 'polkadex-standalone',
   name: 'Polkadex Standalone',
   account: '*25519',
@@ -2132,9 +2134,29 @@ export const PolkadexStandalone: Chain = {
     'wss://mainnet.polkadex.trade',
     'wss://polkadex.api.onfinality.io/public-ws',
   ],
-};
+} as const;
 
-export const PolkadotCollectives: Chain = {
+export const Polkadot: IChain<'polkadot'> = {
+  id: 'polkadot',
+  name: 'Polkadot',
+  account: '*25519',
+  subscanUrl: 'https://polkadot.subscan.io/',
+  chainspecQrUrl: 'https://metadata.parity.io/qr/polkadot_specs.png',
+  latestMetadataQrUrl:
+    'https://metadata.parity.io/qr/polkadot_metadata_latest.apng',
+  rpcs: [
+    'wss://rpc.polkadot.io',
+    'wss://polkadot.api.onfinality.io/public-ws',
+    'wss://polkadot-rpc.dwellir.com',
+    'wss://polkadot-rpc-tn.dwellir.com',
+    'wss://public-rpc.pinknode.io/polkadot',
+    'wss://polkadot.public.curie.radiumblock.co/ws',
+    'wss://1rpc.io/dot',
+    'wss://rpc.dotters.network/polkadot',
+  ],
+} as const;
+
+export const PolkadotCollectives: IChain<'polkadot-collectives'> = {
   id: 'polkadot-collectives',
   name: 'Collectives',
   account: '*25519',
@@ -2144,18 +2166,18 @@ export const PolkadotCollectives: Chain = {
   ],
   paraId: 1001,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Polkasmith: Chain = {
+export const Polkasmith: IChain<'polkasmith'> = {
   id: 'polkasmith',
   name: 'PolkaSmith',
   account: '*25519',
   rpcs: ['wss://wss-polkasmith.polkafoundry.com'],
   paraId: 2009,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Polymesh: Chain = {
+export const Polymesh: IChain<'polymesh'> = {
   id: 'polymesh',
   name: 'Polymesh',
   account: '*25519',
@@ -2164,9 +2186,9 @@ export const Polymesh: Chain = {
   latestMetadataQrUrl:
     'https://metadata.novasama.io/qr/polymesh_mainnet_metadata_latest.apng',
   rpcs: ['wss://mainnet-rpc.polymesh.network'],
-};
+} as const;
 
-export const Quartz: Chain = {
+export const Quartz: IChain<'quartz'> = {
   id: 'quartz',
   name: 'Quartz',
   account: '*25519',
@@ -2182,25 +2204,25 @@ export const Quartz: Chain = {
   ],
   paraId: 2095,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Riochain: Chain = {
+export const Riochain: IChain<'riochain'> = {
   id: 'riochain',
   name: 'RioChain',
   account: '*25519',
   rpcs: ['wss://node.v1.riochain.io'],
-};
+} as const;
 
-export const Riodefi: Chain = {
+export const Riodefi: IChain<'riodefi'> = {
   id: 'riodefi',
   name: 'RioDeFi',
   account: '*25519',
   rpcs: ['wss://rio-kusama.riocorenetwork.com'],
   paraId: 2227,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const RobonomicsKusama: Chain = {
+export const RobonomicsKusama: IChain<'robonomics-kusama'> = {
   id: 'robonomics-kusama',
   name: 'Robonomics',
   account: '*25519',
@@ -2217,9 +2239,9 @@ export const RobonomicsKusama: Chain = {
   ],
   paraId: 2048,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Sakura: Chain = {
+export const Sakura: IChain<'sakura'> = {
   id: 'sakura',
   name: 'Sakura',
   account: '*25519',
@@ -2227,9 +2249,9 @@ export const Sakura: Chain = {
   rpcs: ['wss://api-sakura.clover.finance'],
   paraId: 2016,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const ShadowKusama: Chain = {
+export const ShadowKusama: IChain<'shadow-kusama'> = {
   id: 'shadow-kusama',
   name: 'Crust Shadow',
   account: '*25519',
@@ -2240,16 +2262,16 @@ export const ShadowKusama: Chain = {
   rpcs: ['wss://rpc-shadow.crust.network/', 'wss://rpc2-shadow.crust.network'],
   paraId: 2012,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Sherpax: Chain = {
+export const Sherpax: IChain<'sherpax'> = {
   id: 'sherpax',
   name: 'SherpaX',
   account: '*25519',
   rpcs: ['wss://mainnet.sherpax.io'],
-};
+} as const;
 
-export const ShidenKusama: Chain = {
+export const ShidenKusama: IChain<'shiden-kusama'> = {
   id: 'shiden-kusama',
   name: 'Shiden',
   account: '*25519',
@@ -2266,9 +2288,9 @@ export const ShidenKusama: Chain = {
   ],
   paraId: 2007,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Snow: Chain = {
+export const Snow: IChain<'snow'> = {
   id: 'snow',
   name: 'Snow',
   account: '*25519',
@@ -2278,18 +2300,18 @@ export const Snow: Chain = {
   rpcs: ['wss://snow-rpc.icenetwork.io'],
   paraId: 2129,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const SoraKsm: Chain = {
+export const SoraKsm: IChain<'sora-ksm'> = {
   id: 'sora-ksm',
   name: 'Sora',
   account: '*25519',
   rpcs: ['wss://ws.parachain-collator-1.c1.sora2.soramitsu.co.jp'],
   paraId: 2011,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const SoraSubstrate: Chain = {
+export const SoraSubstrate: IChain<'sora-substrate'> = {
   id: 'sora-substrate',
   name: 'Sora Standalone',
   account: '*25519',
@@ -2300,24 +2322,24 @@ export const SoraSubstrate: Chain = {
     'wss://mof3.sora.org',
     'wss://sora.api.onfinality.io/public-ws',
   ],
-};
+} as const;
 
-export const Spanner: Chain = {
+export const Spanner: IChain<'spanner'> = {
   id: 'spanner',
   name: 'Spanner',
   account: '*25519',
   rpcs: [],
-};
+} as const;
 
-export const Stafi: Chain = {
+export const Stafi: IChain<'stafi'> = {
   id: 'stafi',
   name: 'Stafi',
   account: '*25519',
   subscanUrl: 'https://stafi.subscan.io/',
   rpcs: ['wss://mainnet-rpc.stafi.io'],
-};
+} as const;
 
-export const Statemine: Chain = {
+export const Statemine: IChain<'statemine'> = {
   id: 'statemine',
   name: 'Statemine',
   account: '*25519',
@@ -2344,9 +2366,9 @@ export const Statemine: Chain = {
       ],
     },
   },
-};
+} as const;
 
-export const Statemint: Chain = {
+export const Statemint: IChain<'statemint'> = {
   id: 'statemint',
   name: 'Statemint',
   account: '*25519',
@@ -2369,44 +2391,44 @@ export const Statemint: Chain = {
       tokens: [{ assetId: 1984, symbol: 'USDT', coingeckoId: 'tether' }],
     },
   },
-};
+} as const;
 
-export const Subdao: Chain = {
+export const Subdao: IChain<'subdao'> = {
   id: 'subdao',
   name: 'SubDAO',
   account: '*25519',
   rpcs: ['wss://parachain-rpc.subdao.org'],
   paraId: 2018,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const SubgameKusama: Chain = {
+export const SubgameKusama: IChain<'subgame-kusama'> = {
   id: 'subgame-kusama',
   name: 'SubGame Gamma Kusama',
   account: '*25519',
   rpcs: ['wss://gamma.subgame.org/'],
   paraId: 2018,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const SubgamePolkadot: Chain = {
+export const SubgamePolkadot: IChain<'subgame-polkadot'> = {
   id: 'subgame-polkadot',
   name: 'SubGame Gamma Polkadot',
   account: '*25519',
   rpcs: [],
   paraId: 2017,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const SubgameStandalone: Chain = {
+export const SubgameStandalone: IChain<'subgame-standalone'> = {
   id: 'subgame-standalone',
   name: 'SubGame',
   account: '*25519',
   subscanUrl: 'https://subgame.subscan.io/',
   rpcs: ['wss://mainnet.subgame.org/'],
-};
+} as const;
 
-export const SubsocialX: Chain = {
+export const SubsocialX: IChain<'subsocial-x'> = {
   id: 'subsocial-x',
   name: 'SubsocialX',
   coingeckoId: null,
@@ -2416,16 +2438,16 @@ export const SubsocialX: Chain = {
   rpcs: ['wss://para.f3joule.network', 'wss://para.subsocial.network'],
   paraId: 2100,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Swapdex: Chain = {
+export const Swapdex: IChain<'swapdex'> = {
   id: 'swapdex',
   name: 'Swapdex',
   account: '*25519',
   rpcs: ['wss://ws.swapdex.network'],
-};
+} as const;
 
-export const Tanganika: Chain = {
+export const Tanganika: IChain<'tanganika'> = {
   id: 'tanganika',
   name: 'Tanganika',
   account: '*25519',
@@ -2435,17 +2457,17 @@ export const Tanganika: Chain = {
   rpcs: ['wss://tanganika.datahighway.com'],
   paraId: 2116,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Ternoa: Chain = {
+export const Ternoa: IChain<'ternoa'> = {
   id: 'ternoa',
   name: 'Ternoa',
   account: '*25519',
   chainspecQrUrl: 'https://metadata.novasama.io/qr/mainnet_specs.png',
   rpcs: ['wss://mainnet.ternoa.network'],
-};
+} as const;
 
-export const ThebifrostMainnet: Chain = {
+export const ThebifrostMainnet: IChain<'thebifrost-mainnet'> = {
   id: 'thebifrost-mainnet',
   name: 'The Bifrost',
   account: '*25519',
@@ -2453,9 +2475,9 @@ export const ThebifrostMainnet: Chain = {
     'wss://public-01.mainnet.thebifrost.io/wss',
     'wss://public-02.mainnet.thebifrost.io/wss',
   ],
-};
+} as const;
 
-export const Tinker: Chain = {
+export const Tinker: IChain<'tinker'> = {
   id: 'tinker',
   name: 'InvArch Tinkernet',
   account: '*25519',
@@ -2468,18 +2490,18 @@ export const Tinker: Chain = {
   ],
   paraId: 2125,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Trustbase: Chain = {
+export const Trustbase: IChain<'trustbase'> = {
   id: 'trustbase',
   name: 'TrustBase',
   account: '*25519',
   rpcs: [],
   paraId: 2078,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Turing: Chain = {
+export const Turing: IChain<'turing'> = {
   id: 'turing',
   name: 'Turing',
   account: '*25519',
@@ -2491,17 +2513,17 @@ export const Turing: Chain = {
   rpcs: ['wss://rpc.turing.oak.tech', 'wss://turing-rpc.dwellir.com'],
   paraId: 2114,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Uniarts: Chain = {
+export const Uniarts: IChain<'uniarts'> = {
   id: 'uniarts',
   name: 'UniArts',
   account: '*25519',
   subscanUrl: 'https://uniarts.subscan.io/',
   rpcs: ['wss://mainnet.uniarts.vip:9443'],
-};
+} as const;
 
-export const Unique: Chain = {
+export const Unique: IChain<'unique'> = {
   id: 'unique',
   name: 'Unique',
   account: '*25519',
@@ -2516,25 +2538,25 @@ export const Unique: Chain = {
   ],
   paraId: 2037,
   relay: { id: 'polkadot' },
-};
+} as const;
 
-export const Unorthodox: Chain = {
+export const Unorthodox: IChain<'unorthodox'> = {
   id: 'unorthodox',
   name: 'Unorthodox',
   account: '*25519',
   rpcs: ['wss://rpc.kusama.standard.tech'],
   paraId: 2094,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Westlake: Chain = {
+export const Westlake: IChain<'westlake'> = {
   id: 'westlake',
   name: 'Westlake',
   account: '*25519',
   rpcs: [],
-};
+} as const;
 
-export const Xx: Chain = {
+export const Xx: IChain<'xx'> = {
   id: 'xx',
   name: 'XX',
   account: '*25519',
@@ -2542,9 +2564,9 @@ export const Xx: Chain = {
   latestMetadataQrUrl:
     'https://metadata.novasama.io/qr/xxnetwork_metadata_latest.apng',
   rpcs: ['wss://rpc.xx.network'],
-};
+} as const;
 
-export const Zeitgeist: Chain = {
+export const Zeitgeist: IChain<'zeitgeist'> = {
   id: 'zeitgeist',
   name: 'Zeitgeist',
   account: '*25519',
@@ -2558,159 +2580,20 @@ export const Zeitgeist: Chain = {
   ],
   paraId: 2101,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const Zero: Chain = {
+export const Zero: IChain<'zero'> = {
   id: 'zero',
   name: 'Subzero',
   account: '*25519',
   rpcs: ['wss://rpc-1.kusama.node.zero.io'],
   paraId: 2236,
   relay: { id: 'kusama' },
-};
+} as const;
 
-export const AllChains = {
-  Polkadot,
-  Kusama,
-  Acala,
-  Ajuna,
-  Aleph,
-  Altair,
-  Amplitude,
-  AresOdyssey,
-  Astar,
-  Automata,
-  Aventus,
-  Bajun,
-  Basilisk,
-  BifrostKusama,
-  BifrostPolkadot,
-  BitcountryPioneer,
-  Bitgreen,
-  Bittensor,
-  Calamari,
-  CentrifugePolkadot,
-  Chainx,
-  Clover,
-  Coinversation,
-  CompetitorsClub,
-  ComposableFinance,
-  CrabKusama,
-  CrabStandalone,
-  Creditcoin,
-  CrownSterling,
-  Crust,
-  CrustParachain,
-  DarwiniaPolkadot,
-  DarwiniaPolkadot2,
-  DarwiniaStandalone,
-  Debio,
-  DockPosMainnet,
-  Dorafactory,
-  Edgeware,
-  EfinityPolkadot,
-  EfinityStandalone,
-  Encointer,
-  EquilibriumPolkadot,
-  Frequency,
-  Geminis,
-  GenshiroKusama,
-  Gm,
-  Hanonycash,
-  Hashed,
-  HeikoKusama,
-  Hydra,
-  Imbue,
-  IntegriteeKusama,
-  IntegriteePolkadot,
-  Interlay,
-  Ipci,
-  Joystream,
-  Kabocha,
-  Kapex,
-  Karura,
-  Khala,
-  Kico,
-  KiltSpiritnet,
-  Kintsugi,
-  Kpron,
-  Kulupu,
-  KusamaBridgeHub,
-  Kusari,
-  Kylin,
-  Listen,
-  Litentry,
-  Litmus,
-  Logion,
-  LoomNetwork,
-  Luhn,
-  Mangata,
-  Manta,
-  Mars,
-  Mathchain,
-  Minix,
-  Moonbeam,
-  Moonriver,
-  Myriad,
-  Neatcoin,
-  Nftmart,
-  NodlePolkadot,
-  Oak,
-  Odyssey,
-  Omnibtc,
-  OrigintrailParachain,
-  Parallel,
-  Pendulum,
-  Phala,
-  Picasso,
-  Pichiu,
-  PolkadexPolkadot,
-  PolkadexStandalone,
-  PolkadotCollectives,
-  Polkasmith,
-  Polymesh,
-  Quartz,
-  Riochain,
-  Riodefi,
-  RobonomicsKusama,
-  Sakura,
-  ShadowKusama,
-  Sherpax,
-  ShidenKusama,
-  Snow,
-  SoraKsm,
-  SoraSubstrate,
-  Spanner,
-  Stafi,
-  Statemine,
-  Statemint,
-  Subdao,
-  SubgameKusama,
-  SubgamePolkadot,
-  SubgameStandalone,
-  SubsocialX,
-  Swapdex,
-  Tanganika,
-  Ternoa,
-  ThebifrostMainnet,
-  Tinker,
-  Trustbase,
-  Turing,
-  Uniarts,
-  Unique,
-  Unorthodox,
-  Westlake,
-  Xx,
-  Zeitgeist,
-  Zero,
-  _3Dpass,
-};
-
-export const PalletContractChains = {
-  Astar,
-  Khala,
-  Phala,
-  ShidenKusama,
-  Zeitgeist,
-  Zero,
-};
+export const _3Dpass: IChain<'3-dpass'> = {
+  id: '3-dpass',
+  name: '3DPass',
+  account: '*25519',
+  rpcs: ['wss://rpc2.3dpass.org'],
+} as const;
