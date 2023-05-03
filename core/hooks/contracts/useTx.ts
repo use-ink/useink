@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { ContractSubmittableResult } from '../../types/mod.ts';
 import { Status } from '../../types/mod.ts';
 import { useAbiMessage } from './useAbiMessage.ts';
-import { useWallet } from '../useWallet.ts';
+import { useWallet } from '../wallets/useWallet.ts';
 import { ApiBase } from '@polkadot/api/types';
 import { useDryRun } from './useDryRun.ts';
 

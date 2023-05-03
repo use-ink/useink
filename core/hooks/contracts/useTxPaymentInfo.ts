@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { ContractPromise } from '@polkadot/api-contract';
 import { ContractOptions } from '../../types/contracts.ts';
-import { useWallet } from '../useWallet.ts';
+import { useWallet } from '../wallets/useWallet.ts';
 import { RuntimeDispatchInfo, SignerOptions } from '../../types/substrate.ts';
 
 type Send = (
