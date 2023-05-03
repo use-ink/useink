@@ -149,6 +149,7 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
     <WalletContext.Provider
       value={{
         account,
+        isConnected: Boolean(account),
         accounts,
         connect,
         disconnect,
