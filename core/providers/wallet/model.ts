@@ -19,6 +19,7 @@ export interface WalletState {
   connect: (walletName: WalletName) => void;
   disconnect: () => void;
   walletError?: WalletError;
+  isConnected: boolean;
   setAccount: (account: WalletAccount) => void;
   getWallets: typeof getWallets;
   getWalletBySource: typeof getWalletBySource;
@@ -32,6 +33,7 @@ export const WALLET_DEFAULTS: WalletState = {
   account: undefined,
   accounts: undefined,
   setAccount: () => undefined,
+  isConnected: false,
   getWallets,
   getWalletBySource,
 };
