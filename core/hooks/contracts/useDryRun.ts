@@ -5,7 +5,7 @@ import { DecodedTxResult } from '../../types/contracts.ts';
 import { SignerOptions } from '../../types/mod.ts';
 import { call } from '../../utils/mod.ts';
 import { useAbiMessage } from './useAbiMessage.ts';
-import { useWallet } from '../useWallet.ts';
+import { useWallet } from '../wallets/useWallet.ts';
 
 export type DryRunResult<T> = DecodedTxResult<T>;
 

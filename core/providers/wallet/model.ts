@@ -24,6 +24,8 @@ export interface WalletState {
   getWalletBySource: typeof getWalletBySource;
 }
 
+export type Wallet = Exclude<ReturnType<typeof getWalletBySource>, undefined>;
+
 export const WALLET_DEFAULTS: WalletState = {
   connect: () => undefined,
   disconnect: () => undefined,

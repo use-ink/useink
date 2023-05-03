@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 import { call } from '../../utils/mod.ts';
 import { ContractOptions } from '../../types/mod.ts';
 import { useAbiMessage } from './useAbiMessage.ts';
-import { useWallet } from '../useWallet.ts';
+import { useWallet } from '../wallets/useWallet.ts';
 import { DecodedContractResult } from '../../types/contracts.ts';
 
 export type CallSend<T> = (
