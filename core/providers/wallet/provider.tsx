@@ -51,6 +51,11 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
 
   const setAccount = useCallback(
     (newAccount: WalletAccount) => {
+      if (!accounts?.includes(newAccount)) {
+        setActiveWallet(WalletError.AccountNotEnabled)
+        return
+      }
+
       walletError !== undefined && setWalletError(undefined)
       setWalletAccount(newAccount)
 

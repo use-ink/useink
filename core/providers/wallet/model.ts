@@ -7,10 +7,11 @@ import {
 export type { WalletAccount } from '@talisman/connect-wallets';
 
 export enum WalletError {
+  AccountNotEnabled = 'AccountNotEnabled',
   ConnectionError = 'ConnectionError',
   EnableFailed = 'EnableFailed',
-  WalletNotInstalled = 'WalletNotInstalled',
   NoAccountsEnabled = 'NoAccountsEnabled',
+  WalletNotInstalled = 'WalletNotInstalled',
 }
 
 export interface WalletState {
