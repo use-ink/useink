@@ -1,29 +1,25 @@
-import type { DispatchError } from '@polkadot/types/interfaces';
 import type { RegistryError } from '@polkadot/types/types';
-import { ApiBase } from '@polkadot/api/types';
+import { getRegistryError } from './getRegistryError.ts';
+import { Contract, RegistryErrorMethod, TxWithResult } from './types.ts';
 
-export interface DecodedErrorResult {
-  message?: string;
-  registryError?: RegistryError;
-}
-
-type RegistryErrorMethod = string;
-
-const toDefaultMessage = (registryError: RegistryError): string =>
-  `${registryError?.section}.${registryError?.method}: ${registryError?.docs}`;
+const formatErrorMessage = (registryError: RegistryError): string =>
+  `${registryError.section}.${registryError.method}: ${registryError.docs}`;
 
 export const decodeError = (
-  { error }: { error: DispatchError | undefined },
-  { api }: { api: ApiBase<'promise'> },
+  tx: TxWithResult,
+  chainContract: Contract,
   moduleMessages?: Record<RegistryErrorMethod, string>,
-): DecodedErrorResult => {
-  if (!error) return { message: 'Unable to decode result' };
-  if (!error.isModule) return {};
+  defaultMessage?: string,
+): string | undefined => {
+  if (!tx.result || tx.result?.ok) return undefined;
 
-  const registryError = api?.registry.findMetaError(error.asModule);
+  const { error } = tx.result;
+  if (!error.isModule) return undefined;
 
-  const message = moduleMessages?.[registryError.method] ||
-    toDefaultMessage(registryError);
+  const registryError = getRegistryError(tx, chainContract);
+  if (!registryError) return undefined;
 
-  return { message, registryError };
+  return moduleMessages?.[registryError.method] ||
+    defaultMessage ||
+    formatErrorMessage(registryError);
 };

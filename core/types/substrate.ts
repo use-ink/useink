@@ -1,3 +1,5 @@
+import { ExtrinsicStatus } from '@polkadot/types/interfaces';
+
 export type {
   AnyJson,
   Codec,
@@ -17,20 +19,8 @@ export type {
 } from '@polkadot/types/interfaces';
 export type { SignerOptions, SubmittableExtrinsic } from '@polkadot/api/types';
 
-export type ExtrinsicStatusTypes =
-  | 'Future'
-  | 'Ready'
-  | 'Broadcast'
-  | 'InBlock'
-  | 'Retracted'
-  | 'FinalityTimeout'
-  | 'Finalized'
-  | 'Usurped'
-  | 'Dropped'
-  | 'Invalid';
-
-export type Status =
-  | ExtrinsicStatusTypes
+export type TransactionStatus =
+  | ExtrinsicStatus['type']
   | 'None'
   | 'DryRun'
   | 'PendingSignature'

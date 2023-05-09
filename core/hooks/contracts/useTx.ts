@@ -2,7 +2,7 @@ import { ContractPromise } from '@polkadot/api-contract';
 import { ContractOptions } from '@polkadot/api-contract/types';
 import { useMemo, useState } from 'react';
 import { ContractSubmittableResult } from '../../types/mod.ts';
-import { Status } from '../../types/mod.ts';
+import { TransactionStatus } from '../../types/mod.ts';
 import { useAbiMessage } from './useAbiMessage.ts';
 import { useWallet } from '../wallets/useWallet.ts';
 import { ApiBase } from '@polkadot/api/types';
@@ -21,7 +21,7 @@ export type SignAndSend = (
 
 export interface Tx<T> {
   signAndSend: SignAndSend;
-  status: Status;
+  status: TransactionStatus;
   result: ContractSubmittableResult | undefined;
   resetState: () => void;
 }
@@ -31,7 +31,7 @@ export function useTx<T>(
   message: string,
 ): Tx<T> {
   const { account } = useWallet();
-  const [status, setStatus] = useState<Status>('None');
+  const [status, setStatus] = useState<TransactionStatus>('None');
   const [result, setResult] = useState<ContractSubmittableResult>();
   const abiMessage = useAbiMessage(contract, message);
   const dryRun = useDryRun(contract, message);
