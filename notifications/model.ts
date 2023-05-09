@@ -1,10 +1,14 @@
 import { ChainId } from '../chains/types.ts';
-import { Codec, ISubmittableResult, Status } from '../core/types/mod.ts';
+import {
+  Codec,
+  ISubmittableResult,
+  TransactionStatus,
+} from '../core/types/mod.ts';
 
 export type NotificationType =
   | 'WalletConnected'
   | 'WalletDisconnected'
-  | Status;
+  | TransactionStatus;
 
 export type NotificationPayload = {
   createdAt: number;
