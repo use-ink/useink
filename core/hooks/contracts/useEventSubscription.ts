@@ -5,12 +5,12 @@ import { Event, EventsContext } from '../../providers/events/mod.ts';
 import { getExpiredItem } from '../../utils/getExpiredItem.ts';
 import { useBlockHeader } from '../substrate/useBlockHeader.ts';
 import { useConfig } from '../config/useConfig.ts';
-import { useInterval } from '../useInterval.ts';
 import { ChainContract } from './useContract.ts';
+import { useInterval } from '../internal/mod.ts';
 
-export const useEvents = (
-  chainContract?: ChainContract,
-): Event[] => {
+export const useEventSubscription = (
+  chainContract: ChainContract | undefined,
+): void => {
   const { events, addEvent, removeEvent } = useContext(
     EventsContext,
   );
@@ -72,6 +72,4 @@ export const useEvents = (
       removeEvent({ eventId: event.id, address });
     }
   }, C.events?.checkInterval || HALF_A_SECOND);
-
-  return eventsForAddress;
 };

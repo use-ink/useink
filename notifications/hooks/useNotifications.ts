@@ -1,5 +1,5 @@
 import { useContext, useMemo } from 'react';
-import { getExpiredItem, useInterval } from '../../core/mod.ts';
+import { getExpiredItem } from '../../core/mod.ts';
 import { NotificationsContext } from '../context.ts';
 import { HALF_A_SECOND } from '../../core/constants.ts';
 import {
@@ -8,6 +8,7 @@ import {
   Notifications,
   RemoveNotificationPayload,
 } from '../model.ts';
+import { useInterval } from '../../core/hooks/internal/mod.ts';
 
 export interface UseNotifications {
   notifications: Notifications;
