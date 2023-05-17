@@ -18,8 +18,7 @@ export const useEventSubscription = (
   const C = useConfig();
 
   const address = chainContract?.contract?.address?.toString() || '';
-
-  const eventsForAddress = chainContract ? events[address] || [] : [];
+  const contractEvents = events?.[address] || [];
 
   useEffect(() => {
     const contract = chainContract?.contract;
@@ -64,10 +63,13 @@ export const useEventSubscription = (
   }, [chainContract, blockNumber]);
 
   useInterval(() => {
+    if (C.events?.expiration === 0) return;
+
     const expiredEvents = getExpiredItem<Event>(
-      eventsForAddress,
+      contractEvents,
       C.events?.expiration || FIVE_SECONDS,
     );
+
     for (const event of expiredEvents) {
       removeEvent({ eventId: event.id, address });
     }

@@ -27,6 +27,8 @@ export const useNotifications = (): UseNotifications => {
   }, [notifications]);
 
   useInterval(() => {
+    if (config?.expiration === 0) return;
+
     const expiredNotifications = getExpiredItem<Notification>(
       chainNotifications,
       config?.expiration,
