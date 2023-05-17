@@ -7,7 +7,8 @@ import {
   RemoveNotificationPayload,
 } from './model.ts'
 import { notificationReducer } from './reducer.ts'
-import { pseudoRandomId, useIsMounted } from '../core/mod.ts'
+import { pseudoRandomId } from '../core/mod.ts'
+import { useIsMounted } from "../core/hooks/internal/mod.ts";
 
 export const NotificationsProvider: React.FC<React.PropsWithChildren<{
   config?: Config

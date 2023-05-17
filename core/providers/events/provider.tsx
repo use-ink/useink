@@ -1,9 +1,9 @@
 import React from 'react'
 import { EventsContext } from './context.ts'
 import { AddEventPayload, DEFAULT_EVENTS, RemoveEventPayload } from './model.ts'
-import { useIsMounted } from '../../hooks/useIsMounted.ts'
 import { eventsReducer } from './reducer.ts'
 import { pseudoRandomId } from '../../utils/mod.ts'
+import { useIsMounted } from "../../hooks/internal/mod.ts";
 
 // @internal
 export const EventsProvider: React.FC<React.PropsWithChildren<any>> = ({
