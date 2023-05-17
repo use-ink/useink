@@ -18,7 +18,6 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
   children,
 }) => {
   const C = useConfig()
-  const [activeWallet, setActiveWallet] = useState<WalletName>()
   const [account, setWalletAccount] = useState<WalletAccount>()
   const [accounts, setAccounts] = useState<WalletAccount[]>()
   const [walletError, setWalletError] = useState<WalletError>()
@@ -28,6 +27,10 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
         ? C.dappName
         : 'A Dapp built in useink',
     [C.dappName],
+  )
+
+  const [activeWallet, setActiveWallet] = useState<WalletName | undefined>(
+    getAutoConnectWalletInfo(dappName)?.wallet,
   )
 
   const enableAutoConnect = React.useCallback(
@@ -51,12 +54,17 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
 
   const setAccount = useCallback(
     (newAccount: WalletAccount) => {
-      if (!accounts?.includes(newAccount)) {
-        setActiveWallet(WalletError.AccountNotEnabled)
+      const accountDisabled = !accounts?.find(
+        (a) => a.address === newAccount.address,
+      )
+
+      if (accountDisabled) {
+        setWalletError(WalletError.AccountDisabled)
         return
       }
 
       walletError !== undefined && setWalletError(undefined)
+
       setWalletAccount(newAccount)
 
       if (!C.wallet?.skipAutoConnect) {
@@ -66,14 +74,13 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
         })
       }
     },
-    [C.wallet?.skipAutoConnect],
+    [accounts, C.wallet?.skipAutoConnect],
   )
 
   const connectWallet = useCallback(async (walletName: WalletName): Promise<
     Unsub | undefined
   > => {
     walletError && setWalletError(undefined)
-
     const w = getWalletBySource(walletName)
 
     if (!w) {
@@ -107,7 +114,14 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
         account && !accts?.find((a) => a.address === account?.address)
 
       if (activeAccountNoLongerConnected) {
-        setAccount(firstAccount)
+        setWalletAccount(firstAccount)
+
+        if (!C.wallet?.skipAutoConnect) {
+          enableAutoConnect({
+            address: firstAccount.address,
+            wallet: firstAccount.source,
+          })
+        }
         return
       }
 
@@ -116,7 +130,16 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
       const autoConnectAccount =
         autoConnect && accts.find((a) => a.address === autoConnect.address)
 
-      setAccount(autoConnectAccount || firstAccount)
+      const initialAccount = autoConnectAccount || firstAccount
+
+      setWalletAccount(initialAccount)
+
+      if (!C.wallet?.skipAutoConnect) {
+        enableAutoConnect({
+          address: initialAccount.address,
+          wallet: initialAccount.source,
+        })
+      }
     })) as Unsub
 
     return unsub
@@ -126,21 +149,6 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
     setActiveWallet(walletName)
   }, [])
 
-  // Check for autoConnect on page load
-  useEffect(() => {
-    const autoConnect = getAutoConnectWalletInfo(dappName)
-
-    if (autoConnect?.wallet) {
-      connect(autoConnect.wallet)
-      return
-    }
-
-    disconnect()
-  }, [])
-
-  // We must unsubscribe when the component unmounts so we use `activeWallet` state to
-  // trigger re-renders in useEffect. useEffect will automatically call the returned
-  // unsubscribe() function on unmount
   useEffect(() => {
     if (!activeWallet) return
 
