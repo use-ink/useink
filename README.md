@@ -1,12 +1,15 @@
-<div align="center" style="margin-bottom: 32px;">
-  <img style="margin-bottom: 16px" src="./useink-logo.svg" alt="ink!" height="136" />
-
+<div align="center">
+  <img src="./useink-logo.svg" alt="ink!" height="136" />
+  <br/>
+  <br/>
   <a href="https://www.npmjs.com/package/useink">
     <img src="https://img.shields.io/npm/v/useink?colorA=BC83FB&colorB=8747CC&style=flat&label=Version" />
   </a>
-
-  A React hook library for ink!
+  <br/>
+  <p>A React hook library for ink!</p>
 </div>
+
+<br/>
 
 [![Element][k1]][k2] [![stack-exchange][s1]][s2]
 
