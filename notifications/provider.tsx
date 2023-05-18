@@ -1,11 +1,6 @@
 import React, { useCallback, useReducer } from 'react'
 import { NotificationsContext } from './context.ts'
-import {
-  AddNotificationPayload,
-  Config,
-  DEFAULT_NOTIFICATIONS,
-  RemoveNotificationPayload,
-} from './model.ts'
+import { AddNotificationPayload, Config, DEFAULT_NOTIFICATIONS } from './model.ts'
 import { notificationReducer } from './reducer.ts'
 import { pseudoRandomId } from '../core/mod.ts'
 import { useIsMounted } from "../core/hooks/internal/mod.ts";
@@ -36,7 +31,7 @@ export const NotificationsProvider: React.FC<React.PropsWithChildren<{
   )
 
   const removeNotification = useCallback(
-    (notificationId: RemoveNotificationPayload) => {
+    (notificationId: string) => {
       if (isMounted()) {
         dispatch({
           type: 'REMOVE_NOTIFICATION',

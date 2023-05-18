@@ -6,14 +6,13 @@ import {
   AddNotificationPayload,
   Notification,
   Notifications,
-  RemoveNotificationPayload,
 } from '../model.ts';
 import { useInterval } from '../../core/hooks/internal/mod.ts';
 
 export interface UseNotifications {
   notifications: Notifications;
   addNotification: (payload: AddNotificationPayload) => void;
-  removeNotification: (payload: RemoveNotificationPayload) => void;
+  removeNotification: (notificationId: string) => void;
 }
 
 export const useNotifications = (): UseNotifications => {

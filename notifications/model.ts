@@ -20,8 +20,6 @@ export type NotificationPayload = {
 
 export type AddNotificationPayload = Omit<NotificationPayload, 'createdAt'>;
 
-export type RemoveNotificationPayload = string;
-
 export type Notification = { id: string } & NotificationPayload;
 
 export type Notifications = Notification[];
