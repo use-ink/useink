@@ -22,45 +22,45 @@ export const useEventSubscription = (
 
   useEffect(() => {
     const contract = chainContract?.contract;
-    header?.hash &&
-      contract &&
-      contract.api.at(header?.hash).then((apiAt) => {
-        apiAt?.query?.system?.events &&
-          apiAt.query.system.events((encodedEvent: any[]) => {
-            encodedEvent.forEach(({ event }) => {
+    if (!header?.hash || !contract) return;
+
+    contract.api.at(header?.hash).then((apiAt) => {
+      apiAt?.query?.system?.events &&
+        apiAt.query.system.events((encodedEvent: any[]) => {
+          encodedEvent.forEach(({ event }) => {
+            if (
+              contract.api.events.contracts?.ContractEmitted &&
+              contract.api.events.contracts.ContractEmitted.is(event)
+            ) {
+              const [contractAddress, contractEvent] = event.data;
               if (
-                contract.api.events.contracts?.ContractEmitted &&
-                contract.api.events.contracts.ContractEmitted.is(event)
-              ) {
-                const [contractAddress, contractEvent] = event.data;
-                if (
-                  address && contractAddress &&
-                  contractAddress.toString().toLowerCase() ===
-                    address.toLowerCase()
-                ) {
-                  try {
-                    const decodedEvent = contract.abi.decodeEvent(
-                      contractEvent as Bytes,
-                    );
+                !address || !contractAddress || !contractEvent ||
+                contractAddress.toString().toLowerCase() !==
+                  address.toLowerCase()
+              ) return;
 
-                    const eventItem = {
-                      address,
-                      event: {
-                        name: decodedEvent.event.identifier,
-                        args: decodedEvent.args.map((v) => v.toHuman()),
-                      },
-                    };
+              try {
+                const decodedEvent = contract.abi.decodeEvent(
+                  contractEvent as Bytes,
+                );
 
-                    addEvent(eventItem);
-                  } catch (e) {
-                    console.error(e);
-                  }
-                }
+                const eventItem = {
+                  address,
+                  event: {
+                    name: decodedEvent.event.identifier,
+                    args: decodedEvent.args.map((v) => v.toHuman()),
+                  },
+                };
+
+                addEvent(eventItem);
+              } catch (e) {
+                console.error(e);
               }
-            });
+            }
           });
-      });
-  }, [chainContract, blockNumber]);
+        });
+    });
+  }, [chainContract?.contract, blockNumber]);
 
   useInterval(() => {
     if (C.events?.expiration === 0) return;
