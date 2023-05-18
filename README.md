@@ -1,10 +1,7 @@
-<div align="center" style="margin-bottom: 24px;">
-  <img src="./useink-logo.svg" alt="ink!" height="136" />
+<div align="center" style="margin-bottom: 32px;">
+  <img style="margin-bottom: 16px" src="./useink-logo.svg" alt="ink!" height="136" />
 
-</div>
-
-<div align="center" style="margin-bottom: 24px;">
-  <a style="padding-top: 20px;" href="https://www.npmjs.com/package/useink">
+  <a href="https://www.npmjs.com/package/useink">
     <img src="https://img.shields.io/npm/v/useink?colorA=BC83FB&colorB=8747CC&style=flat&label=Version" />
   </a>
 
