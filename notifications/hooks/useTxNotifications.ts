@@ -7,6 +7,9 @@ export function useTxNotifications<T>(tx: Tx<T>, chain?: ChainId): void {
   const { addNotification } = useNotifications();
 
   useEffect(() => {
+    // TODO: Add a way for user's to easily customize defaults
+    if (['Ready', 'None'].includes(tx.status)) return;
+
     addNotification({
       type: tx.status,
       message: tx.status,
