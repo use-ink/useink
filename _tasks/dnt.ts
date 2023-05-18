@@ -18,6 +18,10 @@ await Promise.all([
         name: './notifications',
         path: 'notifications/mod.ts',
       },
+      {
+        name: './utils',
+        path: 'utils/mod.ts',
+      },
     ],
     outDir,
     importMap: 'import_map.json',
