@@ -11,6 +11,7 @@ export type {
 
 export type {
   Balance,
+  DispatchError,
   EventRecord,
   ExtrinsicStatus,
   RuntimeDispatchInfo,
