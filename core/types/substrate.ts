@@ -8,6 +8,7 @@ export type {
   RegistryError,
   TypeDef,
 } from '@polkadot/types/types';
+
 export type {
   Balance,
   EventRecord,
@@ -17,6 +18,7 @@ export type {
   Weight,
   WeightV2,
 } from '@polkadot/types/interfaces';
+
 export type { SignerOptions, SubmittableExtrinsic } from '@polkadot/api/types';
 
 export type TransactionStatus =
