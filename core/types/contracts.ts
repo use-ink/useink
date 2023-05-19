@@ -23,6 +23,12 @@ export interface ContractCallResultRaw {
   readonly abiMessage: AbiMessage;
 }
 
+export interface CallInfo {
+  gasRequired: Weight;
+  gasConsumed: Weight;
+  storageDeposit: StorageDeposit;
+}
+
 export interface TxInfo {
   gasRequired: Weight;
   gasConsumed: Weight;
