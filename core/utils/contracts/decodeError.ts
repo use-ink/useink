@@ -1,7 +1,7 @@
-import type { RegistryError } from '@polkadot/types/types';
 import { getRegistryError } from './getRegistryError.ts';
 import { Contract, RegistryErrorMethod, TxWithResult } from './types.ts';
 import { pickError } from '../../../utils/mod.ts';
+import { RegistryError } from '../../types/mod.ts';
 
 const formatErrorMessage = (registryError: RegistryError): string =>
   `${registryError.section}.${registryError.method}: ${registryError.docs}`;

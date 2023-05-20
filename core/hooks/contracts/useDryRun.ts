@@ -1,8 +1,10 @@
-import { ContractPromise } from '@polkadot/api-contract';
-import { ContractOptions } from '@polkadot/api-contract/types';
 import { useMemo, useState } from 'react';
 import { DecodedTxResult } from '../../types/contracts.ts';
-import { SignerOptions } from '../../types/mod.ts';
+import {
+  ContractOptions,
+  ContractPromise,
+  SignerOptions,
+} from '../../types/mod.ts';
 import { call } from '../../utils/mod.ts';
 import { useAbiMessage } from './useAbiMessage.ts';
 import { useWallet } from '../wallets/useWallet.ts';
