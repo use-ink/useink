@@ -15,7 +15,7 @@ export type Send<T> = (
   signerOptions?: SignerOptions,
 ) => Promise<DryRunResult<T> | undefined>;
 
-interface DryRun<T> {
+export interface DryRun<T> {
   send: Send<T>;
   isSubmitting: boolean;
   result?: DryRunResult<T>;
