@@ -9,7 +9,7 @@ type Send = (
   signerOptions?: Partial<SignerOptions>,
 ) => Promise<RuntimeDispatchInfo | undefined>;
 
-interface PaymentInfoResult {
+interface TxPaymentInfo {
   isSubmitting: boolean;
   result?: RuntimeDispatchInfo;
   send: Send;
@@ -19,7 +19,7 @@ interface PaymentInfoResult {
 export function useTxPaymentInfo(
   contract: ContractPromise | undefined,
   message: string,
-): PaymentInfoResult {
+): TxPaymentInfo {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [result, setResult] = useState<RuntimeDispatchInfo>();
   const { account } = useWallet();

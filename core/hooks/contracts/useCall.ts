@@ -23,14 +23,14 @@ export enum CallError {
   NoResponse = 'No response',
 }
 
-export interface UseCallResponse<T> extends UseCall<T> {
+export interface Call<T> extends UseCall<T> {
   result?: DecodedContractResult<T>;
 }
 
 export function useCall<T>(
   contract: ContractPromise | undefined,
   message: string,
-): UseCallResponse<T> {
+): Call<T> {
   const [result, setResult] = useState<DecodedContractResult<T>>();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const abiMessage = useAbiMessage(contract, message);

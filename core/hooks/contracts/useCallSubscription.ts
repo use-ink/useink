@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { ContractOptions } from '../../types/mod.ts';
 import { useBlockHeader } from '../substrate/useBlockHeader.ts';
-import { useCall, UseCallResponse } from './useCall.ts';
+import { Call, useCall } from './useCall.ts';
 import { ChainContract } from './useContract.ts';
 
 export function useCallSubscription<T>(
@@ -10,7 +10,7 @@ export function useCallSubscription<T>(
   args = [] as unknown[],
   options?: ContractOptions,
   caller?: string,
-): Omit<UseCallResponse<T>, 'send'> {
+): Omit<Call<T>, 'send'> {
   const call = useCall<T>(chainContract?.contract, message);
   const blockNumber = useBlockHeader(chainContract?.chainId)?.blockNumber;
 
