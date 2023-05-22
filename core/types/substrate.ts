@@ -1,4 +1,9 @@
 import { ExtrinsicStatus } from '@polkadot/types/interfaces';
+export type { Header } from '@polkadot/types/interfaces';
+
+export type { DeriveBalancesAccount } from '@polkadot/api-derive/types';
+
+export { ApiPromise, WsProvider } from '@polkadot/api';
 
 export type {
   AnyJson,
@@ -20,7 +25,11 @@ export type {
   WeightV2,
 } from '@polkadot/types/interfaces';
 
-export type { SignerOptions, SubmittableExtrinsic } from '@polkadot/api/types';
+export type {
+  ApiBase,
+  SignerOptions,
+  SubmittableExtrinsic,
+} from '@polkadot/api/types';
 
 export type TransactionStatus =
   | ExtrinsicStatus['type']
