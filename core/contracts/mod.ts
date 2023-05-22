@@ -1,3 +1,4 @@
+export * from './tx.ts';
 export * from './call.ts';
 export * from './decodeContractExecResult.ts';
 export * from './decodeError.ts';

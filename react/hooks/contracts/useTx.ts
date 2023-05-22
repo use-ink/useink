@@ -20,10 +20,15 @@ export type SignAndSend = (
   cb?: ContractSubmittableResultCallback,
 ) => void;
 
+export interface TxResult<T> {
+  raw: ContractSubmittableResult;
+  value: T;
+}
+
 export interface Tx<T> {
   signAndSend: SignAndSend;
   status: TransactionStatus;
-  result: ContractSubmittableResult | undefined;
+  result: TxResult<T> | undefined;
   resetState: () => void;
 }
 
