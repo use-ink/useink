@@ -3,7 +3,6 @@ import { ContractOptions } from '@polkadot/api-contract/types';
 import { useMemo, useState } from 'react';
 import { ContractSubmittableResult } from '../../types/mod.ts';
 import { TransactionStatus } from '../../types/mod.ts';
-import { useAbiMessage } from './useAbiMessage.ts';
 import { useWallet } from '../wallets/useWallet.ts';
 import { ApiBase } from '@polkadot/api/types';
 import { useDryRun } from './useDryRun.ts';
@@ -33,7 +32,6 @@ export function useTx<T>(
   const { account } = useWallet();
   const [status, setStatus] = useState<TransactionStatus>('None');
   const [result, setResult] = useState<ContractSubmittableResult>();
-  const abiMessage = useAbiMessage(contract, message);
   const dryRun = useDryRun(contract, message);
 
   const signAndSend: SignAndSend = useMemo(
@@ -75,7 +73,7 @@ export function useTx<T>(
           setStatus('None');
         });
     },
-    [account, account?.wallet?.extension?.signer, contract, abiMessage],
+    [account, account?.wallet?.extension?.signer, contract],
   );
 
   return {
