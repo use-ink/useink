@@ -11,6 +11,10 @@ await Promise.all([
     entryPoints: [
       'mod.ts',
       {
+        name: './core',
+        path: 'core/mod.ts',
+      },
+      {
         name: './chains',
         path: 'chains/mod.ts',
       },
