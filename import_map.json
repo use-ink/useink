@@ -15,7 +15,6 @@
     "@polkadot/types/types": "npm:@polkadot/types@10.7.2/types",
     "@polkadot/util": "npm:@polkadot/util@12.2.1",
     "@talisman/connect-wallets": "npm:@talismn/connect-wallets@1.2.3",
-    "bn.js": "npm:bn.js@5.2.1",
     "react": "https://cdn.skypack.dev/react?dts",
     "react/jsx-runtime": "https://cdn.skypack.dev/react/jsx-runtime?dts",
     "react/jsx-dev-runtime": "https://cdn.skypack.dev/react/jsx-dev-runtime?dts"

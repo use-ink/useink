@@ -1,14 +1,13 @@
 import { DecodedTxResult, TxInfo } from '../../core/mod.ts';
 
-/// pickTxInfo gets gasRequired, gasConsumed, and storageDeposit or undefined from a tx or
-/// DryRun
-export function pickTxInfo<T>(
-  decoded: DecodedTxResult<T> | undefined,
+/// pickTxInfo gets gasRequired, gasConsumed, and storageDeposit or undefined from a
+/// DryRun.
+export function pickTxInfo(
+  result: DecodedTxResult<any> | undefined,
 ): TxInfo | undefined {
-  if (!decoded?.ok) return;
+  if (!result?.ok) return;
 
-  const { gasRequired, gasConsumed, storageDeposit, partialFee } =
-    decoded.value;
+  const { gasRequired, gasConsumed, storageDeposit, partialFee } = result.value;
 
   return { gasRequired, gasConsumed, storageDeposit, partialFee };
 }

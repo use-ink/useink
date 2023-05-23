@@ -7,7 +7,7 @@ import { useApi } from '../substrate/useApi.ts';
 export type ContractAbi = string | Record<string, unknown> | Abi;
 
 export interface ChainContract<T extends ContractPromise = ContractPromise> {
-  contract: T | undefined;
+  contract: T;
   chainId: ChainId;
 }
 
@@ -33,5 +33,7 @@ export function useContract<T extends ContractPromise = ContractPromise>(
     }
   }, [abi, address, api]);
 
-  return chainConfig ? { chainId: chainConfig.id, contract } : undefined;
+  return chainConfig && contract
+    ? { chainId: chainConfig.id, contract }
+    : undefined;
 }
