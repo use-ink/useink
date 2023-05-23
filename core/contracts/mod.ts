@@ -1,6 +1,5 @@
-export * from './tx.ts';
 export * from './call.ts';
-export * from './decodeContractExecResult.ts';
+export * from './decodeCallResult.ts';
 export * from './decodeError.ts';
 export * from './getRegistryError.ts';
 export * from './toContractAbiMessage.ts';

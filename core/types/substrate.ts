@@ -1,6 +1,3 @@
-import { ExtrinsicStatus } from '@polkadot/types/interfaces';
-export type { Header } from '@polkadot/types/interfaces';
-
 export type { DeriveBalancesAccount } from '@polkadot/api-derive/types';
 
 export { ApiPromise, WsProvider } from '@polkadot/api';
@@ -14,11 +11,14 @@ export type {
   TypeDef,
 } from '@polkadot/types/types';
 
+import { ExtrinsicStatus } from '@polkadot/types/interfaces';
 export type {
+  AccountId,
   Balance,
   DispatchError,
   EventRecord,
   ExtrinsicStatus,
+  Header,
   RuntimeDispatchInfo,
   StorageDeposit,
   Weight,

@@ -1,3 +1,4 @@
+import { BN } from '../../utils/mod.ts';
 import {
   AbiMessage,
   AccountId,
@@ -6,13 +7,12 @@ import {
   ContractPromise,
   DecodedContractResult,
 } from '../types/mod.ts';
-import { decodeContractExecResult } from './decodeContractExecResult.ts';
-import BN from 'bn.js';
+import { decodeCallResult } from './decodeCallResult.ts';
 
 export async function call<T>(
   contract: ContractPromise,
   abiMessage: AbiMessage,
-  caller: AccountId,
+  caller: AccountId | string,
   args = [] as unknown[],
   options?: ContractOptions,
 ): Promise<DecodedContractResult<T> | undefined> {
@@ -34,7 +34,7 @@ export async function call<T>(
   // TODO: handle a situation with no response
   if (!raw) return;
 
-  const decoded = decodeContractExecResult<T>(
+  const decoded = decodeCallResult<T>(
     raw.result,
     abiMessage,
     contract.abi.registry,

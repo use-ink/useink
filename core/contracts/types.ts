@@ -1,6 +1,6 @@
 import { ApiBase, DispatchError, Result } from '../types/mod.ts';
 
-export interface TxWithResult {
+export interface CallResult {
   result?: Result<any, DispatchError>;
 }
 

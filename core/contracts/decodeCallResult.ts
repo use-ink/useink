@@ -5,13 +5,14 @@ import {
   Registry,
 } from '../types/mod.ts';
 
-export function decodeContractExecResult<T>(
+export function decodeCallResult<T>(
   result: ContractExecResult['result'],
   message: AbiMessage,
   registry: Registry,
 ): DecodedResult<T> {
-  if (result.isErr) return { ok: false, error: result.asErr };
-  if (!message.returnType) return { ok: false, error: undefined };
+  if (result.isErr || !message.returnType) {
+    return { ok: false, error: result.asErr };
+  }
 
   const raw = registry.createTypeUnsafe(
     message.returnType.lookupName || message.returnType.type,

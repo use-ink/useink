@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState, useMemo } from 'react'
 import { ChainRPCs, ConfigProps, DEFAULT_CONFIG } from './model.ts'
 import { ConfigContext } from './context.ts'
 import { Chain, ChainId } from '../../../chains/mod.ts'
-import { useChain } from '../../mod.ts'
 
 export interface Props {
   config: ConfigProps
@@ -18,13 +17,13 @@ export const ConfigProvider: React.FC<React.PropsWithChildren<Props>> = ({
   config,
   children,
 }) => {
-  const chain = useChain()
+  const defaultChainId = useMemo(() => config.chains[0].id, [config.chains[0]])
   const [chainRpcs, setChainRpcs] = useState<ChainRPCs>(
     toInitialRpcs(config.chains, {} as ChainRPCs),
   )
 
   const setChainRpc = useCallback((rpc: string, cid?: ChainId) => {
-    const chainIdOrDefault = cid || chain?.id
+    const chainIdOrDefault = cid || defaultChainId;
     chainIdOrDefault && setChainRpcs({ ...chainRpcs, [chainIdOrDefault]: rpc })
   }, [])
 
