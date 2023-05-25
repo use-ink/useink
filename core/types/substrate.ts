@@ -1,4 +1,7 @@
-export type { DeriveBalancesAccount } from '@polkadot/api-derive/types';
+export type {
+  DeriveBalancesAccount,
+  DeriveBalancesMap,
+} from '@polkadot/api-derive/types';
 
 export { ApiPromise, WsProvider } from '@polkadot/api';
 
@@ -27,6 +30,7 @@ export type {
 
 export type {
   ApiBase,
+  QueryableModuleCalls,
   SignerOptions,
   SubmittableExtrinsic,
 } from '@polkadot/api/types';
@@ -37,3 +41,7 @@ export type TransactionStatus =
   | 'DryRun'
   | 'PendingSignature'
   | 'Errored';
+
+export interface WithAddress {
+  address: string | undefined;
+}
