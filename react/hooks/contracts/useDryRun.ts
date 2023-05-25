@@ -57,7 +57,7 @@ export function useDryRun<T>(
         const requiresNoArguments = tx.meta.args.length === 0;
         const { partialFee } = await (requiresNoArguments
           ? tx(options || {})
-          : tx(options || {}, params))
+          : tx(options || {}, ...(params || [])))
           .paymentInfo(account.address);
 
         const r = {
