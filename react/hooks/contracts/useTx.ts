@@ -10,8 +10,9 @@ import {
 import { ChainContract } from './types.ts';
 
 export type ContractSubmittableResultCallback = (
-  result: ContractSubmittableResult,
+  result?: ContractSubmittableResult,
   api?: ApiBase<'promise'>,
+  error?: unknown,
 ) => void;
 
 export type SignAndSend = (
@@ -50,7 +51,11 @@ export function useTx<T>(
         const tx = chainContract?.contract.tx[message];
 
         if (!tx) {
-          console.error(`'${message}' not found on contract instance`);
+          cb?.(
+            undefined,
+            chainContract.contract.api,
+            `'${message}' not found on contract instance`,
+          );
           return;
         }
 
@@ -68,12 +73,12 @@ export function useTx<T>(
             },
           )
           .catch((e: unknown) => {
-            console.error(e);
+            cb?.(undefined, chainContract.contract.api, e);
             setStatus('None');
           });
       })
         .catch((e) => {
-          console.error(e);
+          cb?.(undefined, chainContract.contract.api, e);
           setStatus('None');
         });
     },
