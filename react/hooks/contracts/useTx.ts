@@ -4,10 +4,10 @@ import { useDryRun } from './useDryRun.ts';
 import {
   ApiBase,
   ContractOptions,
-  ContractPromise,
   ContractSubmittableResult,
   TransactionStatus,
 } from '../../../core/mod.ts';
+import { ChainContract } from './types.ts';
 
 export type ContractSubmittableResultCallback = (
   result: ContractSubmittableResult,
@@ -28,24 +28,26 @@ export interface Tx<T> {
 }
 
 export function useTx<T>(
-  contract: ContractPromise | undefined,
+  chainContract: ChainContract | undefined,
   message: string,
 ): Tx<T> {
   const { account } = useWallet();
   const [status, setStatus] = useState<TransactionStatus>('None');
   const [result, setResult] = useState<ContractSubmittableResult>();
-  const dryRun = useDryRun(contract, message);
+  const dryRun = useDryRun(chainContract, message);
 
   const signAndSend: SignAndSend = useMemo(
     () => (params, options, cb) => {
-      if (!contract || !account || !account.wallet?.extension) return;
+      if (!chainContract?.contract || !account || !account.wallet?.extension) {
+        return;
+      }
 
       dryRun.send(params, options).then((response) => {
         if (!response || !response.ok) return;
         setStatus('PendingSignature');
 
         const { gasRequired } = response.value.raw;
-        const tx = contract.tx[message];
+        const tx = chainContract?.contract.tx[message];
 
         if (!tx) {
           console.error(`'${message}' not found on contract instance`);
@@ -62,7 +64,7 @@ export function useTx<T>(
             (response: ContractSubmittableResult) => {
               setResult(response);
               setStatus(response.status.type);
-              cb && cb(response, contract.api);
+              cb && cb(response, chainContract?.contract.api);
             },
           )
           .catch((e: unknown) => {
@@ -75,7 +77,7 @@ export function useTx<T>(
           setStatus('None');
         });
     },
-    [account, account?.wallet?.extension?.signer, contract],
+    [account, account?.wallet?.extension?.signer, chainContract?.contract],
   );
 
   return {

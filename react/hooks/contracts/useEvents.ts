@@ -9,18 +9,18 @@ export interface Events {
 }
 
 export const useEvents = (
-  account: AccountId | undefined,
+  contractAddress: AccountId | undefined,
   filters?: string[],
 ): Events => {
   const { events, removeEvent } = useContext(EventsContext);
 
   const contractEvents = useMemo(() => {
-    if (!account) return [];
+    if (!contractAddress) return [];
 
-    return events[account.toString()]?.filter(({ name }) =>
+    return events[contractAddress.toString()]?.filter(({ name }) =>
       filters ? filters.includes(name) : true
     ) ?? [];
-  }, [events, account]);
+  }, [events, contractAddress]);
 
   return { events: contractEvents, removeEvent };
 };

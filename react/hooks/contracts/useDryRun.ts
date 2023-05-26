@@ -1,20 +1,16 @@
 import { useMemo, useState } from 'react';
-import {
-  call,
-  ContractOptions,
-  ContractPromise,
-  DecodedTxResult,
-  SignerOptions,
-} from '../../../core/mod.ts';
+import { call, DecodedTxResult } from '../../../core/mod.ts';
 import { useAbiMessage } from './useAbiMessage.ts';
 import { useWallet } from '../wallets/useWallet.ts';
+import { CallOptions, ChainContract } from './types.ts';
+import { useDefaultCaller } from '../config/mod.ts';
 
 export type DryRunResult<T> = DecodedTxResult<T>;
 
 export type Send<T> = (
   args?: unknown[],
-  o?: ContractOptions,
-  signerOptions?: SignerOptions,
+  o?: CallOptions,
+  caller?: string,
 ) => Promise<DryRunResult<T> | undefined>;
 
 export interface DryRun<T> {
@@ -26,26 +22,35 @@ export interface DryRun<T> {
 }
 
 export function useDryRun<T>(
-  contract: ContractPromise | undefined,
+  chainContract: ChainContract | undefined,
   message: string,
 ): DryRun<T> {
   const { account } = useWallet();
+  const defaultCaller = useDefaultCaller(chainContract?.chainId);
   const [result, setResult] = useState<DecodedTxResult<T>>();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const abiMessage = useAbiMessage(contract, message);
+  const abiMessage = useAbiMessage(chainContract?.contract, message);
 
   const send: Send<T> = useMemo(
     () => async (params, options) => {
-      const tx = contract?.tx?.[message];
-      if (!account || !contract || !abiMessage || !tx) return;
+      const tx = chainContract?.contract?.tx?.[message];
+      const caller = account?.address
+        ? account.address
+        : options?.defaultCaller
+        ? defaultCaller
+        : undefined;
+
+      if (!caller || !chainContract?.contract || !abiMessage || !tx) {
+        return;
+      }
 
       setIsSubmitting(true);
 
       try {
         const resp = await call<T>(
-          contract,
+          chainContract.contract,
           abiMessage,
-          account.address,
+          caller,
           params,
           options,
         );
@@ -58,7 +63,7 @@ export function useDryRun<T>(
         const { partialFee } = await (requiresNoArguments
           ? tx(options || {})
           : tx(options || {}, ...(params || [])))
-          .paymentInfo(account.address);
+          .paymentInfo(caller);
 
         const r = {
           ...resp,
@@ -81,7 +86,7 @@ export function useDryRun<T>(
         return;
       }
     },
-    [account, contract, abiMessage],
+    [account, chainContract?.contract, abiMessage],
   );
 
   return {

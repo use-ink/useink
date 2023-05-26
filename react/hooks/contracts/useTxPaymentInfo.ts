@@ -1,15 +1,12 @@
 import { useCallback, useState } from 'react';
 import { useWallet } from '../wallets/useWallet.ts';
-import {
-  ContractOptions,
-  ContractPromise,
-  RuntimeDispatchInfo,
-  SignerOptions,
-} from '../../../core/mod.ts';
+import { RuntimeDispatchInfo, SignerOptions } from '../../../core/mod.ts';
+import { CallOptions } from './types.ts';
+import { ChainContract, useDefaultCaller } from '../mod.ts';
 
 type Send = (
-  options?: ContractOptions,
   params?: unknown[],
+  options?: CallOptions,
   signerOptions?: Partial<SignerOptions>,
 ) => Promise<RuntimeDispatchInfo | undefined>;
 
@@ -21,16 +18,21 @@ interface TxPaymentInfo {
 }
 
 export function useTxPaymentInfo(
-  contract: ContractPromise | undefined,
+  chainContract: ChainContract | undefined,
   message: string,
 ): TxPaymentInfo {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [result, setResult] = useState<RuntimeDispatchInfo>();
   const { account } = useWallet();
+  const defaultCaller = useDefaultCaller();
 
-  const send = useCallback<Send>(async (options, params, signerOptions) => {
-    const tx = contract?.tx?.[message];
-    if (!tx || !account) return;
+  const send = useCallback<Send>(async (params, options, signerOptions) => {
+    const tx = chainContract?.contract?.tx?.[message];
+    const caller = account?.address || options?.defaultCaller
+      ? defaultCaller
+      : undefined;
+
+    if (!tx || !caller) return;
 
     try {
       setIsSubmitting(true);
@@ -39,7 +41,7 @@ export function useTxPaymentInfo(
       const paymentInfoResult = await (requiresNoArguments
         ? tx(options || {})
         : tx(options || {}, params))
-        .paymentInfo(account.address, signerOptions);
+        .paymentInfo(caller, signerOptions);
 
       setResult(paymentInfoResult);
       setIsSubmitting(false);
@@ -50,7 +52,7 @@ export function useTxPaymentInfo(
       setIsSubmitting(false);
       return;
     }
-  }, [contract, message, account]);
+  }, [chainContract?.contract, message, account, defaultCaller]);
 
   return {
     isSubmitting,

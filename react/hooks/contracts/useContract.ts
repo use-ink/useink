@@ -3,13 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { ChainId } from '../../../chains/mod.ts';
 import { useChain } from '../config/useChain.ts';
 import { useApi } from '../substrate/useApi.ts';
-
-export type ContractAbi = string | Record<string, unknown> | Abi;
-
-export interface ChainContract<T extends ContractPromise = ContractPromise> {
-  contract: T;
-  chainId: ChainId;
-}
+import { ChainContract } from './types.ts';
 
 export function useContract<T extends ContractPromise = ContractPromise>(
   address: string,
