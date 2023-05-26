@@ -1,17 +1,13 @@
 import { useCallback, useState } from 'react';
-import {
-  call,
-  ContractOptions,
-  ContractPromise,
-  DecodedContractResult,
-} from '../../../core/mod.ts';
+import { call, DecodedContractResult } from '../../../core/mod.ts';
 import { useAbiMessage } from './useAbiMessage.ts';
 import { useWallet } from '../wallets/useWallet.ts';
+import { CallOptions } from './types.ts';
+import { ChainContract, useDefaultCaller } from '../mod.ts';
 
 export type CallSend<T> = (
   args?: unknown[],
-  options?: ContractOptions,
-  caller?: string,
+  options?: CallOptions,
 ) => Promise<DecodedContractResult<T> | undefined>;
 
 export interface UseCall<T> {
@@ -30,29 +26,31 @@ export interface Call<T> extends UseCall<T> {
 }
 
 export function useCall<T>(
-  contract: ContractPromise | undefined,
+  chainContract: ChainContract | undefined,
   message: string,
 ): Call<T> {
   const [result, setResult] = useState<DecodedContractResult<T>>();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const abiMessage = useAbiMessage(contract, message);
+  const abiMessage = useAbiMessage(chainContract?.contract, message);
   const { account } = useWallet();
+  const defaultCaller = useDefaultCaller(chainContract?.chainId);
 
   const send = useCallback(
     async (
       args,
       options,
-      caller,
     ): Promise<DecodedContractResult<T> | undefined> => {
-      const callingAddress = caller ? caller : account?.address;
-      if (!abiMessage || !contract || !callingAddress) return;
+      const caller = account?.address || options?.defaultCaller
+        ? defaultCaller
+        : undefined;
+      if (!abiMessage || !chainContract?.contract || !caller) return;
 
       try {
         setIsSubmitting(true);
         const callResult = await call<T>(
-          contract,
+          chainContract.contract,
           abiMessage,
-          callingAddress,
+          caller,
           args,
           options,
         );

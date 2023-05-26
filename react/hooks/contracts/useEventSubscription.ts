@@ -1,12 +1,12 @@
-import { Bytes } from '@polkadot/types';
 import { useContext, useEffect } from 'react';
 import { FIVE_SECONDS, HALF_A_SECOND } from '../../constants.ts';
 import { Event, EventsContext } from '../../providers/events/mod.ts';
 import { useBlockHeader } from '../substrate/useBlockHeader.ts';
 import { useConfig } from '../config/useConfig.ts';
-import { ChainContract } from './useContract.ts';
 import { useInterval } from '../internal/useInterval.ts';
 import { getExpiredItem } from '../../../utils/mod.ts';
+import { ChainContract } from './types.ts';
+import { Bytes } from '../../../core/mod.ts';
 
 export const useEventSubscription = (
   chainContract: ChainContract | undefined,

@@ -4,9 +4,14 @@ import { ArrayOneOrMore } from '../../../core/mod.ts';
 
 export type ChainRPCs = Partial<Record<ChainId, string>>;
 
+export type CallerAddress = string;
+
 export type ConfigProps = {
   dappName?: string;
   chains: ArrayOneOrMore<Chain>;
+  caller?: {
+    default?: CallerAddress;
+  } & Partial<Record<ChainId, CallerAddress>>;
   events?: {
     expiration?: number;
     checkInterval?: number;

@@ -1,3 +1,5 @@
+export type { Bytes } from '@polkadot/types';
+
 export type {
   DeriveBalancesAccount,
   DeriveBalancesMap,
