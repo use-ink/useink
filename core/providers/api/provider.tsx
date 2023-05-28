@@ -6,7 +6,7 @@ import { useChains } from "../../hooks/mod.ts";
 import { APIContext } from "./context.ts";
 import { apiProvidersReducer } from "./reducer.ts";
 import { useConfig } from "../../mod.ts";
-import { Chain, ChainId } from "../../../chains/mod.ts";
+import { Chain } from "../../../chains/mod.ts";
 
 export const APIProvider: React.FC<React.PropsWithChildren<any>> = ({
   children,
@@ -30,7 +30,6 @@ export const APIProvider: React.FC<React.PropsWithChildren<any>> = ({
   const addSmoldotProvider = async (chain: Chain) => {
     const provider = new ScProvider(Sc, chain.id);
     await provider.connect();
-    const api = await ApiPromise.create({ provider });
 
     ApiPromise.create({ provider }).then((api) => {
       dispatch({
