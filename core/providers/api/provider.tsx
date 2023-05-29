@@ -1,11 +1,10 @@
 import React, { useEffect, useReducer } from "react";
 import { ApiPromise, WsProvider } from "@polkadot/api";
-import { ScProvider } from "@polkadot/rpc-provider/substrate-connect";
-import * as Sc from "@substrate/connect";
 import { useChains } from "../../hooks/mod.ts";
 import { APIContext } from "./context.ts";
 import { apiProvidersReducer } from "./reducer.ts";
 import { useConfig } from "../../mod.ts";
+import { Sc, ScProvider } from "../../../utils/mod.ts";
 import { Chain } from "../../../chains/mod.ts";
 
 export const APIProvider: React.FC<React.PropsWithChildren<any>> = ({
@@ -33,7 +32,7 @@ export const APIProvider: React.FC<React.PropsWithChildren<any>> = ({
 
     ApiPromise.create({ provider }).then((api) => {
       dispatch({
-        type: "ADD_SMOLDOT_PROVIDER",
+        type: "ADD_API_PROVIDER",
         chainId: chain.id,
         apiProvider: { api, provider },
       });
