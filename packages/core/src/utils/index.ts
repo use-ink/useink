@@ -1,4 +1,4 @@
-export * from "@polkadot/util";
+export { formatBalance } from "@polkadot/util";
 
 export * from "./contracts/index";
 export * from "./helpers/index";
