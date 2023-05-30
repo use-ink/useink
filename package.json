@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "pnpm --filter useink build",
-    "dev": "pnpm --filter useink/* watch & pnpm --filter playground dev"
+    "dev": "pnpm --filter useink watch & pnpm --filter playground dev"
   },
   "keywords": [],
   "author": "",

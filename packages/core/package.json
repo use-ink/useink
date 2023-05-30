@@ -1,13 +1,28 @@
 {
   "name": "useink",
-  "license": "MIT",
+  "keywords": [
+    "useink",
+    "ink!",
+    "Polkadot",
+    "Kusama",
+    "Substrate",
+    "AlephZero",
+    "Astar",
+    "Phala",
+    "React",
+    "hooks"
+  ],
   "version": "1.4.1",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
+  "description": "A React hooks library for ink! contracts",
+  "license": "Apache-2.0",
+  "repository": "github:paritytech/useink",
   "types": "dist/index.d.ts",
+
   "scripts": {
-    "build": "tsup ./src/index.ts --format cjs,esm --dts",
-    "watch": "tsup ./src/index.ts --format cjs,esm --dts --watch",
+    "build": "tsup",
+    "watch": "tsup --watch",
     "lint": "tsc",
     "release": "pnpm run build && changeset publish"
   },
@@ -26,7 +41,61 @@
     "@polkadot/extension-dapp": "^0.46.3",
     "@polkadot/extension-inject": "^0.45.5",
     "@polkadot/util": "^12.2.1",
-    "@talismn/connect-wallets": "^1.2.3",
-    "react": "^18.2.0"
+    "@talismn/connect-wallets": "^1.2.3"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./core": {
+      "import": {
+        "types": "./dist/core.d.ts",
+        "default": "./dist/core.mjs"
+      },
+      "require": {
+        "types": "./dist/core.d.ts",
+        "default": "./dist/core.js"
+      }
+    },
+    "./chains": {
+      "import": {
+        "types": "./dist/chains.d.ts",
+        "default": "./dist/chains.mjs"
+      },
+      "require": {
+        "types": "./dist/chains.d.ts",
+        "default": "./dist/chains.js"
+      }
+    },
+    "./notifications": {
+      "import": {
+        "types": "./dist/notifications.d.ts",
+        "default": "./dist/notifications.mjs"
+      },
+      "require": {
+        "types": "./dist/notifications.d.ts",
+        "default": "./dist/notifications.js"
+      }
+    },
+    "./utils": {
+      "import": {
+        "types": "./dist/utils.d.ts",
+        "default": "./dist/utils.mjs"
+      },
+      "require": {
+        "types": "./dist/utils.d.ts",
+        "default": "./dist/utils.js"
+      }
+    }
   }
 }
