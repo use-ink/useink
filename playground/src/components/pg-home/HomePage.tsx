@@ -17,7 +17,20 @@ import {
   useUninstalledWallets,
   useWallet,
 } from 'useink';
-import { RustResult, formatBalance, isBroadcast, isFinalized, isInBlock, isPendingSignature, pickDecoded, pickDecodedError, pickResultErr, pickResultOk, pickTxInfo, shouldDisable } from 'useink/utils';
+import {
+  RustResult,
+  formatBalance,
+  isBroadcast,
+  isFinalized,
+  isInBlock,
+  isPendingSignature,
+  pickDecoded,
+  pickDecodedError,
+  pickResultErr,
+  pickResultOk,
+  pickTxInfo,
+  shouldDisable,
+} from 'useink/utils';
 import metadata from '../../metadata/playground.json';
 import { ChainId } from 'useink/chains';
 import { useEffect } from 'react';
@@ -41,7 +54,7 @@ export const HomePage: React.FC = () => {
   const { rpcs, setChainRpc } = useChainRpcList('astar');
   const astarRpc = useChainRpc('astar');
   const get = useCall<boolean>(cRococoContract, 'get');
-  const getSubcription = useCallSubscription<boolean>(cRococoContract, 'get', [], { defaultCaller: true });
+  const getSubscription = useCallSubscription<boolean>(cRococoContract, 'get', [], { defaultCaller: true });
   const flipTx = useTx<void>(cRococoContract, 'flip');
   const flipDryRun = useDryRun<boolean>(cRococoContract, 'flip');
   const flipPaymentInfo = useTxPaymentInfo(cRococoContract, 'flip');
@@ -51,7 +64,7 @@ export const HomePage: React.FC = () => {
   const shibuyaContract = useContract(SHIBUYA_CONTRACT_ADDRESS, metadata, 'shibuya-testnet');
   const shibuyaFlipTx = useTx(shibuyaContract, 'flip');
   useTxNotifications(shibuyaFlipTx); // Add a notification on tx status changes
-  const shibuyaGetSubcription = useCallSubscription<boolean>(shibuyaContract, 'get');
+  const shibuyaGetSubscription = useCallSubscription<boolean>(shibuyaContract, 'get');
   const { addNotification } = useNotifications();
   useEventSubscription(cRococoContract);
   const { events } = useEvents(cRococoContract?.contract?.address);
@@ -63,7 +76,7 @@ export const HomePage: React.FC = () => {
   const badMood = pickResultErr(mood.result);
 
   useEffect(() => {
-    // Customize messages 
+    // Customize messages
     if (isPendingSignature(flipTx)) {
       addNotification({ type: flipTx.status, message: `Please sign the transaction in your wallet` });
     }
@@ -169,7 +182,7 @@ export const HomePage: React.FC = () => {
                 </>
               )}
             </ul>
-          )} 
+          )}
           <ul className="list-none flex flex-col gap-12 mt-8">
             {account && (
               <>
@@ -274,8 +287,7 @@ export const HomePage: React.FC = () => {
 
             <li className="flex items-center gap-4">
               <h3 className="text-xl">
-                get() will update on new blocks:{' '}
-                {pickDecoded(getSubcription.result)?.toString() || '--'}
+                get() will update on new blocks: {pickDecoded(getSubscription.result)?.toString() || '--'}
               </h3>
             </li>
 
@@ -293,10 +305,10 @@ export const HomePage: React.FC = () => {
               </h3>
 
               <h3 className="text-xl">
-                <b>Events:</b> 
-                <ul className='ml-4'>
-                  {events.map(event => (
-                    <li key={event.id} className='text-md mb-4'>
+                <b>Events:</b>
+                <ul className="ml-4">
+                  {events.map((event) => (
+                    <li key={event.id} className="text-md mb-4">
                       <b>{event.name}</b> - flipper: {event.args?.[0] as string}, value: {event.args?.[1]?.toString()}
                     </li>
                   ))}
@@ -316,8 +328,7 @@ export const HomePage: React.FC = () => {
               <h3 className="text-xl">Call a contract on another chain. e.g. &quot;Shibuya&quot;</h3>
 
               <h3 className="text-xl">
-                Shibuya Flipped:{' '}
-                {pickDecoded(shibuyaGetSubcription.result)?.toString() || '--'}
+                Shibuya Flipped: {pickDecoded(shibuyaGetSubscription.result)?.toString() || '--'}
               </h3>
 
               <button
@@ -383,9 +394,9 @@ export const HomePage: React.FC = () => {
 
               <h3 className="text-xl">
                 {pickDecodedError(
-                  panic, 
-                  cRococoContract, 
-                  { ContractTrapped: 'This is a custom message. There was a panic in the contract!' }, 
+                  panic,
+                  cRococoContract,
+                  { ContractTrapped: 'This is a custom message. There was a panic in the contract!' },
                   'this is a default error message',
                 )}
               </h3>
@@ -402,9 +413,9 @@ export const HomePage: React.FC = () => {
 
               <h3 className="text-xl">
                 {pickDecodedError(
-                  assertBoom, 
-                  cRococoContract, 
-                  { ContractTrapped: 'This is a custom message. The assertion failed!' }, 
+                  assertBoom,
+                  cRococoContract,
+                  { ContractTrapped: 'This is a custom message. The assertion failed!' },
                   '--',
                 )}
               </h3>
@@ -431,8 +442,7 @@ export const HomePage: React.FC = () => {
               </button>
 
               <h3 className="text-xl">
-                Mood:{' '}
-                {!goodMood && !badMood && '--'}
+                Mood: {!goodMood && !badMood && '--'}
                 {goodMood?.mood}
                 {badMood?.BadMood.mood}
               </h3>
