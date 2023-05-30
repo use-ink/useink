@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import HomePage from '@/components/pg-home';
+import HomePage from '../components/pg-home';
 
 export default function Index() {
   return (

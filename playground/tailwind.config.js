@@ -14,6 +14,18 @@ module.exports = {
           600: '#1119a5',
           800: '#19144f',
         },
+        success: {
+          500: '#00c900'
+        },
+        warning: {
+          500: '#ffbe54'
+        },
+        error: {
+          500: '#d6502b'
+        },
+        info: {
+          500: '#bc83fb'
+        }
       },
       fontFamily: {
         Headings: ['Montserrat', 'sans-serif'],

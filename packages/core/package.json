@@ -1,7 +1,7 @@
 {
-  "name": "@useink/core",
+  "name": "useink",
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "1.4.1",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -13,19 +13,19 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.1",
-    "@polkadot/types": "^10.3.4",
-    "@polkadot/types-codec": "^10.3.4",
-    "@types/react": "^18.0.37",
+    "@polkadot/types": "^10.7.3",
+    "@polkadot/types-codec": "^10.7.3",
+    "@types/react": "^18.2.7",
     "tsup": "^6.7.0",
-    "typescript": "^5.0.4",
-    "useink/chains": "workspace:@useink/chains@*"
+    "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@polkadot/api": "^10.3.4",
-    "@polkadot/api-contract": "^10.3.4",
-    "@polkadot/api-derive": "^10.3.4",
-    "@polkadot/extension-dapp": "^0.45.5",
+    "@polkadot/api": "^10.7.3",
+    "@polkadot/api-contract": "^10.7.3",
+    "@polkadot/api-derive": "^10.7.3",
+    "@polkadot/extension-dapp": "^0.46.3",
     "@polkadot/extension-inject": "^0.45.5",
+    "@polkadot/util": "^12.2.1",
     "@talismn/connect-wallets": "^1.2.3",
     "react": "^18.2.0"
   }
