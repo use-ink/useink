@@ -4,7 +4,7 @@ importers:
 
   .: {}
 
-  packages/core:
+  packages/useink:
     dependencies:
       '@polkadot/api':
         specifier: ^10.7.3
@@ -96,7 +96,7 @@ importers:
         version: 5.0.2
       useink:
         specifier: workspace:useink@*
-        version: link:../packages/core
+        version: link:../packages/useink
       ws:
         specifier: ^8.13.0
         version: 8.13.0
