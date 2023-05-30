@@ -22,7 +22,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.0.2",
-    "useink": "^1.4.0"
+    "useink": "workspace:useink@*",
+    "ws": "^8.13.0"
   },
   "devDependencies": {
     "eslint-config-prettier": "^8.8.0",
