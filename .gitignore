@@ -1,7 +1,8 @@
 .DS_Store
 .env
-node_modules
-benches.json
-target
-deno.lock
 .vscode
+benches.json
+deno.lock
+dist
+node_modules
+target

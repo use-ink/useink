@@ -36,7 +36,11 @@ export function useCall<T>(
   const defaultCaller = useDefaultCaller(chainContract?.chainId);
 
   const send = useCallback(
-    async (args, options): Promise<DecodedContractResult<T> | undefined> => {
+    // TODO type
+    async (
+      args: any,
+      options: any
+    ): Promise<DecodedContractResult<T> | undefined> => {
       const caller =
         account?.address || options?.defaultCaller ? defaultCaller : undefined;
       if (!abiMessage || !chainContract?.contract || !caller) return;
