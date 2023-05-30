@@ -1,4 +1,4 @@
-import { BN } from "../../utils/index";
+import { BN } from "@polkadot/util";
 import {
   AbiMessage,
   AccountId,
