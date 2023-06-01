@@ -6,14 +6,12 @@ export type ChainRPCs = Partial<Record<ChainId, string>>;
 
 export type ConnectionType = 'trusted' | 'light-client';
 
-interface ApiType extends Partial<Record<ChainId, ConnectionType>> {
-  default?: ConnectionType;
-}
-
 export type CallerAddress = string;
 
 export type ConfigProps = {
-  api: ApiType;
+  api?: {
+    default?: ConnectionType;
+  } & Partial<Record<ChainId, ConnectionType>>;
   chains: ArrayOneOrMore<Chain>;
   dappName?: string;
   caller?: {
