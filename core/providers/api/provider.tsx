@@ -1,9 +1,8 @@
 import React, { useEffect, useReducer } from "react";
 import { ApiPromise, WsProvider } from "@polkadot/api";
-import { useChains } from "../../hooks/mod.ts";
+import { useChains, useConfig } from "../../hooks/mod.ts";
 import { APIContext } from "./context.ts";
 import { apiProvidersReducer } from "./reducer.ts";
-import { useConfig } from "../../mod.ts";
 import { Sc, ScProvider } from "../../../utils/mod.ts";
 import { Chain } from "../../../chains/mod.ts";
 
@@ -11,7 +10,7 @@ export const APIProvider: React.FC<React.PropsWithChildren<any>> = ({
   children,
 }) => {
   const chains = useChains();
-  const { chainRpcs } = useConfig();
+  const { chainRpcs, api } = useConfig();
   const [apis, dispatch] = useReducer(apiProvidersReducer, {});
 
   const addApiProvider = (chain: Chain) => {

@@ -5,9 +5,16 @@ import { ArrayOneOrMore } from '../../types/array.ts';
 
 export type ChainRPCs = Partial<Record<ChainId, string>>;
 
+export type ConnectionType = 'trusted' | 'light-client';
+
+interface ApiType extends Partial<Record<ChainId, ConnectionType>> {
+  default?: ConnectionType;
+}
+
 export type ConfigProps = {
-  dappName?: string;
+  api: ApiType;
   chains: ArrayOneOrMore<Chain>;
+  dappName?: string;
   events?: {
     expiration?: number;
     checkInterval?: number;
@@ -17,11 +24,14 @@ export type ConfigProps = {
   };
 };
 
-export type SetChainRpc = (rpc: string, chain?: ChainId) => void;
+export type SetChainRpc = (rpc: string, chain?: Chain) => void;
+
+export type SetConnectionType = (type: ConnectionType, chain?: Chain | "all") => void;
 
 export interface ChainConfig {
-  setChainRpc: SetChainRpc;
   chainRpcs: ChainRPCs;
+  setChainRpc: SetChainRpc;
+  setConnectionType: SetConnectionType;
 }
 
 export type Config = ChainConfig & ConfigProps;
@@ -34,5 +44,6 @@ export const DEFAULT_CONFIG: Config = {
     checkInterval: HALF_A_SECOND,
   },
   setChainRpc: () => null,
+  setConnectionType: () => null,  
   chainRpcs: {},
 };
