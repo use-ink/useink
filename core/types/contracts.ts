@@ -13,10 +13,8 @@ export type {
   ContractExecResultResult,
 } from '@polkadot/types/interfaces';
 export type { AbiMessage, ContractOptions } from '@polkadot/api-contract/types';
-export type { ContractPromise } from '@polkadot/api-contract';
+export { Abi, ContractPromise } from '@polkadot/api-contract';
 export type { ContractSubmittableResult } from '@polkadot/api-contract/base/contract';
-
-export type AccountId = string;
 
 export interface ContractCallResultRaw {
   readonly callResult: ContractExecResult;
@@ -47,7 +45,7 @@ export interface TxExecResultDecoded<T> extends TxInfo {
   readonly raw: ContractExecResult;
 }
 
-export type DecodedResult<T> = Result<T, DispatchError | undefined>;
+export type DecodedResult<T> = Result<T, DispatchError>;
 
 export type DecodedContractResult<T> = DecodedResult<
   ContractExecResultDecoded<T>

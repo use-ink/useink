@@ -1,4 +1,11 @@
-import { ExtrinsicStatus } from '@polkadot/types/interfaces';
+export type { Bytes } from '@polkadot/types';
+
+export type {
+  DeriveBalancesAccount,
+  DeriveBalancesMap,
+} from '@polkadot/api-derive/types';
+
+export { ApiPromise, WsProvider } from '@polkadot/api';
 
 export type {
   AnyJson,
@@ -9,18 +16,26 @@ export type {
   TypeDef,
 } from '@polkadot/types/types';
 
+import { ExtrinsicStatus } from '@polkadot/types/interfaces';
 export type {
+  AccountId,
   Balance,
   DispatchError,
   EventRecord,
   ExtrinsicStatus,
+  Header,
   RuntimeDispatchInfo,
   StorageDeposit,
   Weight,
   WeightV2,
 } from '@polkadot/types/interfaces';
 
-export type { SignerOptions, SubmittableExtrinsic } from '@polkadot/api/types';
+export type {
+  ApiBase,
+  QueryableModuleCalls,
+  SignerOptions,
+  SubmittableExtrinsic,
+} from '@polkadot/api/types';
 
 export type TransactionStatus =
   | ExtrinsicStatus['type']
@@ -28,3 +43,7 @@ export type TransactionStatus =
   | 'DryRun'
   | 'PendingSignature'
   | 'Errored';
+
+export interface WithAddress {
+  address: string | undefined;
+}

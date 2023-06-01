@@ -2,8 +2,8 @@ import React, { useCallback, useReducer } from 'react'
 import { NotificationsContext } from './context.ts'
 import { AddNotificationPayload, Config, DEFAULT_NOTIFICATIONS } from './model.ts'
 import { notificationReducer } from './reducer.ts'
-import { pseudoRandomId } from '../core/mod.ts'
-import { useIsMounted } from "../core/hooks/internal/mod.ts";
+import { useIsMounted } from "../react/hooks/internal/useIsMounted.ts";
+import { pseudoRandomId } from "../utils/mod.ts";
 
 export const NotificationsProvider: React.FC<React.PropsWithChildren<{
   config?: Config

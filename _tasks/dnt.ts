@@ -11,6 +11,10 @@ await Promise.all([
     entryPoints: [
       'mod.ts',
       {
+        name: './core',
+        path: 'core/mod.ts',
+      },
+      {
         name: './chains',
         path: 'chains/mod.ts',
       },
@@ -35,8 +39,7 @@ await Promise.all([
     package: {
       name: 'useink',
       version: Deno.args[0]!,
-      description:
-        'A React hooks library for Substrate and Wasm contracts on Substrate',
+      description: 'A React hooks library for ink! contracts',
       license: 'Apache-2.0',
       repository: 'github:paritytech/useink',
       keywords: [
