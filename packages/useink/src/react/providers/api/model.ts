@@ -1,10 +1,25 @@
 import { ChainId } from '../../../chains/index';
-import { ApiPromise, WsProvider } from '../../../core/index';
+import { ApiPromise, ScProvider, WsProvider } from '../../../core/index';
 
-export interface IApiProvider {
-  api: ApiPromise;
+interface TrustedConnection {
+  connection: 'trusted';
   provider: WsProvider;
 }
+
+interface LightClientConnection {
+  connection: 'light-client';
+  provider: ScProvider;
+}
+
+export type ConnectionType =
+  | TrustedConnection['connection']
+  | LightClientConnection['connection'];
+
+export type ProviderConnection = TrustedConnection | LightClientConnection;
+
+export type IApiProvider = {
+  api: ApiPromise;
+} & ProviderConnection;
 
 export type IApiProviders = Partial<Record<ChainId, IApiProvider>>;
 

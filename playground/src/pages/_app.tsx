@@ -34,6 +34,9 @@ function App({ Component, pageProps }: AppProps) {
         caller: {
           default: '5EyR7vEk7DtvEWeefGcXXMV6hKwB8Ex5uvjHufm466mbjJkR',
         },
+        api: {
+          default: 'light-client',
+        },
       }}
     >
       <NotificationsProvider>

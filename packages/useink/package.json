@@ -29,6 +29,7 @@
     "@changesets/cli": "^2.26.1",
     "@polkadot/types": "^10.9.1",
     "@polkadot/types-codec": "^10.9.1",
+    "@types/node": "18.15.6",
     "@types/react": "^18.2.7",
     "tsup": "^6.7.0",
     "typescript": "^5.0.4"
