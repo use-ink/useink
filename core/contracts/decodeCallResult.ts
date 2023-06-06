@@ -20,5 +20,5 @@ export function decodeCallResult<T>(
     { isPedantic: true },
   );
 
-  return { ok: true, value: (raw.toHuman() as Record<'Ok', T>).Ok };
+  return { ok: true, value: (raw.toHuman() as Record<'Ok', T>)?.Ok };
 }
