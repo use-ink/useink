@@ -9,7 +9,7 @@ export const pseudoRandomId = (t = 21) =>
           : e < 62
           ? (e - 26).toString(36).toUpperCase()
           : e > 62
-          ? "-"
-          : "_"),
-    ""
+          ? '-'
+          : '_'),
+    '',
   );
