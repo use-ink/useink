@@ -1,7 +1,7 @@
-import { useMemo } from "react";
-import { useConfig } from "./useConfig.ts";
-import { ChainId } from "../../../chains/index";
-import { useChain } from "./useChain.ts";
+import { useMemo } from 'react';
+import { useConfig } from './useConfig.ts';
+import { ChainId } from '../../../chains/index';
+import { useChain } from './useChain.ts';
 
 export const useDefaultCaller = (chainId?: ChainId): string | undefined => {
   const { caller } = useConfig();
@@ -10,6 +10,6 @@ export const useDefaultCaller = (chainId?: ChainId): string | undefined => {
 
   return useMemo(
     () => caller[`${chainId || defaultChain}` as ChainId] || caller.default,
-    [chainId, caller, defaultChain]
+    [chainId, caller, defaultChain],
   );
 };

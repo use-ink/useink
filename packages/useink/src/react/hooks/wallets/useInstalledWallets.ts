@@ -1,6 +1,6 @@
-import { useMemo } from "react";
-import { useWallet } from "../index";
-import { Wallet } from "../../providers/wallet/index";
+import { useMemo } from 'react';
+import { useWallet } from '../index';
+import { Wallet } from '../../providers/wallet/index';
 
 export const useInstalledWallets = (): Wallet[] => {
   const { getWallets } = useWallet();

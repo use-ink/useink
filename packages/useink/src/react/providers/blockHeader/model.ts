@@ -1,5 +1,5 @@
-import { ChainId } from "../../../chains/index";
-import { Header } from "../../../core/index";
+import { ChainId } from '../../../chains/index';
+import { Header } from '../../../core/index';
 
 export interface BlockHeader {
   blockNumber: number | undefined;

@@ -1,14 +1,14 @@
-import { ContractPromise } from "@polkadot/api-contract";
-import { AbiMessage, Result } from "../types/index";
+import { ContractPromise } from '@polkadot/api-contract';
+import { AbiMessage, Result } from '../types/index';
 
 export const toContractAbiMessage = (
   contract: ContractPromise,
-  message: string
+  message: string,
 ): Result<AbiMessage, string> => {
   const value = contract.abi.messages.find((m) => m.method === message);
 
   if (!value) {
-    const messages = contract?.abi.messages.map((m) => m.method).join(", ");
+    const messages = contract?.abi.messages.map((m) => m.method).join(', ');
 
     const error = `"${message}" not found in metadata.spec.messages: [${messages}]`;
     console.error(error);

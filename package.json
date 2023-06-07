@@ -8,7 +8,7 @@
   "scripts": {
     "build": "pnpm --filter useink build",
     "dev": "pnpm --filter useink watch & pnpm --filter playground dev",
-    "format": "rome format ."
+    "format": "rome format . --write"
   },
   "devDependencies": {
     "rome": "12.1.3"

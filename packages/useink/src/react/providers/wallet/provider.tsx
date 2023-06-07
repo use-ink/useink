@@ -1,13 +1,13 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { useConfig } from "../../hooks";
-import { WalletContext } from "./context.ts";
-import { AutoConnect, WalletError, WalletName } from "./model.ts";
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useConfig } from '../../hooks';
+import { WalletContext } from './context.ts';
+import { AutoConnect, WalletError, WalletName } from './model.ts';
 import {
   getWalletBySource,
   getWallets,
   Unsub,
   WalletAccount,
-} from "../../../core";
+} from '../../../core';
 
 function getAutoConnectWalletInfo(key: string): AutoConnect | null {
   const item = localStorage.getItem(key);
@@ -33,7 +33,7 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
     () =>
       C.dappName && C.dappName.trim().length > 0
         ? C.dappName
-        : "A Dapp built in useink",
+        : 'A Dapp built in useink',
     [C.dappName],
   );
 

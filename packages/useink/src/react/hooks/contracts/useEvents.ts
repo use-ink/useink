@@ -1,7 +1,7 @@
-import { useContext, useMemo } from "react";
-import { Event, EventsContext } from "../../providers/events/index";
-import { RemoveEventPayload } from "../../providers/events/model.ts";
-import { AccountId } from "../../../core/index";
+import { useContext, useMemo } from 'react';
+import { Event, EventsContext } from '../../providers/events/index';
+import { RemoveEventPayload } from '../../providers/events/model.ts';
+import { AccountId } from '../../../core/index';
 
 export interface Events {
   events: Event[];
@@ -10,7 +10,7 @@ export interface Events {
 
 export const useEvents = (
   contractAddress: string | undefined,
-  filters?: string[]
+  filters?: string[],
 ): Events => {
   const { events, removeEvent } = useContext(EventsContext);
 
@@ -19,7 +19,7 @@ export const useEvents = (
 
     return (
       events[contractAddress.toString()]?.filter(({ name }) =>
-        filters ? filters.includes(name) : true
+        filters ? filters.includes(name) : true,
       ) ?? []
     );
   }, [events, contractAddress]);

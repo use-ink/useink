@@ -1,12 +1,12 @@
-import React, { useEffect, useMemo, useReducer } from "react";
-import { BlockHeaderContext } from "./context.ts";
-import { ChainBlockHeaders } from "./model.ts";
-import { useApis } from "../../index";
-import { ChainId } from "../../../chains/index";
-import { chainBlockHeaderReducer } from "./reducer.ts";
+import React, { useEffect, useMemo, useReducer } from 'react';
+import { BlockHeaderContext } from './context.ts';
+import { ChainBlockHeaders } from './model.ts';
+import { useApis } from '../../index';
+import { ChainId } from '../../../chains/index';
+import { chainBlockHeaderReducer } from './reducer.ts';
 
 const toBlockNumber = (valWithComma: string | undefined): number =>
-  parseInt(`${valWithComma?.split(",").join("")}`);
+  parseInt(`${valWithComma?.split(',').join('')}`);
 
 export const BlockHeaderProvider: React.FC<React.PropsWithChildren<any>> = ({
   children,
@@ -15,12 +15,12 @@ export const BlockHeaderProvider: React.FC<React.PropsWithChildren<any>> = ({
 
   const [chainBlockHeaders, dispatch] = useReducer(
     chainBlockHeaderReducer,
-    {} as ChainBlockHeaders
+    {} as ChainBlockHeaders,
   );
 
   const chainIds: ChainId[] = useMemo(
     () => (chainApis.apis ? (Object.keys(chainApis.apis) as ChainId[]) : []),
-    [chainApis]
+    [chainApis],
   );
 
   useEffect(() => {
@@ -30,18 +30,18 @@ export const BlockHeaderProvider: React.FC<React.PropsWithChildren<any>> = ({
           (header) => {
             try {
               const blockNumber = toBlockNumber(
-                header.number.toHuman()?.toString()
+                header.number.toHuman()?.toString(),
               );
               blockNumber &&
                 dispatch({
-                  type: "ADD_CHAIN_BLOCK_HEADER",
+                  type: 'ADD_CHAIN_BLOCK_HEADER',
                   chainId,
                   blockHeader: { blockNumber, header },
                 });
             } catch (e) {
               console.error(e);
             }
-          }
+          },
         );
       });
     }

@@ -1,4 +1,4 @@
-import { ApiBase, DispatchError, Result } from "../types/index";
+import { ApiBase, DispatchError, Result } from '../types/index';
 
 export interface CallResult {
   result?: Result<any, DispatchError>;
@@ -6,7 +6,7 @@ export interface CallResult {
 
 export interface Contract {
   contract: {
-    api: ApiBase<"promise">;
+    api: ApiBase<'promise'>;
   };
 }
 

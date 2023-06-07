@@ -2,14 +2,14 @@ import {
   getWalletBySource,
   getWallets,
   WalletAccount,
-} from "../../../core/index";
+} from '../../../core/index';
 
 export enum WalletError {
-  AccountDisabled = "AccountNotEnabled",
-  ConnectionError = "ConnectionError",
-  EnableFailed = "EnableFailed",
-  NoAccountsEnabled = "NoAccountsEnabled",
-  WalletNotInstalled = "WalletNotInstalled",
+  AccountDisabled = 'AccountNotEnabled',
+  ConnectionError = 'ConnectionError',
+  EnableFailed = 'EnableFailed',
+  NoAccountsEnabled = 'NoAccountsEnabled',
+  WalletNotInstalled = 'WalletNotInstalled',
 }
 
 export interface WalletState {

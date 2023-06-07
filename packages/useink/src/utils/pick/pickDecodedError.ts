@@ -3,7 +3,7 @@ import {
   Contract,
   decodeError,
   RegistryErrorMethod,
-} from "../../core/index";
+} from '../../core/index';
 
 /// pickDecodedError is a helper function to quickly get a decoded error from a call.
 ///
@@ -14,7 +14,7 @@ export function pickDecodedError(
   call: CallResult | undefined,
   contract: Contract,
   moduleMessages?: Record<RegistryErrorMethod, string>,
-  defaultMessage?: string
+  defaultMessage?: string,
 ): string | undefined {
   const { result } = call || {};
   if (!result || result?.ok) return;

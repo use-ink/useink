@@ -1,13 +1,13 @@
-import { ChainId } from "../chains/types.ts";
+import { ChainId } from '../chains/types.ts';
 import {
   Codec,
   ISubmittableResult,
   TransactionStatus,
-} from "../core/types/index";
+} from '../core/types/index';
 
 export type NotificationType =
-  | "WalletConnected"
-  | "WalletDisconnected"
+  | 'WalletConnected'
+  | 'WalletDisconnected'
   | TransactionStatus;
 
 export type NotificationPayload = {
@@ -18,7 +18,7 @@ export type NotificationPayload = {
   chain?: ChainId;
 };
 
-export type AddNotificationPayload = Omit<NotificationPayload, "createdAt">;
+export type AddNotificationPayload = Omit<NotificationPayload, 'createdAt'>;
 
 export type Notification = { id: string } & NotificationPayload;
 
@@ -32,12 +32,12 @@ export interface Config {
 export const DEFAULT_NOTIFICATIONS: Notifications = [];
 
 export interface AddNotification {
-  type: "ADD_NOTIFICATION";
+  type: 'ADD_NOTIFICATION';
   notification: Notification;
 }
 
 export interface RemoveNotification {
-  type: "REMOVE_NOTIFICATION";
+  type: 'REMOVE_NOTIFICATION';
   notificationId: string;
 }
 

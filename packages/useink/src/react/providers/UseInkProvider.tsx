@@ -1,9 +1,9 @@
-import React from "react";
-import { APIProvider } from "./api/provider.tsx";
-import { BlockHeaderProvider } from "./blockHeader/index";
-import { ConfigProps, ConfigProvider } from "./config/index";
-import { EventsProvider } from "./events/index";
-import { WalletProvider } from "./wallet/index";
+import React from 'react';
+import { APIProvider } from './api/provider.tsx';
+import { BlockHeaderProvider } from './blockHeader/index';
+import { ConfigProps, ConfigProvider } from './config/index';
+import { EventsProvider } from './events/index';
+import { WalletProvider } from './wallet/index';
 
 export type InkConfig = {
   config: ConfigProps;

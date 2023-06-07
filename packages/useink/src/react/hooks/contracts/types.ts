@@ -1,5 +1,5 @@
-import { ChainId } from "../../../chains/types.ts";
-import { Abi, ContractOptions, ContractPromise } from "../../../core/index";
+import { ChainId } from '../../../chains/types.ts';
+import { Abi, ContractOptions, ContractPromise } from '../../../core/index';
 
 export type CallOptions = ContractOptions & {
   defaultCaller?: boolean;

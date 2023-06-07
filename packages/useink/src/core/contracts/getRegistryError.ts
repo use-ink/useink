@@ -1,9 +1,9 @@
-import { DispatchError, RegistryError } from "../types/index";
-import { Contract } from "./types.ts";
+import { DispatchError, RegistryError } from '../types/index';
+import { Contract } from './types.ts';
 
 export const getRegistryError = (
   error: DispatchError | undefined,
-  { contract: { api } }: Contract
+  { contract: { api } }: Contract,
 ): RegistryError | undefined => {
   if (!error?.isModule) return;
 

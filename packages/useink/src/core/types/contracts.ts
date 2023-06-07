@@ -51,6 +51,4 @@ export type DecodedContractResult<T> = DecodedResult<
   ContractExecResultDecoded<T>
 >;
 
-export type DecodedTxResult<T> = DecodedResult<
-  TxExecResultDecoded<T>
->;
+export type DecodedTxResult<T> = DecodedResult<TxExecResultDecoded<T>>;

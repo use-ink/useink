@@ -38,17 +38,16 @@ export const AresGladiosTestnet: IChain<'ares-gladios-testnet'> = {
   rpcs: ['wss://gladios.aresprotocol.io'],
 } as const;
 
-export const AutomataContextfreeTestnet: IChain<
-  'automata-contextfree-testnet'
-> = {
-  id: 'automata-contextfree-testnet',
-  name: 'Automata ContextFree',
-  account: '*25519',
-  rpcs: [
-    'wss://cf-api.ata.network',
-    'wss://contextfree.api.onfinality.io/public-ws',
-  ],
-} as const;
+export const AutomataContextfreeTestnet: IChain<'automata-contextfree-testnet'> =
+  {
+    id: 'automata-contextfree-testnet',
+    name: 'Automata ContextFree',
+    account: '*25519',
+    rpcs: [
+      'wss://cf-api.ata.network',
+      'wss://contextfree.api.onfinality.io/public-ws',
+    ],
+  } as const;
 
 export const BifrostTestnet: IChain<'bifrost-testnet'> = {
   id: 'bifrost-testnet',
@@ -194,14 +193,13 @@ export const EncointerTestnetRococo: IChain<'encointer-testnet-rococo'> = {
   relay: { id: 'rococo-testnet' },
 } as const;
 
-export const EncointerTestnetStandalone: IChain<
-  'encointer-testnet-standalone'
-> = {
-  id: 'encointer-testnet-standalone',
-  name: 'Encointer Gesell',
-  account: '*25519',
-  rpcs: ['wss://gesell.encointer.org'],
-} as const;
+export const EncointerTestnetStandalone: IChain<'encointer-testnet-standalone'> =
+  {
+    id: 'encointer-testnet-standalone',
+    name: 'Encointer Gesell',
+    account: '*25519',
+    rpcs: ['wss://gesell.encointer.org'],
+  } as const;
 
 export const EquilibriumTestnet: IChain<'equilibrium-testnet'> = {
   id: 'equilibrium-testnet',
@@ -869,16 +867,15 @@ export const RococoNodleTestnet: IChain<'rococo-nodle-testnet'> = {
   relay: { id: 'rococo-testnet' },
 } as const;
 
-export const RococoOriginTrailParachainTestnet: IChain<
-  'rococo-origin-trail-parachain-testnet'
-> = {
-  id: 'rococo-origin-trail-parachain-testnet',
-  name: 'OriginTrail Testnet',
-  account: '*25519',
-  rpcs: ['wss://parachain-testnet-rpc.origin-trail.network/'],
-  paraId: 2043,
-  relay: { id: 'rococo-testnet' },
-} as const;
+export const RococoOriginTrailParachainTestnet: IChain<'rococo-origin-trail-parachain-testnet'> =
+  {
+    id: 'rococo-origin-trail-parachain-testnet',
+    name: 'OriginTrail Testnet',
+    account: '*25519',
+    rpcs: ['wss://parachain-testnet-rpc.origin-trail.network/'],
+    paraId: 2043,
+    relay: { id: 'rococo-testnet' },
+  } as const;
 
 export const RococoPangolinTestnet: IChain<'rococo-pangolin-testnet'> = {
   id: 'rococo-pangolin-testnet',

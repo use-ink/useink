@@ -1,4 +1,4 @@
-import { BN } from "@polkadot/util";
+import { BN } from '@polkadot/util';
 import {
   AbiMessage,
   AccountId,
@@ -6,15 +6,15 @@ import {
   ContractOptions,
   ContractPromise,
   DecodedContractResult,
-} from "../types/index";
-import { decodeCallResult } from "./decodeCallResult.ts";
+} from '../types/index';
+import { decodeCallResult } from './decodeCallResult.ts';
 
 export async function call<T>(
   contract: ContractPromise,
   abiMessage: AbiMessage,
   caller: AccountId | string,
   args = [] as unknown[],
-  options?: ContractOptions
+  options?: ContractOptions,
 ): Promise<DecodedContractResult<T> | undefined> {
   const { value, gasLimit, storageDepositLimit } = options || {};
 
@@ -27,7 +27,7 @@ export async function call<T>(
     value ?? new BN(0),
     gasLimit ?? null,
     storageDepositLimit ?? null,
-    abiMessage.toU8a(args)
+    abiMessage.toU8a(args),
   );
 
   // TODO: handle a call with metadata, but wrong address
@@ -37,7 +37,7 @@ export async function call<T>(
   const decoded = decodeCallResult<T>(
     raw.result,
     abiMessage,
-    contract.abi.registry
+    contract.abi.registry,
   );
   if (!decoded.ok) return decoded;
   const { gasConsumed, gasRequired, storageDeposit } = raw;

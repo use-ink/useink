@@ -2,11 +2,11 @@ import {
   ApiPromise,
   DeriveBalancesAccount,
   WithAddress,
-} from "../../types/index";
+} from '../../types/index';
 
 export const getBalance = async (
   api: ApiPromise | undefined,
-  account: WithAddress | undefined
+  account: WithAddress | undefined,
 ): Promise<DeriveBalancesAccount | undefined> => {
   if (!api || !account?.address) return;
 

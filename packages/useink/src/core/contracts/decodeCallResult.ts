@@ -3,12 +3,12 @@ import {
   ContractExecResult,
   DecodedResult,
   Registry,
-} from "../types/index";
+} from '../types/index';
 
 export function decodeCallResult<T>(
-  result: ContractExecResult["result"],
+  result: ContractExecResult['result'],
   message: AbiMessage,
-  registry: Registry
+  registry: Registry,
 ): DecodedResult<T> {
   if (result.isErr || !message.returnType) {
     return { ok: false, error: result.asErr };
@@ -17,8 +17,8 @@ export function decodeCallResult<T>(
   const raw = registry.createTypeUnsafe(
     message.returnType.lookupName || message.returnType.type,
     [result.asOk.data.toU8a(true)],
-    { isPedantic: true }
+    { isPedantic: true },
   );
 
-  return { ok: true, value: (raw?.toHuman() as Record<"Ok", T>)?.Ok };
+  return { ok: true, value: (raw?.toHuman() as Record<'Ok', T>)?.Ok };
 }

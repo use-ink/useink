@@ -1,9 +1,9 @@
-import { CallInfo, DecodedContractResult } from "../../core/index";
+import { CallInfo, DecodedContractResult } from '../../core/index';
 
 /// pickCallInfo gets gasRequired, gasConsumed, and storageDeposit or undefined from a
 /// contract message response
 export function pickCallInfo<T>(
-  decoded: DecodedContractResult<T> | undefined
+  decoded: DecodedContractResult<T> | undefined,
 ): CallInfo | undefined {
   if (!decoded?.ok) return;
 

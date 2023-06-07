@@ -1,14 +1,14 @@
-import { Abi, ContractPromise } from "../../../core/index";
-import { useEffect, useMemo, useState } from "react";
-import { ChainId } from "../../../chains/index";
-import { useChain } from "../config/useChain.ts";
-import { useApi } from "../substrate/useApi.ts";
-import { ChainContract } from "./types.ts";
+import { Abi, ContractPromise } from '../../../core/index';
+import { useEffect, useMemo, useState } from 'react';
+import { ChainId } from '../../../chains/index';
+import { useChain } from '../config/useChain.ts';
+import { useApi } from '../substrate/useApi.ts';
+import { ChainContract } from './types.ts';
 
 export function useContract<T extends ContractPromise = ContractPromise>(
   address: string,
   metadata: Record<string, unknown>,
-  chainId?: ChainId
+  chainId?: ChainId,
 ): ChainContract<T> | undefined {
   const [contract, setContract] = useState<T | undefined>();
   const chainConfig = useChain(chainId);
@@ -16,7 +16,7 @@ export function useContract<T extends ContractPromise = ContractPromise>(
 
   const abi = useMemo(
     () => api && new Abi(metadata, api.registry.getChainProperties()),
-    [api]
+    [api],
   );
 
   useEffect(() => {

@@ -1,14 +1,14 @@
-import React from "react";
-import { EventsContext } from "./context.ts";
+import React from 'react';
+import { EventsContext } from './context.ts';
 import {
   AddEventPayload,
   DEFAULT_EVENTS,
   RemoveEventPayload,
-} from "./model.ts";
-import { eventsReducer } from "./reducer.ts";
-import { pseudoRandomId } from "../../../utils/index";
+} from './model.ts';
+import { eventsReducer } from './reducer.ts';
+import { pseudoRandomId } from '../../../utils/index';
 
-import { useIsMounted } from "../../hooks/internal/useIsMounted.ts";
+import { useIsMounted } from '../../hooks/internal/useIsMounted.ts';
 
 // @internal
 export const EventsProvider: React.FC<React.PropsWithChildren<any>> = ({
@@ -21,26 +21,26 @@ export const EventsProvider: React.FC<React.PropsWithChildren<any>> = ({
     ({ event, address }: AddEventPayload) => {
       if (isMounted()) {
         dispatch({
-          type: "ADD_EVENT",
+          type: 'ADD_EVENT',
           address,
           event: { ...event, id: pseudoRandomId(), createdAt: Date.now() },
         });
       }
     },
-    [dispatch]
+    [dispatch],
   );
 
   const removeEvent = React.useCallback(
     ({ eventId, address }: RemoveEventPayload) => {
       if (isMounted()) {
         dispatch({
-          type: "REMOVE_EVENT",
+          type: 'REMOVE_EVENT',
           address,
           eventId,
         });
       }
     },
-    [dispatch]
+    [dispatch],
   );
 
   return (

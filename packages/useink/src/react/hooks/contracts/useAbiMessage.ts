@@ -1,13 +1,13 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 import {
   AbiMessage,
   ContractPromise,
   toContractAbiMessage,
-} from "../../../core/index";
+} from '../../../core/index';
 
 export function useAbiMessage(
   contract: ContractPromise | undefined,
-  message: string
+  message: string,
 ): AbiMessage | undefined {
   const abiMessage = useMemo(() => {
     if (!contract) return;

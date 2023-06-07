@@ -10,7 +10,8 @@ export function getExpiredItem<T>(
 
   const timeFromCreation = (creationTime: number) => Date.now() - creationTime;
 
-  return items.filter((item) =>
-    timeFromCreation(item.createdAt) >= (expirationPeriod || FIVE_SECONDS)
+  return items.filter(
+    (item) =>
+      timeFromCreation(item.createdAt) >= (expirationPeriod || FIVE_SECONDS),
   ) as T[];
 }

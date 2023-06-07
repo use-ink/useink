@@ -1,6 +1,6 @@
-import { Chain, ChainId, RococoContractsTestnet } from "../../../chains/index";
-import { FIVE_SECONDS, HALF_A_SECOND } from "../../constants.ts";
-import { ArrayOneOrMore } from "../../../core/index";
+import { Chain, ChainId, RococoContractsTestnet } from '../../../chains/index';
+import { FIVE_SECONDS, HALF_A_SECOND } from '../../constants.ts';
+import { ArrayOneOrMore } from '../../../core/index';
 
 export type ChainRPCs = Partial<Record<ChainId, string>>;
 
@@ -31,7 +31,7 @@ export interface ChainConfig {
 export type Config = ChainConfig & ConfigProps;
 
 export const DEFAULT_CONFIG: Config = {
-  dappName: "A dapp built with useInk!",
+  dappName: 'A dapp built with useInk!',
   chains: [RococoContractsTestnet],
   events: {
     expiration: FIVE_SECONDS,

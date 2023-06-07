@@ -1,21 +1,21 @@
-import { useContext, useEffect } from "react";
-import { FIVE_SECONDS, HALF_A_SECOND } from "../../constants.ts";
-import { Event, EventsContext } from "../../providers/events/index";
-import { useBlockHeader } from "../substrate/useBlockHeader.ts";
-import { useConfig } from "../config/useConfig.ts";
-import { useInterval } from "../internal/useInterval.ts";
-import { getExpiredItem } from "../../../utils/index";
-import { ChainContract } from "./types.ts";
-import { Bytes } from "../../../core/index";
+import { useContext, useEffect } from 'react';
+import { FIVE_SECONDS, HALF_A_SECOND } from '../../constants.ts';
+import { Event, EventsContext } from '../../providers/events/index';
+import { useBlockHeader } from '../substrate/useBlockHeader.ts';
+import { useConfig } from '../config/useConfig.ts';
+import { useInterval } from '../internal/useInterval.ts';
+import { getExpiredItem } from '../../../utils/index';
+import { ChainContract } from './types.ts';
+import { Bytes } from '../../../core/index';
 
 export const useEventSubscription = (
-  chainContract: ChainContract | undefined
+  chainContract: ChainContract | undefined,
 ): void => {
   const { events, addEvent, removeEvent } = useContext(EventsContext);
   const { blockNumber, header } = useBlockHeader(chainContract?.chainId) || {};
   const C = useConfig();
 
-  const address = chainContract?.contract?.address?.toString() || "";
+  const address = chainContract?.contract?.address?.toString() || '';
   const contractEvents = events?.[address] || [];
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export const useEventSubscription = (
 
               try {
                 const decodedEvent = contract.abi.decodeEvent(
-                  contractEvent as Bytes
+                  contractEvent as Bytes,
                 );
 
                 const eventItem = {
@@ -68,7 +68,7 @@ export const useEventSubscription = (
 
     const expiredEvents = getExpiredItem<Event>(
       contractEvents,
-      C.events?.expiration || FIVE_SECONDS
+      C.events?.expiration || FIVE_SECONDS,
     );
 
     for (const event of expiredEvents) {

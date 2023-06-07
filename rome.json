@@ -23,6 +23,12 @@
 				"noUnusedVariables": "error"
 			  }
 		}
-	}
-
+	},
+	"javascript": {
+		"formatter": {
+		  "quoteStyle": "single",
+		  "trailingComma": "all",
+		  "semicolons": "always"
+		}
+	  }
 }

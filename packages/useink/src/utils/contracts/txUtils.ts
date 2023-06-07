@@ -1,51 +1,51 @@
-import { TransactionStatus } from "../../core/index";
+import { TransactionStatus } from '../../core/index';
 
 export type Response = {
   status: TransactionStatus;
 };
 
 export const isNone = (tx: { status: TransactionStatus }): boolean =>
-  tx.status === "None";
+  tx.status === 'None';
 
 export const isDryRun = (tx: { status: TransactionStatus }): boolean =>
-  tx.status === "DryRun";
+  tx.status === 'DryRun';
 
 export const isPendingSignature = (tx: {
   status: TransactionStatus;
-}): boolean => tx.status === "PendingSignature";
+}): boolean => tx.status === 'PendingSignature';
 
 export const isErrored = (tx: { status: TransactionStatus }): boolean =>
-  tx.status === "Errored";
+  tx.status === 'Errored';
 
 export const isFuture = (tx: { status: TransactionStatus }): boolean =>
-  tx.status === "Future";
+  tx.status === 'Future';
 
 export const isReady = (tx: { status: TransactionStatus }): boolean =>
-  tx.status === "Ready";
+  tx.status === 'Ready';
 
 export const isBroadcast = (tx: { status: TransactionStatus }): boolean =>
-  tx.status === "Broadcast";
+  tx.status === 'Broadcast';
 
 export const isRetracted = (tx: { status: TransactionStatus }): boolean =>
-  tx.status === "Retracted";
+  tx.status === 'Retracted';
 
 export const isFinalityTimeout = (tx: { status: TransactionStatus }): boolean =>
-  tx.status === "FinalityTimeout";
+  tx.status === 'FinalityTimeout';
 
 export const isInBlock = (tx: { status: TransactionStatus }): boolean =>
-  tx.status === "InBlock";
+  tx.status === 'InBlock';
 
 export const isFinalized = (tx: { status: TransactionStatus }): boolean =>
-  tx.status === "Finalized";
+  tx.status === 'Finalized';
 
 export const isUsurped = (tx: { status: TransactionStatus }): boolean =>
-  tx.status === "Usurped";
+  tx.status === 'Usurped';
 
 export const isDropped = (tx: { status: TransactionStatus }): boolean =>
-  tx.status === "Dropped";
+  tx.status === 'Dropped';
 
 export const isInvalid = (tx: { status: TransactionStatus }): boolean =>
-  tx.status === "Invalid";
+  tx.status === 'Invalid';
 
 export const hasAny = (
   tx: { status: TransactionStatus },
@@ -53,7 +53,7 @@ export const hasAny = (
 ): boolean => statuses.includes(tx.status);
 
 export const shouldDisable = (tx: { status: TransactionStatus }): boolean =>
-  hasAny(tx, "DryRun", "PendingSignature", "Broadcast");
+  hasAny(tx, 'DryRun', 'PendingSignature', 'Broadcast');
 
 export const shouldDisableStrict = (tx: {
   status: TransactionStatus;

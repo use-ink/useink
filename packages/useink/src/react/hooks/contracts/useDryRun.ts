@@ -1,16 +1,16 @@
-import { useMemo, useState } from "react";
-import { call, DecodedTxResult } from "../../../core/index";
-import { useAbiMessage } from "./useAbiMessage.ts";
-import { useWallet } from "../wallets/useWallet.ts";
-import { CallOptions, ChainContract } from "./types.ts";
-import { useDefaultCaller } from "../config/index";
+import { useMemo, useState } from 'react';
+import { call, DecodedTxResult } from '../../../core/index';
+import { useAbiMessage } from './useAbiMessage.ts';
+import { useWallet } from '../wallets/useWallet.ts';
+import { CallOptions, ChainContract } from './types.ts';
+import { useDefaultCaller } from '../config/index';
 
 export type DryRunResult<T> = DecodedTxResult<T>;
 
 export type Send<T> = (
   args?: unknown[],
   o?: CallOptions,
-  caller?: string
+  caller?: string,
 ) => Promise<DryRunResult<T> | undefined>;
 
 export interface DryRun<T> {
@@ -23,7 +23,7 @@ export interface DryRun<T> {
 
 export function useDryRun<T>(
   chainContract: ChainContract | undefined,
-  message: string
+  message: string,
 ): DryRun<T> {
   const { account } = useWallet();
   const defaultCaller = useDefaultCaller(chainContract?.chainId);
@@ -52,7 +52,7 @@ export function useDryRun<T>(
           abiMessage,
           caller,
           params,
-          options
+          options,
         );
 
         if (!resp || !resp.ok) return;
@@ -86,7 +86,7 @@ export function useDryRun<T>(
         return;
       }
     },
-    [account, chainContract?.contract, abiMessage]
+    [account, chainContract?.contract, abiMessage],
   );
 
   return {

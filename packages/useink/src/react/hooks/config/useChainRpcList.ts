@@ -1,7 +1,7 @@
-import { ChainId } from "../../../chains/index";
-import { SetChainRpc } from "../../providers/config/model.ts";
-import { useChain } from "./useChain.ts";
-import { useConfig } from "./useConfig.ts";
+import { ChainId } from '../../../chains/index';
+import { SetChainRpc } from '../../providers/config/model.ts';
+import { useChain } from './useChain.ts';
+import { useConfig } from './useConfig.ts';
 
 export interface RpcList {
   rpcs: readonly string[];

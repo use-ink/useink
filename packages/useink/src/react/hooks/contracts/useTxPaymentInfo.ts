@@ -1,13 +1,13 @@
-import { useCallback, useState } from "react";
-import { useWallet } from "../wallets/useWallet.ts";
-import { RuntimeDispatchInfo, SignerOptions } from "../../../core/index";
-import { CallOptions } from "./types.ts";
-import { ChainContract, useDefaultCaller } from "../index";
+import { useCallback, useState } from 'react';
+import { useWallet } from '../wallets/useWallet.ts';
+import { RuntimeDispatchInfo, SignerOptions } from '../../../core/index';
+import { CallOptions } from './types.ts';
+import { ChainContract, useDefaultCaller } from '../index';
 
 type Send = (
   params?: unknown[],
   options?: CallOptions,
-  signerOptions?: Partial<SignerOptions>
+  signerOptions?: Partial<SignerOptions>,
 ) => Promise<RuntimeDispatchInfo | undefined>;
 
 interface TxPaymentInfo {
@@ -19,7 +19,7 @@ interface TxPaymentInfo {
 
 export function useTxPaymentInfo(
   chainContract: ChainContract | undefined,
-  message: string
+  message: string,
 ): TxPaymentInfo {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [result, setResult] = useState<RuntimeDispatchInfo>();
@@ -53,7 +53,7 @@ export function useTxPaymentInfo(
         return;
       }
     },
-    [chainContract?.contract, message, account, defaultCaller]
+    [chainContract?.contract, message, account, defaultCaller],
   );
 
   return {

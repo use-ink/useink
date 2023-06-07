@@ -1,13 +1,13 @@
-import { useCallback, useState } from "react";
-import { call, DecodedContractResult } from "../../../core/index";
-import { useAbiMessage } from "./useAbiMessage.ts";
-import { useWallet } from "../wallets/useWallet.ts";
-import { CallOptions } from "./types.ts";
-import { ChainContract, useDefaultCaller } from "../index";
+import { useCallback, useState } from 'react';
+import { call, DecodedContractResult } from '../../../core/index';
+import { useAbiMessage } from './useAbiMessage.ts';
+import { useWallet } from '../wallets/useWallet.ts';
+import { CallOptions } from './types.ts';
+import { ChainContract, useDefaultCaller } from '../index';
 
 export type CallSend<T> = (
   args?: unknown[],
-  options?: CallOptions
+  options?: CallOptions,
 ) => Promise<DecodedContractResult<T> | undefined>;
 
 export interface UseCall<T> {
@@ -16,9 +16,9 @@ export interface UseCall<T> {
 }
 
 export enum CallError {
-  ContractUndefined = "Contract is undefined",
-  InvalidAbiMessage = "Invalid ABI Message",
-  NoResponse = "No response",
+  ContractUndefined = 'Contract is undefined',
+  InvalidAbiMessage = 'Invalid ABI Message',
+  NoResponse = 'No response',
 }
 
 export interface Call<T> extends UseCall<T> {
@@ -27,7 +27,7 @@ export interface Call<T> extends UseCall<T> {
 
 export function useCall<T>(
   chainContract: ChainContract | undefined,
-  message: string
+  message: string,
 ): Call<T> {
   const [result, setResult] = useState<DecodedContractResult<T>>();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -39,7 +39,7 @@ export function useCall<T>(
     // TODO type
     async (
       args: any,
-      options: any
+      options: any,
     ): Promise<DecodedContractResult<T> | undefined> => {
       const caller =
         account?.address || options?.defaultCaller ? defaultCaller : undefined;
@@ -52,7 +52,7 @@ export function useCall<T>(
           abiMessage,
           caller,
           args,
-          options
+          options,
         );
         setResult(callResult);
         setIsSubmitting(false);
@@ -64,7 +64,7 @@ export function useCall<T>(
         return;
       }
     },
-    [account, abiMessage]
+    [account, abiMessage],
   );
 
   return { send, isSubmitting, result };

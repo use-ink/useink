@@ -1,5 +1,5 @@
-import { ChainId } from "../../../chains/index";
-import { ApiPromise, WsProvider } from "../../../core/index";
+import { ChainId } from '../../../chains/index';
+import { ApiPromise, WsProvider } from '../../../core/index';
 
 export interface IApiProvider {
   api: ApiPromise;

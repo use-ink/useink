@@ -1,9 +1,9 @@
-import React, { useEffect, useReducer } from "react";
-import { useChains } from "../../hooks/index";
-import { APIContext } from "./context.ts";
-import { apiProvidersReducer } from "./reducer.ts";
-import { useConfig } from "../../index";
-import { ApiPromise, WsProvider } from "../../../core/index";
+import React, { useEffect, useReducer } from 'react';
+import { useChains } from '../../hooks/index';
+import { APIContext } from './context.ts';
+import { apiProvidersReducer } from './reducer.ts';
+import { useConfig } from '../../index';
+import { ApiPromise, WsProvider } from '../../../core/index';
 
 export const APIProvider: React.FC<React.PropsWithChildren<any>> = ({
   children,
@@ -18,7 +18,7 @@ export const APIProvider: React.FC<React.PropsWithChildren<any>> = ({
 
       ApiPromise.create({ provider }).then((api) => {
         dispatch({
-          type: "ADD_API_PROVIDER",
+          type: 'ADD_API_PROVIDER',
           chainId: chain.id,
           apiProvider: { api, provider },
         });

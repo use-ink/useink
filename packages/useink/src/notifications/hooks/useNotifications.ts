@@ -1,13 +1,13 @@
-import { useContext, useMemo } from "react";
-import { NotificationsContext } from "../context.ts";
+import { useContext, useMemo } from 'react';
+import { NotificationsContext } from '../context.ts';
 import {
   AddNotificationPayload,
   Notification,
   Notifications,
-} from "../model.ts";
-import { useInterval } from "../../react/hooks/internal/useInterval.ts";
-import { getExpiredItem } from "../../utils/index";
-import { HALF_A_SECOND } from "../../react/constants.ts";
+} from '../model.ts';
+import { useInterval } from '../../react/hooks/internal/useInterval.ts';
+import { getExpiredItem } from '../../utils/index';
+import { HALF_A_SECOND } from '../../react/constants.ts';
 
 export interface UseNotifications {
   notifications: Notifications;
@@ -28,7 +28,7 @@ export const useNotifications = (): UseNotifications => {
 
     const expiredNotifications = getExpiredItem<Notification>(
       chainNotifications,
-      config?.expiration
+      config?.expiration,
     );
     for (const notification of expiredNotifications) {
       removeNotification(notification.id);

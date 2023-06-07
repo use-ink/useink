@@ -1,13 +1,13 @@
-import React, { useCallback, useReducer } from "react";
-import { NotificationsContext } from "./context.ts";
+import React, { useCallback, useReducer } from 'react';
+import { NotificationsContext } from './context.ts';
 import {
   AddNotificationPayload,
   Config,
   DEFAULT_NOTIFICATIONS,
-} from "./model.ts";
-import { notificationReducer } from "./reducer.ts";
-import { useIsMounted } from "../react/hooks/internal/useIsMounted.ts";
-import { pseudoRandomId } from "../utils/index";
+} from './model.ts';
+import { notificationReducer } from './reducer.ts';
+import { useIsMounted } from '../react/hooks/internal/useIsMounted.ts';
+import { pseudoRandomId } from '../utils/index';
 
 export const NotificationsProvider: React.FC<
   React.PropsWithChildren<{
@@ -16,7 +16,7 @@ export const NotificationsProvider: React.FC<
 > = ({ children, config }) => {
   const [notifications, dispatch] = useReducer(
     notificationReducer,
-    DEFAULT_NOTIFICATIONS
+    DEFAULT_NOTIFICATIONS,
   );
   const isMounted = useIsMounted();
 
@@ -24,7 +24,7 @@ export const NotificationsProvider: React.FC<
     (notification: AddNotificationPayload) => {
       if (isMounted()) {
         dispatch({
-          type: "ADD_NOTIFICATION",
+          type: 'ADD_NOTIFICATION',
           notification: {
             ...notification,
             id: pseudoRandomId(),
@@ -33,19 +33,19 @@ export const NotificationsProvider: React.FC<
         });
       }
     },
-    [dispatch]
+    [dispatch],
   );
 
   const removeNotification = useCallback(
     (notificationId: string) => {
       if (isMounted()) {
         dispatch({
-          type: "REMOVE_NOTIFICATION",
+          type: 'REMOVE_NOTIFICATION',
           notificationId,
         });
       }
     },
-    [dispatch]
+    [dispatch],
   );
 
   return (
