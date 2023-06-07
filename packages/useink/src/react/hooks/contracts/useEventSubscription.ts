@@ -23,9 +23,9 @@ export const useEventSubscription = (
     if (!header?.hash || !contract) return;
 
     contract.api.at(header?.hash).then((apiAt) => {
-      apiAt.query.system.events?.((encodedEvent: any[]) => {
+      apiAt.query.system?.events?.((encodedEvent: any[]) => {
         encodedEvent.forEach(({ event }) => {
-          if (contract.api.events.contracts.ContractEmitted?.is(event)) {
+          if (contract.api.events.contracts?.ContractEmitted?.is(event)) {
             const [contractAddress, contractEvent] = event.data;
             if (
               !address ||
