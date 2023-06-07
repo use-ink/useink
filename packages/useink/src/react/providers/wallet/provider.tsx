@@ -34,7 +34,7 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
       C.dappName && C.dappName.trim().length > 0
         ? C.dappName
         : "A Dapp built in useink",
-    [C.dappName]
+    [C.dappName],
   );
 
   const [activeWallet, setActiveWallet] = useState<WalletName>();
@@ -50,7 +50,7 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
   const setAccount = useCallback(
     (newAccount: WalletAccount) => {
       const accountDisabled = !accounts?.find(
-        (a) => a.address === newAccount.address
+        (a) => a.address === newAccount.address,
       );
 
       if (accountDisabled) {
@@ -68,11 +68,11 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
             address: newAccount.address,
             wallet: newAccount.source,
           },
-          dappName
+          dappName,
         );
       }
     },
-    [accounts, C.wallet?.skipAutoConnect]
+    [accounts, C.wallet?.skipAutoConnect],
   );
 
   const connectWallet = useCallback(
@@ -119,7 +119,7 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
                 address: firstAccount.address,
                 wallet: firstAccount.source,
               },
-              dappName
+              dappName,
             );
           }
           return;
@@ -140,14 +140,14 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
               address: initialAccount.address,
               wallet: initialAccount.source,
             },
-            dappName
+            dappName,
           );
         }
       })) as Unsub;
 
       return unsub;
     },
-    []
+    [],
   );
 
   const connect = useCallback((walletName: WalletName) => {

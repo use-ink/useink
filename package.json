@@ -1,13 +1,16 @@
 {
-  "name": "useink",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "playground"
+  ],
   "scripts": {
     "build": "pnpm --filter useink build",
-    "dev": "pnpm --filter useink watch & pnpm --filter playground dev"
+    "dev": "pnpm --filter useink watch & pnpm --filter playground dev",
+    "format": "rome format ."
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "rome": "12.1.3"
+  }
 }
