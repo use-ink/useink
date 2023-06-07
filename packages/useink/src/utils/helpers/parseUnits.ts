@@ -1,4 +1,4 @@
-import { BN } from '@polkadot/util';
+import { BN } from '..';
 
 export const stringNumberToBN = (valWithCommas: string): BN => {
   const v = valWithCommas.split(',').join('');

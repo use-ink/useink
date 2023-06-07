@@ -9,7 +9,7 @@ export interface Events {
 }
 
 export const useEvents = (
-  contractAddress: string | undefined,
+  contractAddress: AccountId | string | undefined,
   filters?: string[],
 ): Events => {
   const { events, removeEvent } = useContext(EventsContext);

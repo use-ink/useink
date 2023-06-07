@@ -118,8 +118,6 @@ debio
 decoo
 demux
 demuxing
-deno
-denoland
 dentnet
 dentx
 deployctl

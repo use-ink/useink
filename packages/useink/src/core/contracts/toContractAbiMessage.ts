@@ -1,5 +1,4 @@
-import { AbiMessage, Result } from '../types/index';
-import { ContractPromise } from '@polkadot/api-contract';
+import { AbiMessage, ContractPromise, Result } from '../types/index';
 
 export const toContractAbiMessage = (
   contract: ContractPromise,

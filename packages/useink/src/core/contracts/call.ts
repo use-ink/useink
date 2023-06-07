@@ -1,3 +1,4 @@
+import { BN } from '../../utils/index.ts';
 import {
   AbiMessage,
   AccountId,
@@ -7,7 +8,6 @@ import {
   DecodedContractResult,
 } from '../types/index';
 import { decodeCallResult } from './decodeCallResult.ts';
-import { BN } from '@polkadot/util';
 
 export async function call<T>(
   contract: ContractPromise,

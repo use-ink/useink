@@ -7,7 +7,7 @@ labels: bug
 
 ## Bug Report
 
-<!-- Please search useInk's issues in case one already exists for this bug. -->
+<!-- Please search useink's issues in case one already exists for this bug. -->
 
 ### Current Behavior
 
@@ -32,7 +32,6 @@ Example:
 <!--
 Example:
 
-- Deno: ... (deno --version)
 - Node: ... (node -v)
 - Browser: ...
 - OS: ...

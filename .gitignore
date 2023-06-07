@@ -2,7 +2,6 @@
 .env
 .vscode
 benches.json
-deno.lock
 dist
 node_modules
 target

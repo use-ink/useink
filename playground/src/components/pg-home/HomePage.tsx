@@ -38,13 +38,19 @@ import {
 } from 'useink/utils';
 
 const CONTRACTS_ROCOCO_ADDRESS =
-  '5CjfqiydebzW7uXjGhfvA1Z5ABEjH6uF17ZBNnK9LMadCgSX';
+  '5G31GiBqWPFCm8S9cknY7UWAPA8SwNJJdoG4RrmtVDQyrk7Y';
 const SHIBUYA_CONTRACT_ADDRESS =
-  'YBAkUAjocSTwdJ7Wv5mZtrjMCiCmCqtsihsdSv2EanbAc3k';
+  'XtH77i6CYHSSg7tFerUMCSWifBcAz2gewDXeyQNCbgRXHs8';
 
+interface Happy {
+  mood: string;
+}
+interface BadMood {
+  BadMood: { mood: string };
+}
 // RustResult<T, E> is a convenience type to define { Ok?: T, Err?: E }, returned by calls
 // to contracts that return a Result<T, E>
-type MoodResult = RustResult<{ mood: string }, { BadMood: { mood: string } }>;
+type MoodResult = RustResult<Happy, BadMood>;
 
 export const HomePage: React.FC = () => {
   const { account, accounts, setAccount, connect, disconnect } = useWallet();
@@ -56,7 +62,7 @@ export const HomePage: React.FC = () => {
   const { rpcs, setChainRpc } = useChainRpcList('astar');
   const astarRpc = useChainRpc('astar');
   const get = useCall<boolean>(cRococoContract, 'get');
-  const getSubscription = useCallSubscription<boolean>(
+  const getSubcription = useCallSubscription<boolean>(
     cRococoContract,
     'get',
     [],
@@ -75,13 +81,14 @@ export const HomePage: React.FC = () => {
   );
   const shibuyaFlipTx = useTx(shibuyaContract, 'flip');
   useTxNotifications(shibuyaFlipTx); // Add a notification on tx status changes
-  const shibuyaGetSubscription = useCallSubscription<boolean>(
+  const shibuyaGetSubcription = useCallSubscription<boolean>(
     shibuyaContract,
     'get',
   );
   const { addNotification } = useNotifications();
   useEventSubscription(cRococoContract);
   const { events } = useEvents(cRococoContract?.contract?.address);
+  const option = useCall<Happy | null>(cRococoContract, 'option');
 
   // Use helper functions to quickly pick values from a Result<T, E>
   // Instead of doing something like this:
@@ -172,6 +179,7 @@ export const HomePage: React.FC = () => {
                   {installedWallets.map((w) => (
                     <li key={w.title}>
                       <button
+                        type='button'
                         onClick={() => connect(w.extensionName)}
                         className='flex items-center w-full rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 transition duration-75'
                       >
@@ -199,9 +207,9 @@ export const HomePage: React.FC = () => {
                     <li key={w.title}>
                       <a
                         href={w.installUrl}
+                        rel='noreferrer'
                         target='_blank'
                         className='flex items-center w-full rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 transition duration-75'
-                        rel='noreferrer'
                       >
                         <img
                           className='w-12 mr-2'
@@ -221,6 +229,7 @@ export const HomePage: React.FC = () => {
               <>
                 <li>
                   <button
+                    type='button'
                     onClick={disconnect}
                     className='rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 transition duration-75'
                   >
@@ -241,6 +250,7 @@ export const HomePage: React.FC = () => {
                       <li key={acc.address} className='flex flex-col'>
                         <b>Connect to {acc.name ? acc.name : 'wallet'}</b>
                         <button
+                          type='button'
                           onClick={() => setAccount(acc)}
                           className='rounded-2xl text-white px-4 py-2 mt-2 bg-blue-500 hover:bg-blue-600 transition duration-75'
                         >
@@ -286,6 +296,7 @@ export const HomePage: React.FC = () => {
                 {rpcs.map((rpc) => (
                   <li key={rpc} className='p-0'>
                     <button
+                      type='button'
                       className='rounded-2xl w-full text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 hover:disabled:bg-blue-300 transition duration-75'
                       disabled={rpc === astarRpc}
                       onClick={() => setChainRpc(rpc, 'astar')}
@@ -322,6 +333,7 @@ export const HomePage: React.FC = () => {
 
             <li className='flex items-center gap-4'>
               <button
+                type='button'
                 onClick={() => get.send([], { defaultCaller: true })}
                 disabled={get.isSubmitting}
                 className='rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 hover:disabled:bg-blue-300 transition duration-75'
@@ -337,12 +349,13 @@ export const HomePage: React.FC = () => {
             <li className='flex items-center gap-4'>
               <h3 className='text-xl'>
                 get() will update on new blocks:{' '}
-                {pickDecoded(getSubscription.result)?.toString() || '--'}
+                {pickDecoded(getSubcription.result)?.toString() || '--'}
               </h3>
             </li>
 
             <li className='flex flex-col gap-4'>
               <button
+                type='button'
                 onClick={() => flipTx.signAndSend()}
                 disabled={shouldDisable(flipTx) || !account}
                 className='rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 hover:disabled:bg-blue-300 transition duration-75'
@@ -367,6 +380,7 @@ export const HomePage: React.FC = () => {
               </h3>
 
               <button
+                type='button'
                 onClick={() => flipTx.resetState()}
                 disabled={
                   shouldDisable(flipTx) ||
@@ -385,10 +399,11 @@ export const HomePage: React.FC = () => {
 
               <h3 className='text-xl'>
                 Shibuya Flipped:{' '}
-                {pickDecoded(shibuyaGetSubscription.result)?.toString() || '--'}
+                {pickDecoded(shibuyaGetSubcription.result)?.toString() || '--'}
               </h3>
 
               <button
+                type='button'
                 onClick={() => shibuyaFlipTx.signAndSend()}
                 disabled={shouldDisable(shibuyaFlipTx) || !account}
                 className='rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 hover:disabled:bg-blue-300 transition duration-75'
@@ -403,6 +418,7 @@ export const HomePage: React.FC = () => {
               </h3>
 
               <button
+                type='button'
                 onClick={() => shibuyaFlipTx.resetState()}
                 disabled={
                   shouldDisable(shibuyaFlipTx) ||
@@ -416,6 +432,7 @@ export const HomePage: React.FC = () => {
 
             <li className='flex flex-col gap-4'>
               <button
+                type='button'
                 onClick={() => flipDryRun.send([], { defaultCaller: true })}
                 disabled={flipDryRun.isSubmitting}
                 className='rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 hover:disabled:bg-blue-300 transition duration-75'
@@ -435,6 +452,7 @@ export const HomePage: React.FC = () => {
 
             <li className='flex flex-col gap-4'>
               <button
+                type='button'
                 onClick={() =>
                   flipPaymentInfo.send([], { defaultCaller: true })
                 }
@@ -457,6 +475,7 @@ export const HomePage: React.FC = () => {
 
             <li className='flex flex-col gap-4'>
               <button
+                type='button'
                 onClick={() => panic.send([], { defaultCaller: true })}
                 disabled={panic.isSubmitting}
                 className='rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 hover:disabled:bg-blue-300 transition duration-75'
@@ -479,6 +498,7 @@ export const HomePage: React.FC = () => {
 
             <li className='flex flex-col gap-4'>
               <button
+                type='button'
                 onClick={() => assertBoom.send([], { defaultCaller: true })}
                 disabled={assertBoom.isSubmitting}
                 className='rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 hover:disabled:bg-blue-300 transition duration-75'
@@ -505,6 +525,7 @@ export const HomePage: React.FC = () => {
                 odd number will return an Error
               </h3>
               <button
+                type='button'
                 onClick={() => mood.send([0], { defaultCaller: true })}
                 disabled={mood.isSubmitting}
                 className='rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 hover:disabled:bg-blue-300 transition duration-75'
@@ -513,6 +534,7 @@ export const HomePage: React.FC = () => {
               </button>
 
               <button
+                type='button'
                 onClick={() => mood.send([1], { defaultCaller: true })}
                 disabled={mood.isSubmitting}
                 className='rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 hover:disabled:bg-blue-300 transition duration-75'
@@ -524,6 +546,39 @@ export const HomePage: React.FC = () => {
                 Mood: {!goodMood && !badMood && '--'}
                 {goodMood?.mood}
                 {badMood?.BadMood.mood}
+              </h3>
+            </li>
+
+            <li className='flex flex-col gap-4'>
+              <h3 className='text-xl'>
+                Handle Options. An even number will return a Some(Happy), and an
+                odd number will return None
+              </h3>
+              <button
+                type='button'
+                onClick={() => option.send([0], { defaultCaller: true })}
+                disabled={option.isSubmitting}
+                className='rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 hover:disabled:bg-blue-300 transition duration-75'
+              >
+                {option.isSubmitting
+                  ? 'Getting option result...'
+                  : 'Get Some(Happy) result'}
+              </button>
+
+              <button
+                type='button'
+                onClick={() => option.send([1], { defaultCaller: true })}
+                disabled={option.isSubmitting}
+                className='rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 hover:disabled:bg-blue-300 transition duration-75'
+              >
+                {option.isSubmitting
+                  ? 'Getting option result...'
+                  : 'Get Option None Response'}
+              </button>
+
+              <h3 className='text-xl'>
+                Option: {!option.result && '--'}
+                {JSON.stringify(pickDecoded(option.result))}
               </h3>
             </li>
           </ul>

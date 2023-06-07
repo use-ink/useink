@@ -1,6 +1,7 @@
-export { formatBalance } from '@polkadot/util';
+export * from '@polkadot/util';
 
-export * from './contracts/index';
-export * from './helpers/index';
-export * from './pick/index';
-export * from './types/index';
+export * from './contracts';
+export * from './substrate';
+export * from './helpers';
+export * from './pick';
+export * from './types';

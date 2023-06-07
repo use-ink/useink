@@ -1,5 +1,9 @@
-import { RuntimeDispatchInfo, SignerOptions } from '../../../core/index';
-import { ChainContract, useDefaultCaller } from '../index';
+import { ChainContract, useDefaultCaller } from '..';
+import {
+  RuntimeDispatchInfo,
+  SignerOptions,
+  txPaymentInfo,
+} from '../../../core';
 import { useWallet } from '../wallets/useWallet.ts';
 import { CallOptions } from './types.ts';
 import { useCallback, useState } from 'react';
@@ -28,20 +32,22 @@ export function useTxPaymentInfo(
 
   const send = useCallback<Send>(
     async (params, options, signerOptions) => {
-      const tx = chainContract?.contract?.tx?.[message];
       const caller =
         account?.address || options?.defaultCaller ? defaultCaller : undefined;
 
-      if (!tx || !caller) return;
+      if (!chainContract?.contract || !caller) return;
 
       try {
         setIsSubmitting(true);
 
-        const requiresNoArguments = tx.meta.args.length === 0;
-        const paymentInfoResult = await (requiresNoArguments
-          ? tx(options || {})
-          : tx(options || {}, params)
-        ).paymentInfo(caller, signerOptions);
+        const paymentInfoResult = await txPaymentInfo(
+          chainContract.contract,
+          message,
+          caller,
+          params,
+          options,
+          signerOptions,
+        );
 
         setResult(paymentInfoResult);
         setIsSubmitting(false);
