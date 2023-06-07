@@ -1,6 +1,7 @@
 import { useContext, useMemo } from 'react';
 import { Event, EventsContext } from '../../providers/events/mod.ts';
 import { RemoveEventPayload } from '../../providers/events/model.ts';
+import { AccountId } from '../../../core/mod.ts';
 
 export interface Events {
   events: Event[];
@@ -8,7 +9,7 @@ export interface Events {
 }
 
 export const useEvents = (
-  contractAddress: string | undefined,
+  contractAddress: AccountId | string | undefined,
   filters?: string[],
 ): Events => {
   const { events, removeEvent } = useContext(EventsContext);
