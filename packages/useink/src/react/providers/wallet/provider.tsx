@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { useConfig } from "../../hooks/mod.ts";
+import { useConfig } from "../../hooks";
 import { WalletContext } from "./context.ts";
 import { AutoConnect, WalletError, WalletName } from "./model.ts";
 import {
@@ -7,7 +7,7 @@ import {
   getWallets,
   Unsub,
   WalletAccount,
-} from "../../../core/mod.ts";
+} from "../../../core";
 
 function getAutoConnectWalletInfo(key: string): AutoConnect | null {
   const item = localStorage.getItem(key);
