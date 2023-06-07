@@ -8,7 +8,9 @@
   "scripts": {
     "build": "pnpm --filter useink build",
     "dev": "pnpm --filter useink watch & pnpm --filter playground dev",
-    "format": "rome format . --write"
+    "format": "rome format . --write",
+    "lint": "rome check ./*",
+    "lint:fix": "pnpm lint --apply-unsafe"
   },
   "devDependencies": {
     "rome": "12.1.3"

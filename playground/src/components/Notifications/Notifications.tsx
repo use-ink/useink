@@ -1,5 +1,5 @@
-import { toNotificationLevel, useNotifications } from 'useink/notifications';
 import { Snackbar } from '../Snackbar';
+import { toNotificationLevel, useNotifications } from 'useink/notifications';
 
 export const Notifications: React.FC = () => {
   const { notifications, removeNotification } = useNotifications();

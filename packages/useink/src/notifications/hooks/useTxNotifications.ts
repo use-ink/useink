@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { ChainId } from '../../chains/types.ts';
 import { Tx } from '../../index';
 import { useNotifications } from './useNotifications.ts';
-import { ChainId } from '../../chains/types.ts';
+import { useEffect } from 'react';
 
 export function useTxNotifications<T>(tx: Tx<T>, chain?: ChainId): void {
   const { addNotification } = useNotifications();

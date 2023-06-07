@@ -1,6 +1,6 @@
 import { Chain, ChainId, RococoContractsTestnet } from '../../../chains/index';
-import { FIVE_SECONDS, HALF_A_SECOND } from '../../constants.ts';
 import { ArrayOneOrMore } from '../../../core/index';
+import { FIVE_SECONDS, HALF_A_SECOND } from '../../constants.ts';
 
 export type ChainRPCs = Partial<Record<ChainId, string>>;
 

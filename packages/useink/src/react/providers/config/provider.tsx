@@ -1,13 +1,13 @@
-import React, { useCallback, useEffect, useState, useMemo } from 'react';
-import { ChainRPCs, ConfigProps, DEFAULT_CONFIG } from './model.ts';
-import { ConfigContext } from './context.ts';
 import { Chain, ChainId } from '../../../chains/index';
+import { ConfigContext } from './context.ts';
+import { ChainRPCs, ConfigProps, DEFAULT_CONFIG } from './model.ts';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 export interface Props {
   config: ConfigProps;
 }
 
-const toInitialRpcs = (c: Chain[], rpcs: ChainRPCs): ChainRPCs =>
+const toInitialRpcs = (c: Chain[], _rpcs: ChainRPCs): ChainRPCs =>
   c.reduce(
     (acc, ch) => ({ ...acc, [ch.id]: ch.rpcs?.[0] || '' }),
     {} as Record<ChainId, string>,

@@ -1,3 +1,6 @@
+import metadata from '../../metadata/playground.json';
+import { Notifications } from '../Notifications';
+import { useEffect } from 'react';
 /* eslint-disable @next/next/no-img-element */
 import {
   useBalance,
@@ -17,6 +20,8 @@ import {
   useUninstalledWallets,
   useWallet,
 } from 'useink';
+import { ChainId } from 'useink/chains';
+import { useNotifications, useTxNotifications } from 'useink/notifications';
 import {
   RustResult,
   formatBalance,
@@ -31,11 +36,6 @@ import {
   pickTxInfo,
   shouldDisable,
 } from 'useink/utils';
-import metadata from '../../metadata/playground.json';
-import { ChainId } from 'useink/chains';
-import { useEffect } from 'react';
-import { useNotifications, useTxNotifications } from 'useink/notifications';
-import { Notifications } from '../Notifications';
 
 const CONTRACTS_ROCOCO_ADDRESS =
   '5CjfqiydebzW7uXjGhfvA1Z5ABEjH6uF17ZBNnK9LMadCgSX';
@@ -94,7 +94,7 @@ export const HomePage: React.FC = () => {
     if (isPendingSignature(flipTx)) {
       addNotification({
         type: flipTx.status,
-        message: `Please sign the transaction in your wallet`,
+        message: 'Please sign the transaction in your wallet',
       });
     }
 
@@ -115,7 +115,7 @@ export const HomePage: React.FC = () => {
     if (isFinalized(flipTx)) {
       addNotification({
         type: flipTx.status,
-        message: `The transaction has been finalized.`,
+        message: 'The transaction has been finalized.',
       });
     }
 
@@ -201,6 +201,7 @@ export const HomePage: React.FC = () => {
                         href={w.installUrl}
                         target='_blank'
                         className='flex items-center w-full rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 transition duration-75'
+                        rel='noreferrer'
                       >
                         <img
                           className='w-12 mr-2'

@@ -1,13 +1,13 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import {
+  Unsub,
+  WalletAccount,
+  getWalletBySource,
+  getWallets,
+} from '../../../core';
 import { useConfig } from '../../hooks';
 import { WalletContext } from './context.ts';
 import { AutoConnect, WalletError, WalletName } from './model.ts';
-import {
-  getWalletBySource,
-  getWallets,
-  Unsub,
-  WalletAccount,
-} from '../../../core';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 function getAutoConnectWalletInfo(key: string): AutoConnect | null {
   const item = localStorage.getItem(key);
@@ -88,7 +88,7 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
 
       try {
         await w.enable(dappName);
-      } catch (e) {
+      } catch (_e) {
         setWalletError(WalletError.EnableFailed);
         setActiveWallet(undefined);
         return;
@@ -162,7 +162,7 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
     }
 
     let unsubFunc: (Unsub | undefined) | undefined;
-    connectWallet(activeWallet).then((unsub) => (unsubFunc = unsub));
+    connectWallet(activeWallet).then((unsub) => unsubFunc === unsub);
 
     return () => unsubFunc?.();
   }, [activeWallet]);

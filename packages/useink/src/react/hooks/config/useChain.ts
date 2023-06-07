@@ -1,6 +1,6 @@
-import { useMemo } from 'react';
-import { useConfig } from './useConfig.ts';
 import { Chain, ChainId } from '../../../chains/index';
+import { useConfig } from './useConfig.ts';
+import { useMemo } from 'react';
 
 export const useChain = (chainId?: ChainId): Chain | undefined => {
   const { chains } = useConfig();

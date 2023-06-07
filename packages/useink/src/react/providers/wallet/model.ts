@@ -1,7 +1,7 @@
 import {
+  WalletAccount,
   getWalletBySource,
   getWallets,
-  WalletAccount,
 } from '../../../core/index';
 
 export enum WalletError {

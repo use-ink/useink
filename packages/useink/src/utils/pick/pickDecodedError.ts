@@ -1,8 +1,8 @@
 import {
   CallResult,
   Contract,
-  decodeError,
   RegistryErrorMethod,
+  decodeError,
 } from '../../core/index';
 
 /// pickDecodedError is a helper function to quickly get a decoded error from a call.

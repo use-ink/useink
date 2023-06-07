@@ -1,10 +1,10 @@
-import { createContext } from 'react';
 import {
   AddEventPayload,
   DEFAULT_EVENTS,
   Events,
   RemoveEventPayload,
 } from './model.ts';
+import { createContext } from 'react';
 
 export const EventsContext = createContext<{
   events: Events;

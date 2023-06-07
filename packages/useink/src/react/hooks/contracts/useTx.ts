@@ -1,13 +1,13 @@
-import { useMemo, useState } from 'react';
-import { useWallet } from '../wallets/useWallet.ts';
-import { useDryRun } from './useDryRun.ts';
 import {
   ApiBase,
   ContractOptions,
   ContractSubmittableResult,
   TransactionStatus,
 } from '../../../core/index';
+import { useWallet } from '../wallets/useWallet.ts';
 import { ChainContract } from './types.ts';
+import { useDryRun } from './useDryRun.ts';
+import { useMemo, useState } from 'react';
 
 export type ContractSubmittableResultCallback = (
   result?: ContractSubmittableResult,
@@ -68,7 +68,7 @@ export function useTx<T>(
               (response: ContractSubmittableResult) => {
                 setResult(response);
                 setStatus(response.status.type);
-                cb && cb(response, chainContract?.contract.api);
+                cb?.(response, chainContract?.contract.api);
               },
             )
             .catch((e: unknown) => {

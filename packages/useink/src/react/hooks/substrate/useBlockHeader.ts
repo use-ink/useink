@@ -1,11 +1,11 @@
-import { useContext } from 'react';
+import { ChainId } from '../../../chains/index';
 import {
   BlockHeaderContext,
   ChainBlockHeaders,
 } from '../../providers/blockHeader/index';
-import { ChainId } from '../../../chains/index';
-import { BlockHeader } from './index';
 import { useChain } from '../config/useChain.ts';
+import { BlockHeader } from './index';
+import { useContext } from 'react';
 
 export type { BlockHeader } from '../../providers/blockHeader/index';
 

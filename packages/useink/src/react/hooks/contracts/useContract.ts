@@ -1,9 +1,9 @@
-import { Abi, ContractPromise } from '../../../core/index';
-import { useEffect, useMemo, useState } from 'react';
 import { ChainId } from '../../../chains/index';
+import { Abi, ContractPromise } from '../../../core/index';
 import { useChain } from '../config/useChain.ts';
 import { useApi } from '../substrate/useApi.ts';
 import { ChainContract } from './types.ts';
+import { useEffect, useMemo, useState } from 'react';
 
 export function useContract<T extends ContractPromise = ContractPromise>(
   address: string,

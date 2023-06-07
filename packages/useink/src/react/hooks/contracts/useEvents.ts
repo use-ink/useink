@@ -1,7 +1,7 @@
-import { useContext, useMemo } from 'react';
+import { AccountId } from '../../../core/index';
 import { Event, EventsContext } from '../../providers/events/index';
 import { RemoveEventPayload } from '../../providers/events/model.ts';
-import { AccountId } from '../../../core/index';
+import { useContext, useMemo } from 'react';
 
 export interface Events {
   events: Event[];

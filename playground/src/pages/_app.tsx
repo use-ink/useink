@@ -1,15 +1,15 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
-import React from 'react';
 import dynamic from 'next/dynamic';
+import React from 'react';
 import { InkConfig } from 'useink';
 import {
+  Aleph,
+  Astar,
+  Phala,
   RococoContractsTestnet,
   RococoTestnet,
   ShibuyaTestnet,
-  Astar,
-  Phala,
-  Aleph,
 } from 'useink/chains';
 import { NotificationsProvider } from 'useink/notifications';
 

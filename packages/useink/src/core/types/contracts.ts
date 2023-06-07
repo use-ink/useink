@@ -1,3 +1,4 @@
+import { Result } from './result.ts';
 import { AbiMessage } from '@polkadot/api-contract/types';
 import {
   Balance,
@@ -6,7 +7,6 @@ import {
   StorageDeposit,
   Weight,
 } from '@polkadot/types/interfaces';
-import { Result } from './result.ts';
 
 export type {
   ContractExecResult,

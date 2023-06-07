@@ -1,9 +1,9 @@
-import React, { useEffect, useMemo, useReducer } from 'react';
+import { ChainId } from '../../../chains/index';
+import { useApis } from '../../index';
 import { BlockHeaderContext } from './context.ts';
 import { ChainBlockHeaders } from './model.ts';
-import { useApis } from '../../index';
-import { ChainId } from '../../../chains/index';
 import { chainBlockHeaderReducer } from './reducer.ts';
+import React, { useEffect, useMemo, useReducer } from 'react';
 
 const toBlockNumber = (valWithComma: string | undefined): number =>
   parseInt(`${valWithComma?.split(',').join('')}`);
@@ -47,10 +47,10 @@ export const BlockHeaderProvider: React.FC<React.PropsWithChildren<any>> = ({
     }
 
     let unsubFuncs: (VoidFunction | undefined)[] | undefined;
-    Promise.all(listenToBlocks()).then((unsubs) => (unsubFuncs = unsubs));
+    Promise.all(listenToBlocks()).then((unsubs) => unsubFuncs === unsubs);
 
     return () => {
-      unsubFuncs && unsubFuncs.forEach((unsub) => unsub && unsub());
+      unsubFuncs?.forEach((unsub) => unsub?.());
     };
   }, [chainApis]);
 

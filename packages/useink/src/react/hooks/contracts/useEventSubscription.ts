@@ -1,12 +1,12 @@
-import { useContext, useEffect } from 'react';
+import { Bytes } from '../../../core/index';
+import { getExpiredItem } from '../../../utils/index';
 import { FIVE_SECONDS, HALF_A_SECOND } from '../../constants.ts';
 import { Event, EventsContext } from '../../providers/events/index';
-import { useBlockHeader } from '../substrate/useBlockHeader.ts';
 import { useConfig } from '../config/useConfig.ts';
 import { useInterval } from '../internal/useInterval.ts';
-import { getExpiredItem } from '../../../utils/index';
+import { useBlockHeader } from '../substrate/useBlockHeader.ts';
 import { ChainContract } from './types.ts';
-import { Bytes } from '../../../core/index';
+import { useContext, useEffect } from 'react';
 
 export const useEventSubscription = (
   chainContract: ChainContract | undefined,
@@ -23,43 +23,38 @@ export const useEventSubscription = (
     if (!header?.hash || !contract) return;
 
     contract.api.at(header?.hash).then((apiAt) => {
-      apiAt?.query?.system?.events &&
-        apiAt.query.system.events((encodedEvent: any[]) => {
-          encodedEvent.forEach(({ event }) => {
+      apiAt.query.system.events?.((encodedEvent: any[]) => {
+        encodedEvent.forEach(({ event }) => {
+          if (contract.api.events.contracts.ContractEmitted?.is(event)) {
+            const [contractAddress, contractEvent] = event.data;
             if (
-              contract.api.events.contracts?.ContractEmitted &&
-              contract.api.events.contracts.ContractEmitted.is(event)
-            ) {
-              const [contractAddress, contractEvent] = event.data;
-              if (
-                !address ||
-                !contractAddress ||
-                !contractEvent ||
-                contractAddress.toString().toLowerCase() !==
-                  address.toLowerCase()
-              )
-                return;
+              !address ||
+              !contractAddress ||
+              !contractEvent ||
+              contractAddress.toString().toLowerCase() !== address.toLowerCase()
+            )
+              return;
 
-              try {
-                const decodedEvent = contract.abi.decodeEvent(
-                  contractEvent as Bytes,
-                );
+            try {
+              const decodedEvent = contract.abi.decodeEvent(
+                contractEvent as Bytes,
+              );
 
-                const eventItem = {
-                  address,
-                  event: {
-                    name: decodedEvent.event.identifier,
-                    args: decodedEvent.args.map((v) => v.toHuman()),
-                  },
-                };
+              const eventItem = {
+                address,
+                event: {
+                  name: decodedEvent.event.identifier,
+                  args: decodedEvent.args.map((v) => v.toHuman()),
+                },
+              };
 
-                addEvent(eventItem);
-              } catch (e) {
-                console.error(e);
-              }
+              addEvent(eventItem);
+            } catch (e) {
+              console.error(e);
             }
-          });
+          }
         });
+      });
     });
   }, [chainContract?.contract, blockNumber]);
 
