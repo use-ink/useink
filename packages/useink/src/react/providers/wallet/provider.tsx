@@ -1,18 +1,25 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { useConfig } from "../../hooks/index";
+import { useConfig } from "../../hooks/mod.ts";
 import { WalletContext } from "./context.ts";
 import { AutoConnect, WalletError, WalletName } from "./model.ts";
 import {
-  Unsub,
-  WalletAccount,
   getWalletBySource,
   getWallets,
-} from "../../../core/index";
+  Unsub,
+  WalletAccount,
+} from "../../../core/mod.ts";
 
 function getAutoConnectWalletInfo(key: string): AutoConnect | null {
-  const item =
-    typeof window !== "undefined" && window.localStorage.getItem(key);
+  const item = localStorage.getItem(key);
   return item ? (JSON.parse(item) as AutoConnect) : null;
+}
+
+function enableAutoConnect(a: AutoConnect, key: string) {
+  localStorage.setItem(key, JSON.stringify(a));
+}
+
+function disableAutoConnect(key: string) {
+  if (getAutoConnectWalletInfo(key)) localStorage.removeItem(key);
 }
 
 export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
@@ -30,23 +37,10 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
     [C.dappName]
   );
 
-  const [activeWallet, setActiveWallet] = useState<WalletName | undefined>(
-    getAutoConnectWalletInfo(dappName)?.wallet
-  );
-
-  const enableAutoConnect = React.useCallback(
-    (a: AutoConnect) => {
-      localStorage.setItem(dappName, JSON.stringify(a));
-    },
-    [dappName]
-  );
-
-  const disableAutoConnect = React.useCallback(() => {
-    if (getAutoConnectWalletInfo(dappName)) localStorage.removeItem(dappName);
-  }, [dappName]);
+  const [activeWallet, setActiveWallet] = useState<WalletName>();
 
   const disconnect = useCallback(() => {
-    disableAutoConnect();
+    disableAutoConnect(dappName);
     setAccounts(undefined);
     setWalletAccount(undefined);
     setActiveWallet(undefined);
@@ -69,10 +63,13 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
       setWalletAccount(newAccount);
 
       if (!C.wallet?.skipAutoConnect) {
-        enableAutoConnect({
-          address: newAccount.address,
-          wallet: newAccount.source,
-        });
+        enableAutoConnect(
+          {
+            address: newAccount.address,
+            wallet: newAccount.source,
+          },
+          dappName
+        );
       }
     },
     [accounts, C.wallet?.skipAutoConnect]
@@ -106,7 +103,7 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
         if (noAccountsEnabled) {
           setWalletError(WalletError.NoAccountsEnabled);
           setWalletAccount(undefined);
-          disableAutoConnect();
+          disableAutoConnect(dappName);
           return;
         }
 
@@ -117,10 +114,13 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
           setWalletAccount(firstAccount);
 
           if (!C.wallet?.skipAutoConnect) {
-            enableAutoConnect({
-              address: firstAccount.address,
-              wallet: firstAccount.source,
-            });
+            enableAutoConnect(
+              {
+                address: firstAccount.address,
+                wallet: firstAccount.source,
+              },
+              dappName
+            );
           }
           return;
         }
@@ -135,10 +135,13 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
         setWalletAccount(initialAccount);
 
         if (!C.wallet?.skipAutoConnect) {
-          enableAutoConnect({
-            address: initialAccount.address,
-            wallet: initialAccount.source,
-          });
+          enableAutoConnect(
+            {
+              address: initialAccount.address,
+              wallet: initialAccount.source,
+            },
+            dappName
+          );
         }
       })) as Unsub;
 
@@ -152,7 +155,11 @@ export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
   }, []);
 
   useEffect(() => {
-    if (!activeWallet) return;
+    if (!activeWallet) {
+      const wallet = getAutoConnectWalletInfo(dappName)?.wallet;
+      if (wallet) setActiveWallet(wallet);
+      return;
+    }
 
     let unsubFunc: (Unsub | undefined) | undefined;
     connectWallet(activeWallet).then((unsub) => (unsubFunc = unsub));
