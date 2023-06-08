@@ -10,7 +10,10 @@
   ],
   "dictionaries": ["project-words"],
   "ignorePaths": [
-    "target",
-    "**/*.contract"
+    "dist",
+    "node_modules",
+    ".next",
+    "**/*.contract",
+    "pnpm-lock.yaml"
   ]
 }

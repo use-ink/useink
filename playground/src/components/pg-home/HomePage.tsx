@@ -39,7 +39,9 @@ import {
 
 const CONTRACTS_ROCOCO_ADDRESS =
   '5G31GiBqWPFCm8S9cknY7UWAPA8SwNJJdoG4RrmtVDQyrk7Y';
+
 const SHIBUYA_CONTRACT_ADDRESS =
+  /* cSpell:disable */
   'XtH77i6CYHSSg7tFerUMCSWifBcAz2gewDXeyQNCbgRXHs8';
 
 interface Happy {
