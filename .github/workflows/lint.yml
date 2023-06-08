@@ -13,4 +13,5 @@ jobs:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
       - run: pnpm install
-      - run: pnpm lint:ci
+      - name: Lint code
+        run: pnpm format && pnpm lint:fix

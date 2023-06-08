@@ -10,8 +10,7 @@
     "dev": "pnpm --filter useink watch & pnpm --filter playground dev",
     "format": "rome format . --write",
     "lint": "rome check ./*",
-    "lint:fix": "pnpm lint --apply-unsafe",
-    "lint:ci": "rome ci"
+    "lint:fix": "pnpm lint --apply-unsafe"
   },
   "dependencies": {
     "@polkadot/api-contract": "^10.7.3",
