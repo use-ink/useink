@@ -1,9 +1,4 @@
-<<<<<<<< HEAD:packages/useink/src/core/contracts/toContractAbiMessage.ts
 import { AbiMessage, ContractPromise, Result } from '../types/index';
-========
-import { ContractPromise } from '@polkadot/api-contract';
-import { AbiMessage, Result } from '../types/mod.ts';
->>>>>>>> main:core/contracts/toContractAbiMessage.ts
 
 export const toContractAbiMessage = (
   contract: ContractPromise,
@@ -14,8 +9,7 @@ export const toContractAbiMessage = (
   if (!value) {
     const messages = contract?.abi.messages.map((m) => m.method).join(', ');
 
-    const error =
-      `"${message}" not found in metadata.spec.messages: [${messages}]`;
+    const error = `"${message}" not found in metadata.spec.messages: [${messages}]`;
     console.error(error);
 
     return { ok: false, error };

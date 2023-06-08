@@ -1,18 +1,9 @@
-<<<<<<<< HEAD:packages/useink/src/react/hooks/contracts/useDryRun.ts
 import { DecodedTxResult, call } from '../../../core/index';
 import { useDefaultCaller } from '../config/index';
 import { useWallet } from '../wallets/useWallet.ts';
 import { CallOptions, ChainContract } from './types.ts';
 import { useAbiMessage } from './useAbiMessage.ts';
 import { useMemo, useState } from 'react';
-========
-import { useMemo, useState } from 'react';
-import { call, DecodedTxResult } from '../../../core/mod.ts';
-import { useAbiMessage } from './useAbiMessage.ts';
-import { useWallet } from '../wallets/useWallet.ts';
-import { CallOptions, ChainContract } from './types.ts';
-import { useDefaultCaller } from '../config/mod.ts';
->>>>>>>> main:react/hooks/contracts/useDryRun.ts
 
 export type DryRunResult<T> = DecodedTxResult<T>;
 
@@ -71,13 +62,8 @@ export function useDryRun<T>(
         const requiresNoArguments = tx.meta.args.length === 0;
         const { partialFee } = await (requiresNoArguments
           ? tx(options || {})
-<<<<<<<< HEAD:packages/useink/src/react/hooks/contracts/useDryRun.ts
           : tx(options || {}, ...(params || []))
         ).paymentInfo(caller);
-========
-          : tx(options || {}, ...(params || [])))
-          .paymentInfo(caller);
->>>>>>>> main:react/hooks/contracts/useDryRun.ts
 
         const r = {
           ...resp,

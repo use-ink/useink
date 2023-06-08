@@ -1,15 +1,8 @@
 import {
-<<<<<<<< HEAD:packages/useink/src/react/providers/wallet/model.ts
   WalletAccount,
   getWalletBySource,
   getWallets,
 } from '../../../core/index';
-========
-  getWalletBySource,
-  getWallets,
-  WalletAccount,
-} from '../../../core/mod.ts';
->>>>>>>> main:react/providers/wallet/model.ts
 
 export enum WalletError {
   AccountDisabled = 'AccountNotEnabled',

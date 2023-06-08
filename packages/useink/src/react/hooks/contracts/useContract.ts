@@ -1,18 +1,9 @@
-<<<<<<<< HEAD:packages/useink/src/react/hooks/contracts/useContract.ts
 import { ChainId } from '../../../chains/index';
 import { Abi, ContractPromise } from '../../../core/index';
 import { useChain } from '../config/useChain.ts';
 import { useApi } from '../substrate/useApi.ts';
 import { ChainContract } from './types.ts';
 import { useEffect, useMemo, useState } from 'react';
-========
-import { Abi, ContractPromise } from '../../../core/mod.ts';
-import { useEffect, useMemo, useState } from 'react';
-import { ChainId } from '../../../chains/mod.ts';
-import { useChain } from '../config/useChain.ts';
-import { useApi } from '../substrate/useApi.ts';
-import { ChainContract } from './types.ts';
->>>>>>>> main:react/hooks/contracts/useContract.ts
 
 export function useContract<T extends ContractPromise = ContractPromise>(
   address: string,

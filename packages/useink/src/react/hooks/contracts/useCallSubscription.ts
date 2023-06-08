@@ -1,14 +1,7 @@
-<<<<<<<< HEAD:packages/useink/src/react/hooks/contracts/useCallSubscription.ts
 import { useBlockHeader } from '../substrate/useBlockHeader.ts';
 import { CallOptions, ChainContract } from './types.ts';
 import { Call, useCall } from './useCall.ts';
 import { useEffect } from 'react';
-========
-import { useEffect } from 'react';
-import { useBlockHeader } from '../substrate/useBlockHeader.ts';
-import { Call, useCall } from './useCall.ts';
-import { CallOptions, ChainContract } from './types.ts';
->>>>>>>> main:react/hooks/contracts/useCallSubscription.ts
 
 export function useCallSubscription<T>(
   chainContract: ChainContract | undefined,
