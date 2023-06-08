@@ -24,6 +24,9 @@ jobs:
         id: get_tag_version
         run: echo "tag_version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
 
+      - name: Install Dependencies
+        run: pnpm install
+
       - name: Build NPM Package
         run: pnpm build
 
