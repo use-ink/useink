@@ -1,9 +1,18 @@
+<<<<<<<< HEAD:packages/useink/src/react/hooks/contracts/useCall.ts
 import { DecodedContractResult, call } from '../../../core/index';
 import { ChainContract, useDefaultCaller } from '../index';
 import { useWallet } from '../wallets/useWallet.ts';
 import { CallOptions } from './types.ts';
 import { useAbiMessage } from './useAbiMessage.ts';
 import { useCallback, useState } from 'react';
+========
+import { useCallback, useState } from 'react';
+import { call, DecodedContractResult } from '../../../core/mod.ts';
+import { useAbiMessage } from './useAbiMessage.ts';
+import { useWallet } from '../wallets/useWallet.ts';
+import { CallOptions } from './types.ts';
+import { ChainContract, useDefaultCaller } from '../mod.ts';
+>>>>>>>> main:react/hooks/contracts/useCall.ts
 
 export type CallSend<T> = (
   args?: unknown[],
@@ -38,11 +47,20 @@ export function useCall<T>(
   const send = useCallback(
     // TODO type
     async (
+<<<<<<<< HEAD:packages/useink/src/react/hooks/contracts/useCall.ts
       args: any,
       options: any,
     ): Promise<DecodedContractResult<T> | undefined> => {
       const caller =
         account?.address || options?.defaultCaller ? defaultCaller : undefined;
+========
+      args,
+      options,
+    ): Promise<DecodedContractResult<T> | undefined> => {
+      const caller = account?.address || options?.defaultCaller
+        ? defaultCaller
+        : undefined;
+>>>>>>>> main:react/hooks/contracts/useCall.ts
       if (!abiMessage || !chainContract?.contract || !caller) return;
 
       try {

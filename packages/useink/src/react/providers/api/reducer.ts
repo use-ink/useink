@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:packages/useink/src/react/providers/api/reducer.ts
 import { ChainId } from '../../../chains/index';
+========
+import { ChainId } from '../../../chains/mod.ts';
+>>>>>>>> main:react/providers/api/reducer.ts
 import { IApiProvider, IApiProviders } from './model.ts';
 
 interface AddApiProvider {

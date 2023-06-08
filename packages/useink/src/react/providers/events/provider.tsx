@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:packages/useink/src/react/providers/events/provider.tsx
 import { pseudoRandomId } from '../../../utils/index';
 import { EventsContext } from './context.ts';
 import {
@@ -9,6 +10,14 @@ import { eventsReducer } from './reducer.ts';
 import React from 'react';
 
 import { useIsMounted } from '../../hooks/internal/useIsMounted.ts';
+========
+import React from 'react'
+import { EventsContext } from './context.ts'
+import { AddEventPayload, DEFAULT_EVENTS, RemoveEventPayload } from './model.ts'
+import { eventsReducer } from './reducer.ts'
+import { pseudoRandomId } from "../../../utils/mod.ts";
+import { useIsMounted } from "../../hooks/internal/useIsMounted.ts";
+>>>>>>>> main:react/providers/events/provider.tsx
 
 // @internal
 export const EventsProvider: React.FC<React.PropsWithChildren<any>> = ({

@@ -9,12 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+<<<<<<< HEAD
 
       - name: Set up pnpm
         uses: pnpm/action-setup@v2
 
       - name: Set up node
         uses: actions/setup-node@v3
+=======
+      - uses: denoland/setup-deno@61fe2df320078202e33d7d5ad347e7dcfa0e8f31 # v1.1.0
+>>>>>>> main
         with:
           cache: pnpm
           node-version: 18

@@ -3,7 +3,11 @@ import {
   ContractExecResult,
   DecodedResult,
   Registry,
+<<<<<<<< HEAD:packages/useink/src/core/contracts/decodeCallResult.ts
 } from '../types/index';
+========
+} from '../types/mod.ts';
+>>>>>>>> main:core/contracts/decodeCallResult.ts
 
 export function decodeCallResult<T>(
   result: ContractExecResult['result'],

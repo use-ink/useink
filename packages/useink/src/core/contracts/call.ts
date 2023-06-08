@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:packages/useink/src/core/contracts/call.ts
 import { BN } from '../../utils/index.ts';
+========
+import { BN } from '../../utils/mod.ts';
+>>>>>>>> main:core/contracts/call.ts
 import {
   AbiMessage,
   AccountId,
@@ -6,7 +10,11 @@ import {
   ContractOptions,
   ContractPromise,
   DecodedContractResult,
+<<<<<<<< HEAD:packages/useink/src/core/contracts/call.ts
 } from '../types/index';
+========
+} from '../types/mod.ts';
+>>>>>>>> main:core/contracts/call.ts
 import { decodeCallResult } from './decodeCallResult.ts';
 
 export async function call<T>(
