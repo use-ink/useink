@@ -3,7 +3,7 @@ import { DecodedTxResult, TxInfo } from '../../core/index';
 /// pickTxInfo gets gasRequired, gasConsumed, and storageDeposit or undefined from a
 /// DryRun.
 export function pickTxInfo(
-  result: DecodedTxResult<any> | undefined,
+  result: DecodedTxResult<unknown> | undefined,
 ): TxInfo | undefined {
   if (!result?.ok) return;
 

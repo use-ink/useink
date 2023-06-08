@@ -11,7 +11,7 @@ import React from 'react';
 import { useIsMounted } from '../../hooks/internal/useIsMounted.ts';
 
 // @internal
-export const EventsProvider: React.FC<React.PropsWithChildren<any>> = ({
+export const EventsProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
   const [events, dispatch] = React.useReducer(eventsReducer, DEFAULT_EVENTS);

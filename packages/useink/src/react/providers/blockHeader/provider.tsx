@@ -8,7 +8,7 @@ import React, { useEffect, useMemo, useReducer } from 'react';
 const toBlockNumber = (valWithComma: string | undefined): number =>
   parseInt(`${valWithComma?.split(',').join('')}`);
 
-export const BlockHeaderProvider: React.FC<React.PropsWithChildren<any>> = ({
+export const BlockHeaderProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
   const chainApis = useApis();

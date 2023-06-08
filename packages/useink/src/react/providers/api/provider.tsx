@@ -5,7 +5,7 @@ import { APIContext } from './context.ts';
 import { apiProvidersReducer } from './reducer.ts';
 import React, { useEffect, useReducer } from 'react';
 
-export const APIProvider: React.FC<React.PropsWithChildren<any>> = ({
+export const APIProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
   const chains = useChains();
@@ -26,5 +26,5 @@ export const APIProvider: React.FC<React.PropsWithChildren<any>> = ({
     });
   }, [chains, chainRpcs]);
 
-  return <APIContext.Provider value={{ apis }} children={children} />;
+  return <APIContext.Provider value={{ apis }}>{children}</APIContext.Provider>;
 };

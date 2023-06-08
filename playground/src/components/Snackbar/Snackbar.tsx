@@ -13,6 +13,7 @@ type Props = {
   message: string;
   show: boolean;
   type: NotificationLevel;
+
   onClick: () => void;
 };
 
@@ -37,7 +38,9 @@ export const Snackbar: React.FC<Props> = ({ show, message, type, onClick }) => (
     <div className='flex items-end justify-end mt-1 drop-shadow-md'>
       <div className={classNames('rounded-lg px-4 py-2', BG_COLORS[type])}>
         <span className='flex items-center justify-end'>
-          {<button onClick={onClick}>X</button>}
+          <button type='button' onClick={onClick}>
+            X
+          </button>
         </span>
         <span
           className={classNames('text-sm font-medium text-white text-right')}

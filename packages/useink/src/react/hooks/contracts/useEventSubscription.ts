@@ -6,6 +6,7 @@ import { useConfig } from '../config/useConfig.ts';
 import { useInterval } from '../internal/useInterval.ts';
 import { useBlockHeader } from '../substrate/useBlockHeader.ts';
 import { ChainContract } from './types.ts';
+import { IEventLike } from '@polkadot/types/types/events';
 import { useContext, useEffect } from 'react';
 
 export const useEventSubscription = (
@@ -23,7 +24,7 @@ export const useEventSubscription = (
     if (!header?.hash || !contract) return;
 
     contract.api.at(header?.hash).then((apiAt) => {
-      apiAt.query.system?.events?.((encodedEvent: any[]) => {
+      apiAt.query.system?.events?.((encodedEvent: { event: IEventLike }[]) => {
         encodedEvent.forEach(({ event }) => {
           if (contract.api.events.contracts?.ContractEmitted?.is(event)) {
             const [contractAddress, contractEvent] = event.data;

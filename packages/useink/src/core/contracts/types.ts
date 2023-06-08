@@ -1,7 +1,7 @@
 import { ApiBase, DispatchError, Result } from '../types/index';
 
 export interface CallResult {
-  result?: Result<any, DispatchError>;
+  result?: Result<unknown, DispatchError>;
 }
 
 export interface Contract {

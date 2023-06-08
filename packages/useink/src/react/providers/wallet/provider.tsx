@@ -22,7 +22,7 @@ function disableAutoConnect(key: string) {
   if (getAutoConnectWalletInfo(key)) localStorage.removeItem(key);
 }
 
-export const WalletProvider: React.FC<React.PropsWithChildren<any>> = ({
+export const WalletProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
   const C = useConfig();
