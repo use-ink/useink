@@ -23,6 +23,7 @@ export type {
   DispatchError,
   EventRecord,
   ExtrinsicStatus,
+  Hash,
   Header,
   RuntimeDispatchInfo,
   StorageDeposit,
@@ -31,6 +32,7 @@ export type {
 } from '@polkadot/types/interfaces';
 
 export type {
+  AddressOrPair,
   ApiBase,
   QueryableModuleCalls,
   SignerOptions,
