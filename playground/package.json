@@ -1,0 +1,30 @@
+{
+  "name": "playground",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.7.14",
+    "@types/node": "18.15.6",
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
+    "autoprefixer": "^10.4.14",
+    "classnames": "^2.3.2",
+    "next": "13.2.4",
+    "postcss": "^8.4.21",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.0.2",
+    "useink": "workspace:useink@*",
+    "ws": "^8.13.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.2.7"
+  }
+}

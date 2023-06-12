@@ -11,7 +11,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v3
-      - uses: denoland/setup-deno@61fe2df320078202e33d7d5ad347e7dcfa0e8f31 # v1.1.0
-        with:
-          deno-version: v1.x
-      - run: deno lint
+      - uses: pnpm/action-setup@v2
+      - run: pnpm install
+      - name: Lint code
+        run: pnpm format && pnpm lint:fix

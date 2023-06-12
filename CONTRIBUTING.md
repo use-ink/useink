@@ -15,8 +15,7 @@ interactions relating to the project.
 To develop on your machine, install the following (and please submit issues if
 errors crop up)
 
-- [Deno](https://deno.land/manual@v1.19.3/getting_started/installation)
-- [dprint](https://dprint.dev/)
+- [pnpm](https://pnpm.io/installation)
 
 ## Rules
 
@@ -84,8 +83,7 @@ issue)
 We use the following tools to enforce linting rules, formatting and spell
 checking
 
-- [`deno lint`](https://deno.land/manual/tools/linter)
-- [`dprint`](https://dprint.dev/)
+- [`yarn lint`](https://rome.tools/)
 - [`cspell`](https://cspell.org/)
 
 We encourage adding the [recommended](.vscode/extensions.json) (or similar)
@@ -94,8 +92,7 @@ extensions to your IDE.
 To run a project wide check you can use:
 
 ```bash
-deno lint
-dprint fmt # or dprint check
+yarn lint
 cspell "**/*"
 ```
 
