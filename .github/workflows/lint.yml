@@ -14,4 +14,4 @@ jobs:
       - uses: pnpm/action-setup@v2
       - run: pnpm install
       - name: Lint code
-        run: pnpm format && pnpm lint:fix
+        run: pnpm lint
