@@ -1,7 +1,6 @@
-import {
+import ContractSubmittableResult, {
   ApiBase,
   ContractOptions,
-  ContractSubmittableResult,
   TransactionStatus,
 } from '../../../core/index';
 import { useWallet } from '../wallets/useWallet.ts';

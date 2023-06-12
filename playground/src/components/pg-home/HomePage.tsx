@@ -15,6 +15,7 @@ import {
   useEventSubscription,
   useEvents,
   useInstalledWallets,
+  useTokenSymbol,
   useTx,
   useTxPaymentInfo,
   useUninstalledWallets,
@@ -24,7 +25,6 @@ import { ChainId } from 'useink/chains';
 import { useNotifications, useTxNotifications } from 'useink/notifications';
 import {
   RustResult,
-  formatBalance,
   isBroadcast,
   isFinalized,
   isInBlock,
@@ -34,6 +34,7 @@ import {
   pickResultErr,
   pickResultOk,
   pickTxInfo,
+  planckToDecimalFormatted,
   shouldDisable,
 } from 'useink/utils';
 
@@ -81,6 +82,8 @@ export const HomePage: React.FC = () => {
     metadata,
     'shibuya-testnet',
   );
+  const shibuyaSymbol = useTokenSymbol('shibuya-testnet');
+  const rocSymbol = useTokenSymbol('rococo-contracts-testnet');
   const shibuyaFlipTx = useTx(shibuyaContract, 'flip');
   useTxNotifications(shibuyaFlipTx); // Add a notification on tx status changes
   const shibuyaGetSubcription = useCallSubscription<boolean>(
@@ -265,10 +268,10 @@ export const HomePage: React.FC = () => {
                 <li>
                   <b>Your Free Balance:</b>
                   <span className='ml-4 dark:bg-slate-600 bg-slate-200 rounded-lg py-2 px-2'>
-                    {formatBalance(balance?.freeBalance, {
-                      decimals: 12,
-                      withSi: true,
-                    })}
+                    {planckToDecimalFormatted(
+                      balance?.freeBalance,
+                      cRococoContract.contract.api,
+                    )}
                   </span>
                 </li>
               </>
@@ -444,10 +447,11 @@ export const HomePage: React.FC = () => {
 
               <h3 className='text-xl'>
                 <b>Gas Required:</b>{' '}
-                {formatBalance(pickTxInfo(flipDryRun.result)?.partialFee, {
-                  decimals: 12,
-                  withSi: true,
-                })}
+                {planckToDecimalFormatted(
+                  pickTxInfo(flipDryRun.result)?.partialFee,
+                  cRococoContract.contract.api,
+                )}
+
                 {pickDecodedError(flipDryRun, cRococoContract, {}, '--')}
               </h3>
             </li>
@@ -468,10 +472,10 @@ export const HomePage: React.FC = () => {
 
               <h3 className='text-xl'>
                 <b>Partial Fee (a.k.a. Gas Required):</b>{' '}
-                {formatBalance(flipPaymentInfo.result?.partialFee, {
-                  decimals: 12,
-                  withSi: true,
-                })}
+                {planckToDecimalFormatted(
+                  flipPaymentInfo.result?.partialFee,
+                  cRococoContract.contract.api,
+                )}
               </h3>
             </li>
 
@@ -581,6 +585,16 @@ export const HomePage: React.FC = () => {
               <h3 className='text-xl'>
                 Option: {!option.result && '--'}
                 {JSON.stringify(pickDecoded(option.result))}
+              </h3>
+            </li>
+
+            <li>
+              <h3 className='text-xl'>
+                Rococo Contracts Token Symbol: <b>{rocSymbol}</b>
+              </h3>
+
+              <h3 className='text-xl'>
+                Shibuya Token Symbol: <b>{shibuyaSymbol}</b>
               </h3>
             </li>
           </ul>
