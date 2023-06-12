@@ -13,12 +13,12 @@
     "lint:fix": "pnpm lint --apply-unsafe"
   },
   "dependencies": {
-    "@polkadot/api-contract": "^10.7.3",
-    "@polkadot/api-derive": "^10.7.3",
-    "@polkadot/api": "^10.7.3",
-    "@polkadot/extension-dapp": "^0.46.3",
-    "@polkadot/extension-inject": "^0.45.5",
-    "@polkadot/util": "^12.2.2",
+    "@polkadot/api-contract": "^10.9.1",
+    "@polkadot/api-derive": "^10.9.1",
+    "@polkadot/api": "^10.9.1",
+    "@polkadot/extension-dapp": "^0.46.5",
+    "@polkadot/extension-inject": "^0.46.5",
+    "@polkadot/util": "^12.3.2",
     "@talismn/connect-wallets": "^1.2.3"
   },
   "devDependencies": {
