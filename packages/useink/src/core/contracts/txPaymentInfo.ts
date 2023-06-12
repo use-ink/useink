@@ -21,7 +21,7 @@ export async function txPaymentInfo(
     const requiresNoArguments = tx.meta.args.length === 0;
     return await (requiresNoArguments
       ? tx(options || {})
-      : tx(options || {}, params)
+      : tx(options || {}, ...(params || []))
     ).paymentInfo(caller, signerOptions);
   } catch (e: unknown) {
     console.error(e);
