@@ -36,6 +36,9 @@ importers:
 
   packages/useink:
     dependencies:
+      '@polkadot/api-contract':
+        specifier: ^10.9.1
+        version: 10.9.1
       react:
         specifier: ^18.0.0
         version: 18.2.0
