@@ -6,7 +6,7 @@
     "playground"
   ],
   "scripts": {
-    "build": "pnpm --filter useink build",
+    "build": "pnpm --filter useink build && cp ./README.md ./packages/useink/dist",
     "dev": "pnpm --filter useink watch & pnpm --filter playground dev",
     "format": "rome format . --write",
     "lint": "rome check ./*",
