@@ -271,6 +271,7 @@ export const HomePage: React.FC = () => {
                     {planckToDecimalFormatted(
                       balance?.freeBalance,
                       cRococoContract.contract.api,
+                      { decimals: 4 },
                     )}
                   </span>
                 </li>

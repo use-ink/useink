@@ -1,5 +1,7 @@
 import { Result } from './result.ts';
-import { AbiMessage } from '@polkadot/api-contract/types';
+import { ISubmittableResult } from './substrate.ts';
+import { SubmittableResult } from '@polkadot/api';
+import { AbiMessage, DecodedEvent } from '@polkadot/api-contract/types';
 import {
   Balance,
   ContractExecResult,
@@ -14,7 +16,12 @@ export type {
 } from '@polkadot/types/interfaces';
 export type { AbiMessage, ContractOptions } from '@polkadot/api-contract/types';
 export { Abi, ContractPromise } from '@polkadot/api-contract';
-export { ContractSubmittableResult } from '@polkadot/api-contract/base/contract';
+
+// rome-ignore lint/correctness/noUnusedVariables: The Release flow breaks when exporting from '@polkadot/api-contract/base/contract'
+export declare class ContractSubmittableResult extends SubmittableResult {
+  readonly contractEvents?: DecodedEvent[] | undefined;
+  constructor(result: ISubmittableResult, contractEvents?: DecodedEvent[]);
+}
 
 export interface ContractCallResultRaw {
   readonly callResult: ContractExecResult;
