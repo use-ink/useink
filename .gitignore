@@ -5,3 +5,4 @@ benches.json
 dist
 node_modules
 target
+packages/useink/README.md
