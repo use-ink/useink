@@ -10,9 +10,9 @@ export const stringNumberToBN = (valWithCommas: string): BN => {
 // convert decimal to planck unit e.g. 1.0000  to 1000000000000
 export const planckToDecimal = (
   amount: undefined | string | number | number[] | BN | Uint8Array | Buffer,
-  api: IRegistryInfo,
+  api: IRegistryInfo | undefined,
 ): number | undefined => {
-  const decimals = api.registry.chainDecimals[0];
+  const decimals = api?.registry.chainDecimals[0];
   if (!decimals || !amount) return;
   if (decimals === undefined || amount === undefined) return;
 
@@ -31,11 +31,11 @@ interface PlanckToDecimalOptions {
 // convert planck unit to decimal with token name (ROC,DOT,KSM)  e.g. 100000000000 to 1.0000 ROC
 export const planckToDecimalFormatted = (
   amount: undefined | string | number | number[] | BN | Uint8Array | Buffer,
-  api: IRegistryInfo,
+  api: IRegistryInfo | undefined,
   options?: PlanckToDecimalOptions,
 ): string | undefined => {
   const decimalAmount = planckToDecimal(amount, api);
-  if (decimalAmount === undefined) return;
+  if (decimalAmount === undefined || !api) return;
 
   const formattedVal =
     options?.decimals === undefined
@@ -48,9 +48,9 @@ export const planckToDecimalFormatted = (
 // convert decimal to planck unit e.g. 1.0000  to 1000000000000
 export const decimalToPlanck = (
   amount: number,
-  api: IRegistryInfo,
+  api: IRegistryInfo | undefined,
 ): BigInt | undefined => {
-  const decimals = api.registry.chainDecimals[0];
+  const decimals = api?.registry.chainDecimals[0];
   if (!decimals) return;
 
   const convertedValue = BigInt(amount * 10 ** decimals);
