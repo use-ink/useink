@@ -14,7 +14,7 @@ export type {
 } from '@polkadot/types/interfaces';
 export type { AbiMessage, ContractOptions } from '@polkadot/api-contract/types';
 export { Abi, ContractPromise } from '@polkadot/api-contract';
-export type { ContractSubmittableResult } from '@polkadot/api-contract/base/contract';
+export { ContractSubmittableResult } from '@polkadot/api-contract/base/contract';
 
 export interface ContractCallResultRaw {
   readonly callResult: ContractExecResult;
