@@ -12,7 +12,7 @@
     "React",
     "hooks"
   ],
-  "version": "1.7.3",
+  "version": "1.7.5",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "description": "A React hooks library for ink! contracts",
