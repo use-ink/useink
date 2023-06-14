@@ -1,5 +1,5 @@
 import { DispatchError, RegistryError } from '../types/index';
-import { Contract } from './types.ts';
+import { Contract } from './types/index.ts';
 
 export const getRegistryError = (
   error: DispatchError | undefined,

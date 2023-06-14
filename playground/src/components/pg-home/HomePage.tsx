@@ -1,5 +1,6 @@
 import metadata from '../../metadata/playground.json';
 import { Notifications } from '../Notifications';
+import Link from 'next/link';
 import { useEffect } from 'react';
 /* eslint-disable @next/next/no-img-element */
 import {
@@ -614,6 +615,16 @@ export const HomePage: React.FC = () => {
               <h3 className='text-xl'>
                 Shibuya Token Symbol: <b>{shibuyaSymbol}</b>
               </h3>
+            </li>
+
+            <li>
+              <h3 className='text-xl'>Deploy a Contract</h3>
+              <Link
+                className='text-brand-200 hover:text-brand-300 transition duration-75 underline'
+                href='/deploy'
+              >
+                See a Deploy Example
+              </Link>
             </li>
           </ul>
         </div>

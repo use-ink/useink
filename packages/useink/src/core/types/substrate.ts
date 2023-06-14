@@ -1,5 +1,7 @@
 export type { Bytes } from '@polkadot/types';
 
+export { TypeDefInfo, getTypeDef } from '@polkadot/types';
+
 export type {
   DeriveBalancesAccount,
   DeriveBalancesMap,
@@ -21,6 +23,7 @@ export type {
   AccountId,
   Balance,
   DispatchError,
+  DispatchInfo,
   EventRecord,
   ExtrinsicStatus,
   Hash,
@@ -37,6 +40,7 @@ export type {
   QueryableModuleCalls,
   SignerOptions,
   SubmittableExtrinsic,
+  VoidFn,
 } from '@polkadot/api/types';
 
 export type TransactionStatus =

@@ -1,6 +1,7 @@
 import {
   ApiBase,
   ContractSubmittableResult,
+  EventRecord,
   LazyContractOptions,
   TransactionStatus,
   toContractOptions,
@@ -8,6 +9,7 @@ import {
 import { useWallet } from '../wallets/useWallet.ts';
 import { ChainContract } from './types.ts';
 import { useDryRun } from './useDryRun.ts';
+import { useTxEvents } from './useTxEvents.ts';
 import { useMemo, useState } from 'react';
 
 export type ContractSubmittableResultCallback = (
@@ -27,6 +29,7 @@ export interface Tx<T> {
   status: TransactionStatus;
   result: ContractSubmittableResult | undefined;
   resetState: () => void;
+  events: EventRecord[];
 }
 
 export function useTx<T>(
@@ -37,6 +40,7 @@ export function useTx<T>(
   const [status, setStatus] = useState<TransactionStatus>('None');
   const [result, setResult] = useState<ContractSubmittableResult>();
   const dryRun = useDryRun(chainContract, message);
+  const txEvents = useTxEvents({ status, result });
 
   const signAndSend: SignAndSend = useMemo(
     () => (params, options, cb) => {
@@ -95,6 +99,8 @@ export function useTx<T>(
     resetState: () => {
       setResult(undefined);
       setStatus('None');
+      txEvents.resetState();
     },
+    events: txEvents.events,
   };
 }

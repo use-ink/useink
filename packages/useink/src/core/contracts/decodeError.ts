@@ -1,6 +1,6 @@
 import { DispatchError, RegistryError } from '../types/index';
 import { getRegistryError } from './getRegistryError.ts';
-import { Contract, RegistryErrorMethod } from './types.ts';
+import { Contract, RegistryErrorMethod } from './types/index.ts';
 
 const formatErrorMessage = (registryError: RegistryError): string =>
   `${registryError.section}.${registryError.method}: ${registryError.docs}`;

@@ -3,7 +3,9 @@ import { Tx } from '../../index';
 import { useNotifications } from './useNotifications.ts';
 import { useEffect } from 'react';
 
-export function useTxNotifications<T>(tx: Tx<T>, chain?: ChainId): void {
+type TxInfo<T> = Pick<Tx<T>, 'status'> & Pick<Tx<T>, 'result'>;
+
+export function useTxNotifications<T>(tx: TxInfo<T>, chain?: ChainId): void {
   const { addNotification } = useNotifications();
 
   useEffect(() => {

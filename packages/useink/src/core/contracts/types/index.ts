@@ -1,4 +1,6 @@
-import { ApiBase, DispatchError, Result } from '../types/index';
+export * from './jsonToAbi';
+
+import { ApiBase, DispatchError, Result } from '../../types/index';
 
 export interface CallResult {
   result?: Result<unknown, DispatchError>;
