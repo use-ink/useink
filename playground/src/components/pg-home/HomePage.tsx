@@ -15,6 +15,8 @@ import {
   useEventSubscription,
   useEvents,
   useInstalledWallets,
+  useTimestampDate,
+  useTimestampNow,
   useTokenSymbol,
   useTx,
   useTxPaymentInfo,
@@ -77,6 +79,8 @@ export const HomePage: React.FC = () => {
   const panic = useCall<boolean>(cRococoContract, 'panic');
   const assertBoom = useCall<boolean>(cRococoContract, 'assertBoom');
   const mood = useCall<MoodResult>(cRococoContract, 'mood');
+  const phalaTimestamp = useTimestampNow('phala');
+  const phalaDate = useTimestampDate('phala');
   const shibuyaContract = useContract(
     SHIBUYA_CONTRACT_ADDRESS,
     metadata,
@@ -271,6 +275,7 @@ export const HomePage: React.FC = () => {
                     {planckToDecimalFormatted(
                       balance?.freeBalance,
                       cRococoContract.contract.api,
+                      { decimals: 4 },
                     )}
                   </span>
                 </li>
@@ -334,6 +339,19 @@ export const HomePage: React.FC = () => {
                   ),
                 )}
               </ul>
+            </li>
+
+            <li>
+              <b>
+                Phala&apos;s current timestamp:{' '}
+                <code className='p-1 rounded-md bg-slate-500'>
+                  {phalaTimestamp}
+                </code>
+              </b>
+
+              <p className='text-sm'>
+                Phala&apos;s last block time: {phalaDate?.toLocaleTimeString()}
+              </p>
             </li>
 
             <li className='flex items-center gap-4'>
