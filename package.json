@@ -11,7 +11,7 @@
     "format": "rome format . --write",
     "lint": "rome check .",
     "lint:fix": "pnpm lint --apply-unsafe",
-    "ci": "rome ci ."
+    "lint:ci": "rome ci ."
   },
   "dependencies": {
     "@polkadot/api-contract": "^10.9.1",
@@ -23,7 +23,7 @@
     "@talismn/connect-wallets": "^1.2.3"
   },
   "devDependencies": {
-    "rome": "12.1.2"
+    "rome": "12.1.3"
   },
   "packageManager": "pnpm@8.6.1"
 }
