@@ -1,11 +1,14 @@
-import { ApiPromise, Codec } from '../../types/index';
-import { getTimestamp } from './getTimestamp.ts';
+import { ApiBase } from '../../types/index';
+import { getTimestampQuery } from './getTimestampQuery.ts';
 
-export const getTimestampNow = async (
-  api: ApiPromise | undefined,
-): Promise<Codec | undefined> => {
-  const timestamp = getTimestamp(api);
-  if (!timestamp?.now) return;
+export const getTimestampUnix = async (
+  api: ApiBase<'promise'> | undefined,
+): Promise<number | undefined> => {
+  const query = getTimestampQuery(api);
+  if (!query?.now) return;
 
-  return await timestamp.now();
+  const t = await query.now();
+  const stringWithoutCommas = t.toHuman()?.toString().split(',').join('');
+
+  return stringWithoutCommas ? parseInt(stringWithoutCommas) : undefined;
 };
