@@ -25,7 +25,7 @@ https://img.shields.io/badge/click-white.svg?logo=StackExchange&label=useink%20S
 
 * [Read the documentation](https://use.ink/frontend/overview)
 
-* [Look at some examples](https://github.com/paritytech/useink-kitchen-sink)
+* [Look at some examples](https://github.com/paritytech/useink/tree/main/playground)
 
 ## License
 
