@@ -1,7 +1,12 @@
-import { DecodedTxResult, call } from '../../../core/index';
+import {
+  DecodedTxResult,
+  LazyCallOptions,
+  call,
+  toContractOptions,
+} from '../../../core/index';
 import { useDefaultCaller } from '../config/index';
 import { useWallet } from '../wallets/useWallet.ts';
-import { CallOptions, ChainContract } from './types.ts';
+import { ChainContract } from './types.ts';
 import { useAbiMessage } from './useAbiMessage.ts';
 import { useMemo, useState } from 'react';
 
@@ -9,7 +14,7 @@ export type DryRunResult<T> = DecodedTxResult<T>;
 
 export type Send<T> = (
   args?: unknown[],
-  o?: CallOptions,
+  o?: LazyCallOptions,
   caller?: string,
 ) => Promise<DryRunResult<T> | undefined>;
 
@@ -61,8 +66,8 @@ export function useDryRun<T>(
 
         const requiresNoArguments = tx.meta.args.length === 0;
         const { partialFee } = await (requiresNoArguments
-          ? tx(options || {})
-          : tx(options || {}, ...(params || []))
+          ? tx(toContractOptions(options))
+          : tx(toContractOptions(options), ...(params || []))
         ).paymentInfo(caller);
 
         const r = {

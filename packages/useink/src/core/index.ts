@@ -1,3 +1,3 @@
-export * from './contracts/index';
-export * from './substrate/index';
-export * from './types/index';
+export * from './contracts';
+export * from './substrate';
+export * from './types';

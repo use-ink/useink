@@ -1,4 +1,5 @@
 export * from './array.ts';
+export * from './api-contracts.ts';
 export * from './contracts.ts';
 export * from './result.ts';
 export * from './substrate.ts';

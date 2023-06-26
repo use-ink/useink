@@ -4,9 +4,9 @@ import {
   AbiMessage,
   AccountId,
   ContractExecResult,
-  ContractOptions,
   ContractPromise,
   DecodedContractResult,
+  LazyContractOptions,
 } from '../types/index';
 
 import { decodeCallResult } from './decodeCallResult.ts';
@@ -16,7 +16,7 @@ export async function call<T>(
   abiMessage: AbiMessage,
   caller: AccountId | string,
   args = [] as unknown[],
-  options?: ContractOptions,
+  options?: LazyContractOptions,
 ): Promise<DecodedContractResult<T> | undefined> {
   const { value, gasLimit, storageDepositLimit } = options || {};
 

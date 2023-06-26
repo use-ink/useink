@@ -1,13 +1,16 @@
-import { DecodedContractResult, call } from '../../../core/index';
+import {
+  DecodedContractResult,
+  LazyCallOptions,
+  call,
+} from '../../../core/index';
 import { ChainContract, useDefaultCaller } from '../index';
 import { useWallet } from '../wallets/useWallet.ts';
-import { CallOptions } from './types.ts';
 import { useAbiMessage } from './useAbiMessage.ts';
 import { useCallback, useState } from 'react';
 
 export type CallSend<T> = (
   args?: unknown[],
-  options?: CallOptions,
+  options?: LazyCallOptions,
 ) => Promise<DecodedContractResult<T> | undefined>;
 
 export interface UseCall<T> {

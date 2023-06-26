@@ -1,8 +1,9 @@
 import {
   ApiBase,
-  ContractOptions,
   ContractSubmittableResult,
+  LazyContractOptions,
   TransactionStatus,
+  toContractOptions,
 } from '../../../core/index';
 import { useWallet } from '../wallets/useWallet.ts';
 import { ChainContract } from './types.ts';
@@ -17,7 +18,7 @@ export type ContractSubmittableResultCallback = (
 
 export type SignAndSend = (
   args?: unknown[],
-  o?: ContractOptions,
+  o?: LazyContractOptions,
   cb?: ContractSubmittableResultCallback,
 ) => void;
 
@@ -61,7 +62,10 @@ export function useTx<T>(
             return;
           }
 
-          tx({ gasLimit: gasRequired, ...(options || {}) }, ...(params || []))
+          tx(
+            { gasLimit: gasRequired, ...toContractOptions(options) },
+            ...(params || []),
+          )
             .signAndSend(
               account.address,
               { signer: account.wallet?.extension?.signer },
