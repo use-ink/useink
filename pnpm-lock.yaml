@@ -36,6 +36,9 @@ importers:
 
   packages/useink:
     dependencies:
+      nanoid:
+        specifier: '3'
+        version: 3.3.6
       react:
         specifier: ^18.0.0
         version: 18.2.0
