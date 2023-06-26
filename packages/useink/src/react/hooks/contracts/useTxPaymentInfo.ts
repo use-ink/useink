@@ -1,16 +1,16 @@
 import { ChainContract, useDefaultCaller } from '..';
 import {
+  LazyCallOptions,
   RuntimeDispatchInfo,
   SignerOptions,
   txPaymentInfo,
 } from '../../../core';
 import { useWallet } from '../wallets/useWallet.ts';
-import { CallOptions } from './types.ts';
 import { useCallback, useState } from 'react';
 
 type Send = (
   params?: unknown[],
-  options?: CallOptions,
+  options?: LazyCallOptions,
   signerOptions?: Partial<SignerOptions>,
 ) => Promise<RuntimeDispatchInfo | undefined>;
 
