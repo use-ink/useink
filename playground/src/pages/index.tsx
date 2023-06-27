@@ -8,7 +8,7 @@ export default function Index() {
         <title>Playground</title>
         <meta name='description' content='useink Kitchen Sink' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <link rel='icon' href='/favicon.ico' />
+        <link rel='icon' href='/squink.svg' />
       </Head>
       <HomePage />
     </>
