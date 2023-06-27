@@ -1,4 +1,4 @@
-import { BN } from '../../utils/index.ts';
+import { BN_ZERO } from '../../utils/index.ts';
 
 import {
   AbiMessage,
@@ -26,7 +26,7 @@ export async function call<T>(
   const raw = await apiCaller.call<ContractExecResult>(
     caller,
     contract.address,
-    value ?? new BN(0),
+    value ?? BN_ZERO,
     gasLimit ?? null,
     storageDepositLimit ?? null,
     abiMessage.toU8a(args),

@@ -2,6 +2,7 @@ ARIS
 AUSD
 Artio
 DoubleOTheven
+Eventable
 Hanonycash
 IBTC
 KBTC
@@ -118,6 +119,7 @@ encointer
 equilab
 esbenp
 esque
+evenodd
 extrinsics
 fantour
 farmnet
@@ -147,6 +149,7 @@ hashers
 headlessui
 heiko
 helixstreet
+heroicons
 hydradx
 icenetwork
 idents
@@ -171,6 +174,7 @@ kico
 kint
 kintsugi
 klugdossier
+konstructor
 kpron
 kton
 kulupu
@@ -181,6 +185,8 @@ lami
 layr
 leemo
 liebi
+linecap
+linejoin
 lipsum
 litentry
 lldb
@@ -301,6 +307,7 @@ soonsocial
 soramitsu
 spiritnet
 spreehafen
+squink
 stafi
 stagex
 stalebot
