@@ -4,7 +4,7 @@ export * from './useCall.ts';
 export * from './useCallSubscription.ts';
 export * from './useCodeHash.ts';
 export * from './useContract.ts';
-export * from './useDeployer/useDeployer.ts';
+export * from './useDeployer';
 export * from './useDryRun.ts';
 export * from './useEventSubscription.ts';
 export * from './useEvents.ts';
