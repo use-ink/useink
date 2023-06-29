@@ -15,6 +15,7 @@ import {
   NOOP,
   encodeSalt,
   formatExtrinsicFailed,
+  isContractInstantiatedEvent,
   isTxCancelledError,
   isValidHash,
   toMessageParams,
@@ -50,6 +51,11 @@ export function useDeployer<T>(chainId?: ChainId): Deploy<T> {
       failure && setError(failure);
     });
   }, [txEvents]);
+
+  const wasDeployed = useMemo(
+    () => Boolean(txEvents.events.find(isContractInstantiatedEvent)),
+    [txEvents.events],
+  );
 
   const resetState = useCallback(() => {
     setResult(undefined);
@@ -262,6 +268,7 @@ export function useDeployer<T>(chainId?: ChainId): Deploy<T> {
     error,
     resetState,
     willBeSuccessful,
+    wasDeployed,
     storageDeposit,
     gasConsumed,
     gasRequired,

@@ -64,6 +64,7 @@ export interface Deploy<T> {
   gasRequired?: WeightV2;
   storageDeposit?: StorageDeposit;
   willBeSuccessful: boolean;
+  wasDeployed: boolean;
   events: EventRecord[];
 }
 
