@@ -41,9 +41,13 @@ export function useCall<T>(
   const send = useCallback(
     async (
       args: Parameters<typeof call>[3],
-      options: Parameters<typeof call>[4],
+      options?: LazyCallOptions,
     ): Promise<DecodedContractResult<T> | undefined> => {
-      const caller = account?.address ? defaultCaller : undefined;
+      const caller = account?.address
+        ? account.address
+        : options?.defaultCaller
+        ? defaultCaller
+        : undefined;
       if (!abiMessage || !chainContract?.contract || !caller) return;
 
       try {
