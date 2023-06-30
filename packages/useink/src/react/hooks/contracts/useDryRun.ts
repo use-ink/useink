@@ -15,7 +15,6 @@ export type DryRunResult<T> = DecodedTxResult<T>;
 export type Send<T> = (
   args?: unknown[],
   o?: LazyCallOptions,
-  caller?: string,
 ) => Promise<DryRunResult<T> | undefined>;
 
 export interface DryRun<T> {
