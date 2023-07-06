@@ -273,11 +273,10 @@ export const HomePage: React.FC = () => {
                 <li>
                   <b>Your Free Balance:</b>
                   <span className='ml-4 dark:bg-slate-600 bg-slate-200 rounded-lg py-2 px-2'>
-                    {planckToDecimalFormatted(
-                      balance?.freeBalance,
-                      cRococoContract.contract.api,
-                      { decimals: 4 },
-                    )}
+                    {planckToDecimalFormatted(balance?.freeBalance, {
+                      significantFigures: 4,
+                      api: cRococoContract.contract.api,
+                    })}
                   </span>
                 </li>
               </>
@@ -468,7 +467,7 @@ export const HomePage: React.FC = () => {
                 <b>Gas Required:</b>{' '}
                 {planckToDecimalFormatted(
                   pickTxInfo(flipDryRun.result)?.partialFee,
-                  cRococoContract.contract.api,
+                  { api: cRococoContract.contract.api },
                 )}
 
                 {pickDecodedError(flipDryRun, cRococoContract, {}, '--')}
@@ -491,10 +490,9 @@ export const HomePage: React.FC = () => {
 
               <h3 className='text-xl'>
                 <b>Partial Fee (a.k.a. Gas Required):</b>{' '}
-                {planckToDecimalFormatted(
-                  flipPaymentInfo.result?.partialFee,
-                  cRococoContract.contract.api,
-                )}
+                {planckToDecimalFormatted(flipPaymentInfo.result?.partialFee, {
+                  api: cRococoContract.contract.api,
+                })}
               </h3>
             </li>
 
