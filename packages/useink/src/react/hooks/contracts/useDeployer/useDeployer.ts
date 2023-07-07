@@ -175,7 +175,7 @@ export function useDeployer<T>(chainId?: ChainId): Deploy<T> {
           };
           tx =
             constructorMessage.args.length > 0
-              ? method?.(methodOptions, ...messageParams)
+              ? method?.(methodOptions, messageParams)
               : method?.(methodOptions);
         } catch (e: unknown) {
           setError(e?.toString());
