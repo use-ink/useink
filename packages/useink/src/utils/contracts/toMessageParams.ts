@@ -3,7 +3,7 @@ import { AbiParam, ApiBase } from '../../core';
 export const toMessageParams = (
   api: ApiBase<'promise'>,
   abiParams: AbiParam[],
-  userParams?: Record<string, unknown> | null,
+  userParams?: Record<string, unknown>,
 ): unknown[] => {
   return abiParams.map(({ name, type: { type } }) => {
     const value = userParams ? userParams[name] : null;

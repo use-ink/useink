@@ -366,19 +366,13 @@ export const DeployPage: React.FC = () => {
                 if (!M.abi) return;
 
                 if (requireWasm) {
-                  D.signAndSend(
-                    M.abi,
-                    konstructor?.method,
-                    {},
-                    {
-                      value,
-                    },
-                  );
+                  D.signAndSend(M.abi, konstructor?.method, constructorParams, {
+                    value,
+                  });
                   return;
                 }
 
-                const options = {};
-                D.signAndSend(M.abi, konstructor?.method, options, {
+                D.signAndSend(M.abi, konstructor?.method, constructorParams, {
                   salt: S.salt,
                   codeHash: C.codeHash,
                   value,
