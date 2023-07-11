@@ -112,8 +112,10 @@ export function useDeployer<T>(chainId?: ChainId): Deploy<T> {
           return;
         }
 
-        const messageParams = constructorMessage.toU8a(
-          toMessageParams(chainApi.api, abiParams, constructorParams || {}),
+        const messageParams = toMessageParams(
+          chainApi.api,
+          abiParams,
+          constructorParams || {},
         );
 
         const caller =
@@ -134,7 +136,7 @@ export function useDeployer<T>(chainId?: ChainId): Deploy<T> {
           gasLimitMax,
           storageDepositMax,
           codeHash ? { Existing: codeHash } : { Upload: abi.info.source.wasm },
-          messageParams,
+          constructorMessage.toU8a(messageParams),
           options?.salt ? encodeSalt(options?.salt) : '',
         ];
 
@@ -173,9 +175,10 @@ export function useDeployer<T>(chainId?: ChainId): Deploy<T> {
             storageDepositLimit: res.storageDeposit.asCharge || null,
             ...toDeployOptions(options),
           };
+
           tx =
             constructorMessage.args.length > 0
-              ? method?.(methodOptions, messageParams)
+              ? method?.(methodOptions, ...messageParams)
               : method?.(methodOptions);
         } catch (e: unknown) {
           setError(e?.toString());
