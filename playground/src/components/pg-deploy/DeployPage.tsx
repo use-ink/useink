@@ -29,7 +29,7 @@ export const DeployPage: React.FC = () => {
   const [requireWasm, setRequireWasm] = useState(true);
   const C = useCodeHash();
   const M = useMetadata({ requireWasm });
-  const S = useSalter();
+  const S = useSalter({ length: 64 }); // you can omit options here bc/ the length defaults to 64 characters.
   // Optionally pass in a ChainId to deploy to another chain. e.g.
   // `useDeployer('shibuya-testnet')`.
   // ChainId must be configured in your UseInkProvider config props.

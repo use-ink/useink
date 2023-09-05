@@ -1,8 +1,14 @@
 import { isValidHash, pseudoRandomHex } from '../../../utils';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export enum SalterError {
   InvalidHash = 'Invalid salt hash value.',
+}
+
+export interface SalterOptions {
+  randomize: boolean;
+  initialValue: string;
+  length: number;
 }
 
 export interface SalterState {
@@ -11,14 +17,24 @@ export interface SalterState {
   set: (salt: string) => void;
   error?: SalterError;
   resetState: () => void;
+  validate: () => void;
 }
 
-export const useSalter = (): SalterState => {
-  const [salt, setSalt] = useState(pseudoRandomHex());
+export const useSalter = (options?: Partial<SalterOptions>): SalterState => {
+  const { randomize = true, initialValue, length = 64 } = options || {};
+
+  const initial =
+    initialValue !== undefined
+      ? initialValue
+      : randomize
+      ? pseudoRandomHex(length)
+      : '';
+
+  const [salt, setSalt] = useState(initial);
   const [error, setError] = useState<SalterError>();
 
-  useEffect(() => {
-    if (isValidHash(salt)) {
+  const validate = useCallback(() => {
+    if (isValidHash(salt, length)) {
       error && setError(undefined);
       return;
     }
@@ -44,6 +60,7 @@ export const useSalter = (): SalterState => {
     salt,
     resetState,
     regenerate,
+    validate,
     set,
     error,
   };
