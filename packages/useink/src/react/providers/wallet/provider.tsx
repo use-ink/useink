@@ -95,7 +95,7 @@ export const WalletProvider: React.FC<React.PropsWithChildren> = ({
       }
 
       const unsub = (await w.subscribeAccounts((accts) => {
-        setAccounts(accts);
+        setAccounts(accts as WalletAccount[]);
 
         const firstAccount = accts?.[0];
 
@@ -111,7 +111,7 @@ export const WalletProvider: React.FC<React.PropsWithChildren> = ({
           account && !accts?.find((a) => a.address === account?.address);
 
         if (activeAccountNoLongerConnected) {
-          setWalletAccount(firstAccount);
+          setWalletAccount(firstAccount as WalletAccount);
 
           if (!C.wallet?.skipAutoConnect) {
             enableAutoConnect(
@@ -132,7 +132,7 @@ export const WalletProvider: React.FC<React.PropsWithChildren> = ({
 
         const initialAccount = autoConnectAccount || firstAccount;
 
-        setWalletAccount(initialAccount);
+        setWalletAccount(initialAccount as WalletAccount);
 
         if (!C.wallet?.skipAutoConnect) {
           enableAutoConnect(

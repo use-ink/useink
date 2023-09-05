@@ -1,4 +1,5 @@
 export * from '@polkadot/util';
+export { signatureVerify } from '@polkadot/util-crypto';
 
 export * from './contracts';
 export * from './events';

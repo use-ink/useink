@@ -1,9 +1,10 @@
 import metadata from '../../metadata/playground.json';
 import { Notifications } from '../Notifications';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 /* eslint-disable @next/next/no-img-element */
 import {
+  VerificationState,
   useBalance,
   useBlockHeader,
   useBlockHeaders,
@@ -16,6 +17,8 @@ import {
   useEventSubscription,
   useEvents,
   useInstalledWallets,
+  useMessageSigner,
+  useSignatureVerifier,
   useTimestampDate,
   useTimestampNow,
   useTokenSymbol,
@@ -68,6 +71,11 @@ export const HomePage: React.FC = () => {
   const { rpcs, setChainRpc } = useChainRpcList('astar');
   const astarRpc = useChainRpc('astar');
   const get = useCall<boolean>(cRococoContract, 'get');
+  const signer = useMessageSigner();
+  const signatureVerifier = useSignatureVerifier();
+  const [messageToSign, setMessageToSign] = useState(
+    'Sign this message, or change me and then sign!',
+  );
   const getSubcription = useCallSubscription<boolean>(
     cRococoContract,
     'get',
@@ -613,6 +621,82 @@ export const HomePage: React.FC = () => {
               <h3 className='text-xl'>
                 Shibuya Token Symbol: <b>{shibuyaSymbol}</b>
               </h3>
+            </li>
+
+            <li>
+              <h3 className='text-xl'>Sign a message, and Verify it</h3>
+              <input
+                className='w-full p-3 mt-3 rounded-md text-brand-800 font-semibold'
+                value={messageToSign}
+                onChange={(e) => setMessageToSign(e.target.value)}
+              />
+              <button
+                type='button'
+                onClick={() => {
+                  signatureVerifier.result !== VerificationState.Unchecked &&
+                    signatureVerifier.resetState();
+
+                  signer.sign(messageToSign);
+                }}
+                className='mt-3 w-full rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 transition duration-75'
+              >
+                Sign Message
+              </button>
+
+              <button
+                type='button'
+                onClick={() => {
+                  setMessageToSign('');
+                  signer.resetState();
+                }}
+                className='mt-3 w-full rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 transition duration-75'
+              >
+                Reset State
+              </button>
+
+              {signer.signature && account?.address && (
+                <div className='mt-3'>
+                  <textarea
+                    className='text-sm text-black min-h-[80px] w-full rounded-md p-3'
+                    value={signer.signature}
+                  />
+
+                  <button
+                    type='button'
+                    onClick={() => {
+                      signatureVerifier.verify(
+                        messageToSign,
+                        signer.signature || '',
+                        account?.address,
+                      );
+                    }}
+                    className='mt-3 w-full rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 transition duration-75'
+                  >
+                    Verify Signature
+                  </button>
+
+                  <button
+                    type='button'
+                    disabled={
+                      signatureVerifier.result === VerificationState.Unchecked
+                    }
+                    onClick={() => {
+                      signatureVerifier.resetState();
+                    }}
+                    className='mt-3 w-full disabled:bg-blue-50/50 rounded-2xl text-white px-6 py-4 bg-blue-500 hover:bg-blue-600 transition duration-75'
+                  >
+                    Reset Verification State
+                  </button>
+
+                  <p className='text-sm mt-3'>
+                    Verification Status: {signatureVerifier.result}
+                  </p>
+                </div>
+              )}
+
+              {signer.error && (
+                <p className='text-sm text-error-500 mt-3'>{signer.error}</p>
+              )}
             </li>
 
             <li>
