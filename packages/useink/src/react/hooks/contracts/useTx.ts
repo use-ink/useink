@@ -10,7 +10,7 @@ import { useWallet } from '../wallets/useWallet.ts';
 import { ChainContract } from './types.ts';
 import { useDryRun } from './useDryRun.ts';
 import { useTxEvents } from './useTxEvents.ts';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 export type ContractSubmittableResultCallback = (
   result?: ContractSubmittableResult,
@@ -19,8 +19,8 @@ export type ContractSubmittableResultCallback = (
 ) => void;
 
 export type SignAndSend = (
-  args?: unknown[],
-  o?: LazyContractOptions,
+  args?: Array<unknown>,
+  options?: LazyContractOptions,
   cb?: ContractSubmittableResultCallback,
 ) => void;
 
@@ -36,20 +36,20 @@ export function useTx<T>(
   chainContract: ChainContract | undefined,
   message: string,
 ): Tx<T> {
-  const { account } = useWallet();
-  const [status, setStatus] = useState<TransactionStatus>('None');
   const [result, setResult] = useState<ContractSubmittableResult>();
+  const [status, setStatus] = useState<TransactionStatus>('None');
+  const { account } = useWallet();
   const dryRun = useDryRun(chainContract, message);
   const txEvents = useTxEvents({ status, result });
 
-  const signAndSend: SignAndSend = useMemo(
-    () => (params, options, cb) => {
+  const signAndSend: SignAndSend = useCallback(
+    async (args, options, cb) => {
       if (!chainContract?.contract || !account || !account.wallet?.extension) {
         return;
       }
 
       dryRun
-        .send(params, options)
+        .send(args, options)
         .then((response) => {
           if (!response || !response.ok) return;
           setStatus('PendingSignature');
@@ -68,7 +68,7 @@ export function useTx<T>(
 
           tx(
             { gasLimit: gasRequired, ...toContractOptions(options) },
-            ...(params || []),
+            ...(args || []),
           )
             .signAndSend(
               account.address,

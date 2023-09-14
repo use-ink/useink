@@ -1,3 +1,4 @@
+import { useCallback, useState } from 'react';
 import {
   DecodedTxResult,
   LazyCallOptions,
@@ -8,35 +9,34 @@ import { useDefaultCaller } from '../config/index';
 import { useWallet } from '../wallets/useWallet.ts';
 import { ChainContract } from './types.ts';
 import { useAbiMessage } from './useAbiMessage.ts';
-import { useMemo, useState } from 'react';
 
-export type DryRunResult<T> = DecodedTxResult<T>;
+type DryRunResult<T> = DecodedTxResult<T> | undefined;
 
-export type Send<T> = (
-  args?: unknown[],
-  o?: LazyCallOptions,
-) => Promise<DryRunResult<T> | undefined>;
+export type DryRunSend<T> = (
+  args?: Array<unknown>,
+  options?: LazyCallOptions,
+) => Promise<DryRunResult<T>>;
 
-export interface DryRun<T> {
-  send: Send<T>;
+export interface UseDryRun<T> {
   isSubmitting: boolean;
-  result?: DryRunResult<T>;
-  resolved: Boolean;
   resetState: () => void;
+  resolved: boolean;
+  result?: DecodedTxResult<T>;
+  send: DryRunSend<T>;
 }
 
 export function useDryRun<T>(
   chainContract: ChainContract | undefined,
   message: string,
-): DryRun<T> {
-  const { account } = useWallet();
-  const defaultCaller = useDefaultCaller(chainContract?.chainId);
-  const [result, setResult] = useState<DecodedTxResult<T>>();
+): UseDryRun<T> {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [result, setResult] = useState<DecodedTxResult<T>>();
+  const { account } = useWallet();
   const abiMessage = useAbiMessage(chainContract?.contract, message);
+  const defaultCaller = useDefaultCaller(chainContract?.chainId);
 
-  const send: Send<T> = useMemo(
-    () => async (params, options) => {
+  const send: DryRunSend<T> = useCallback(
+    async (args, options) => {
       const tx = chainContract?.contract?.tx?.[message];
       const caller = account?.address
         ? account.address
@@ -48,46 +48,46 @@ export function useDryRun<T>(
         return;
       }
 
-      setIsSubmitting(true);
-
       try {
-        const resp = await call<T>(
+        setIsSubmitting(true);
+        const callResult = await call<T>(
           chainContract.contract,
           abiMessage,
           caller,
-          params,
+          args,
           options,
         );
 
-        if (!resp || !resp.ok) return;
+        if (!callResult || !callResult.ok) {
+          setResult(callResult);
+          return callResult;
+        }
 
-        const { gasConsumed, gasRequired, storageDeposit } = resp.value.raw;
+        const { gasConsumed, gasRequired, storageDeposit } =
+          callResult.value.raw;
 
         const requiresNoArguments = tx.meta.args.length === 0;
         const { partialFee } = await (requiresNoArguments
           ? tx(toContractOptions(options))
-          : tx(toContractOptions(options), ...(params || []))
+          : tx(toContractOptions(options), ...(args || []))
         ).paymentInfo(caller);
 
-        const r = {
-          ...resp,
+        const extendedCallResult = {
+          ...callResult,
           value: {
-            ...resp.value,
+            ...callResult.value,
             gasRequired,
             gasConsumed,
             storageDeposit,
             partialFee,
           },
         };
-
+        setResult(extendedCallResult);
+        return extendedCallResult;
+      } catch (error: unknown) {
+        console.error(error);
+      } finally {
         setIsSubmitting(false);
-        setResult(r);
-
-        return r;
-      } catch (e: unknown) {
-        console.error(e);
-        setIsSubmitting(false);
-        return;
       }
     },
     [account, chainContract?.contract, abiMessage],

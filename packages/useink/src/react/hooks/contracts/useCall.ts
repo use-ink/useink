@@ -1,3 +1,4 @@
+import { useCallback, useState } from 'react';
 import {
   DecodedContractResult,
   LazyCallOptions,
@@ -6,43 +7,29 @@ import {
 import { ChainContract, useDefaultCaller } from '../index';
 import { useWallet } from '../wallets/useWallet.ts';
 import { useAbiMessage } from './useAbiMessage.ts';
-import { useCallback, useState } from 'react';
 
-export type CallSend<T> = (
-  args?: unknown[],
+export type CallSend = (
+  args?: Array<unknown>,
   options?: LazyCallOptions,
-) => Promise<DecodedContractResult<T> | undefined>;
+) => Promise<void>;
 
 export interface UseCall<T> {
-  send: CallSend<T>;
   isSubmitting: boolean;
-}
-
-export enum CallError {
-  ContractUndefined = 'Contract is undefined',
-  InvalidAbiMessage = 'Invalid ABI Message',
-  NoResponse = 'No response',
-}
-
-export interface Call<T> extends UseCall<T> {
   result?: DecodedContractResult<T>;
+  send: CallSend;
 }
-
 export function useCall<T>(
   chainContract: ChainContract | undefined,
   message: string,
-): Call<T> {
-  const [result, setResult] = useState<DecodedContractResult<T>>();
+): UseCall<T> {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const abiMessage = useAbiMessage(chainContract?.contract, message);
+  const [result, setResult] = useState<DecodedContractResult<T>>();
   const { account } = useWallet();
+  const abiMessage = useAbiMessage(chainContract?.contract, message);
   const defaultCaller = useDefaultCaller(chainContract?.chainId);
 
-  const send = useCallback(
-    async (
-      args: Parameters<typeof call>[3],
-      options?: LazyCallOptions,
-    ): Promise<DecodedContractResult<T> | undefined> => {
+  const send: CallSend = useCallback(
+    async (args: Parameters<typeof call>[3], options?: LazyCallOptions) => {
       const caller = account?.address
         ? account.address
         : options?.defaultCaller
@@ -60,13 +47,10 @@ export function useCall<T>(
           options,
         );
         setResult(callResult);
+      } catch (error: unknown) {
+        console.error(error);
+      } finally {
         setIsSubmitting(false);
-
-        return callResult;
-      } catch (e: unknown) {
-        console.error(e);
-        setIsSubmitting(false);
-        return;
       }
     },
     [account, abiMessage],
