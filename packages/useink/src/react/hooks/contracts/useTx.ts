@@ -10,7 +10,7 @@ import { useWallet } from '../wallets/useWallet.ts';
 import { ChainContract } from './types.ts';
 import { useDryRun } from './useDryRun.ts';
 import { useTxEvents } from './useTxEvents.ts';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export type ContractSubmittableResultCallback = (
   result?: ContractSubmittableResult,
