@@ -11,8 +11,7 @@
     "format": "biome format . --write",
     "lint": "biome check .",
     "lint:fix": "pnpm lint --apply-unsafe",
-    "lint:ci": "biome ci .",
-    "test": "vitest"
+    "lint:ci": "biome ci ."
   },
   "dependencies": {
     "@polkadot/api": "^10.9.1",
