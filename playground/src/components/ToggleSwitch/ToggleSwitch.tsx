@@ -20,7 +20,7 @@ const ToggleSwitch: React.FC<Props> = ({ enabled, onChange }) => (
       )}
     >
       <span
-        aria-hidden='true'
+        aria-hidden="true"
         className={classNames(
           'pointer-events-none inline-block h-[16px] w-[18px] rounded-full',
           'shadow-lg transform ring-0 transition ease-in-out duration-200',

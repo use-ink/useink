@@ -1,7 +1,7 @@
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Chain, ChainId } from '../../../chains/index';
 import { ConfigContext } from './context.ts';
 import { ChainRPCs, ConfigProps, DEFAULT_CONFIG } from './model.ts';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 export interface Props {
   config: ConfigProps;

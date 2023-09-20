@@ -1,5 +1,5 @@
-import { ISubmittableResult } from './substrate.ts';
 import { SubmittableResult } from '@polkadot/api';
+import { ISubmittableResult } from './substrate.ts';
 
 export {
   BlueprintPromise,
@@ -28,7 +28,7 @@ export type {
 } from '@polkadot/api-contract/types';
 export { Abi, ContractPromise } from '@polkadot/api-contract';
 
-// rome-ignore lint/correctness/noUnusedVariables: The Release flow breaks when exporting from '@polkadot/api-contract/base/contract';
+// biome-ignore lint/correctness/noUnusedVariables: The Release flow breaks when exporting from '@polkadot/api-contract/base/contract';
 export declare class ContractSubmittableResult extends SubmittableResult {
   readonly contractEvents?: DecodedEvent[] | undefined;
   constructor(result: ISubmittableResult, contractEvents?: DecodedEvent[]);

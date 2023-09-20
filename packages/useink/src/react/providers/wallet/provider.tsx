@@ -1,3 +1,4 @@
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Unsub,
   WalletAccount,
@@ -7,7 +8,6 @@ import {
 import { useConfig } from '../../hooks';
 import { WalletContext } from './context.ts';
 import { AutoConnect, WalletError, WalletName } from './model.ts';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 function getAutoConnectWalletInfo(key: string): AutoConnect | null {
   const item = localStorage.getItem(key);
@@ -25,6 +25,7 @@ function disableAutoConnect(key: string) {
 export const WalletProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
+  console.log('walletprovider');
   const C = useConfig();
   const [account, setWalletAccount] = useState<WalletAccount>();
   const [accounts, setAccounts] = useState<WalletAccount[]>();
@@ -155,6 +156,7 @@ export const WalletProvider: React.FC<React.PropsWithChildren> = ({
   }, []);
 
   useEffect(() => {
+    console.log('activeWallet');
     if (!activeWallet) {
       const wallet = getAutoConnectWalletInfo(dappName)?.wallet;
       if (wallet) setActiveWallet(wallet);
