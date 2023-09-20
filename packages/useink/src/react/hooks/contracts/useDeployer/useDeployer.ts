@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ChainId } from '../../../../chains/index.ts';
 import {
   BlueprintPromise,
@@ -27,6 +26,7 @@ import { useApi } from '../../substrate/useApi.ts';
 import { useWallet } from '../../wallets/useWallet.ts';
 import { useTxEvents } from '../useTxEvents.ts';
 import { Deploy, DeploySignAndSend, DeployTx, DeployerError } from './types.ts';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 export function useDeployer<T>(chainId?: ChainId): Deploy<T> {
   const { account } = useWallet();

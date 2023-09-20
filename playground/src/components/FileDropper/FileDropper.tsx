@@ -22,10 +22,10 @@ export const FileDropper: React.FC<Props> = ({ onDrop, cta }) => {
                 'dark:border-white/20 dark:text-white-70 max-w-5xl mx-auto transition duration-75',
                 'hover:bg-brand-500/10',
               )}
-              htmlFor="file"
+              htmlFor='file'
             >
-              <img alt="squink" className="h-20 mb-6" src="squink.svg" />
-              <span className="text-sm text-gray-400 dark:text-gray-500">
+              <img alt='squink' className='h-20 mb-6' src='squink.svg' />
+              <span className='text-sm text-gray-400 dark:text-gray-500'>
                 {cta}
               </span>
             </label>

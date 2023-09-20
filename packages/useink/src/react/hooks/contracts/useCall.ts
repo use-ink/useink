@@ -1,4 +1,3 @@
-import { useCallback, useState } from 'react';
 import {
   DecodedContractResult,
   LazyCallOptions,
@@ -7,6 +6,7 @@ import {
 import { ChainContract, useDefaultCaller } from '../index';
 import { useWallet } from '../wallets/useWallet.ts';
 import { useAbiMessage } from './useAbiMessage.ts';
+import { useCallback, useState } from 'react';
 
 export type CallSend<T> = (
   args?: unknown[],

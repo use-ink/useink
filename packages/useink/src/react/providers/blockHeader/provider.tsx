@@ -1,9 +1,9 @@
-import React, { useEffect, useMemo, useReducer } from 'react';
 import { ChainId } from '../../../chains/index';
 import { useApis } from '../../index';
 import { BlockHeaderContext } from './context.ts';
 import { ChainBlockHeaders } from './model.ts';
 import { chainBlockHeaderReducer } from './reducer.ts';
+import React, { useEffect, useMemo, useReducer } from 'react';
 
 const toBlockNumber = (valWithComma: string | undefined): number =>
   parseInt(`${valWithComma?.split(',').join('')}`);

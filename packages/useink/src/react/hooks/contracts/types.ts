@@ -1,6 +1,6 @@
-import { BN } from '@polkadot/util';
 import { ChainId } from '../../../chains/types.ts';
 import { Abi, ContractOptions, ContractPromise } from '../../../core/index';
+import { BN } from '@polkadot/util';
 
 export type CallOptions = Omit<ContractOptions, 'value'> & {
   defaultCaller?: boolean;

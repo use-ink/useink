@@ -1,6 +1,6 @@
-import { useCallback, useState } from 'react';
 import { SignatureResult } from '../../../core/index.ts';
 import { useWallet } from '../wallets/useWallet.ts';
+import { useCallback, useState } from 'react';
 
 export type Sign = (data?: string) => void;
 

@@ -1,5 +1,5 @@
-import { useCallback, useState } from 'react';
 import { signatureVerify } from '../../../utils';
+import { useCallback, useState } from 'react';
 
 type VerificationParams = Parameters<typeof signatureVerify>;
 

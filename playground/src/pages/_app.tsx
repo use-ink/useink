@@ -1,3 +1,4 @@
+import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import dynamic from 'next/dynamic';
 import React from 'react';
@@ -11,7 +12,6 @@ import {
   ShibuyaTestnet,
 } from 'useink/chains';
 import { NotificationsProvider } from 'useink/notifications';
-import '../styles/globals.css';
 
 const UseInkProvider: React.ComponentType<React.PropsWithChildren<InkConfig>> =
   dynamic(() => import('useink').then(({ UseInkProvider }) => UseInkProvider), {

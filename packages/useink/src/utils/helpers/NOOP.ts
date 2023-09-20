@@ -1,1 +1,1 @@
-export const NOOP: () => void = () => {};
+export const NOOP: () => void = () => undefined;

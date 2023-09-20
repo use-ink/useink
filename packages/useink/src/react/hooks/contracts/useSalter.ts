@@ -1,5 +1,5 @@
-import { useCallback, useState } from 'react';
 import { isValidHash, pseudoRandomHex } from '../../../utils';
+import { useCallback, useState } from 'react';
 
 export enum SalterError {
   InvalidHash = 'Invalid salt hash value.',

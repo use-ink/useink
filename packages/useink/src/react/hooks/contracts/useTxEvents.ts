@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useState } from 'react';
 import { EventRecord } from '../../../core';
 import { isInBlock } from '../../../utils';
 import { Tx } from './useTx';
+import { useCallback, useEffect, useState } from 'react';
 
 type Eventable = Pick<Tx<unknown>, 'status'> & Pick<Tx<unknown>, 'result'>;
 

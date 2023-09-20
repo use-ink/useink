@@ -1,4 +1,3 @@
-import { useCallback, useState } from 'react';
 import { ChainContract, useDefaultCaller } from '..';
 import {
   LazyCallOptions,
@@ -7,6 +6,7 @@ import {
   txPaymentInfo,
 } from '../../../core';
 import { useWallet } from '../wallets/useWallet.ts';
+import { useCallback, useState } from 'react';
 
 type Send = (
   params?: unknown[],

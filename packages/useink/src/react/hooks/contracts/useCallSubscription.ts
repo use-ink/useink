@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
 import { LazyCallOptions } from '../../../core/index.ts';
 import { useBlockHeader } from '../substrate/useBlockHeader.ts';
 import { ChainContract } from './types.ts';
 import { Call, useCall } from './useCall.ts';
+import { useEffect } from 'react';
 
 export function useCallSubscription<T>(
   chainContract: ChainContract | undefined,
