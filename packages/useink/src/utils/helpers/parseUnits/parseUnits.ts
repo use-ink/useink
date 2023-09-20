@@ -64,7 +64,7 @@ export const planckToDecimalFormatted = (
 export const decimalToPlanck = (
   amount: number,
   options: DecimalOptions | undefined,
-): BigInt | undefined => {
+): bigint | undefined => {
   const decimals = options?.decimals || options?.api?.registry.chainDecimals[0];
   if (!decimals) return;
 

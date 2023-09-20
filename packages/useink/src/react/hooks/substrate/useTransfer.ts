@@ -1,8 +1,8 @@
+import { useCallback, useMemo, useState } from 'react';
 import { useChain, useWallet } from '../';
 import { ChainId } from '../../../chains';
 import { Hash, SignerOptions, transfer } from '../../../core';
 import { useApi } from './useApi.ts';
-import { useCallback, useMemo, useState } from 'react';
 
 export type SignAndSendTransfer = (
   to: string,

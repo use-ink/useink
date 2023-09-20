@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { ChainId } from '../../../chains';
 import {
   DEFAULT,
@@ -7,7 +8,6 @@ import {
 } from '../../../core';
 import { MetadataError, toBasicMetadata } from '../../../utils';
 import { useApi } from '../substrate/useApi';
-import { useEffect, useState } from 'react';
 
 export interface BasicMetadataFile {
   data: Uint8Array;

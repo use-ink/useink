@@ -1,3 +1,4 @@
+import React from 'react';
 import { pseudoRandomId } from '../../../utils/index';
 import { EventsContext } from './context.ts';
 import {
@@ -6,7 +7,6 @@ import {
   RemoveEventPayload,
 } from './model.ts';
 import { eventsReducer } from './reducer.ts';
-import React from 'react';
 
 import { useIsMounted } from '../../hooks/internal/useIsMounted.ts';
 

@@ -1,9 +1,9 @@
+import React, { useEffect, useReducer } from 'react';
 import { ApiPromise, WsProvider } from '../../../core/index';
 import { useChains } from '../../hooks/index';
 import { useConfig } from '../../index';
 import { APIContext } from './context.ts';
 import { apiProvidersReducer } from './reducer.ts';
-import React, { useEffect, useReducer } from 'react';
 
 export const APIProvider: React.FC<React.PropsWithChildren> = ({
   children,

@@ -1,5 +1,5 @@
-import { isValidHash } from '../../../utils';
 import { useCallback, useEffect, useState } from 'react';
+import { isValidHash } from '../../../utils';
 
 export enum CodeHashError {
   InvalidHash = 'Invalid code hash value.',
