@@ -25,16 +25,18 @@
     "lint": "tsc",
     "release": "pnpm run build && changeset publish"
   },
+  "dependencies": {
+    "nanoid": "3"
+  },
   "devDependencies": {
-    "@changesets/cli": "^2.26.1",
-    "@polkadot/types": "^10.9.1",
-    "@polkadot/types-codec": "^10.9.1",
+    "@polkadot/types": "^10.10.1",
+    "@polkadot/types-codec": "^10.10.1",
     "@types/react": "^18.2.7",
     "tsup": "^6.7.0",
     "typescript": "^5.0.4"
   },
   "peerDependencies": {
-    "react": "^18.0.0",
+    "react": "^18",
     "ws": "^8.13.0"
   },
   "exports": {
@@ -88,8 +90,5 @@
         "default": "./dist/utils.js"
       }
     }
-  },
-  "dependencies": {
-    "nanoid": "3"
   }
 }

@@ -14,17 +14,15 @@
     "lint:ci": "biome ci ."
   },
   "dependencies": {
-    "@polkadot/api": "^10.9.1",
-    "@polkadot/api-contract": "^10.9.1",
-    "@polkadot/api-derive": "^10.9.1",
-    "@polkadot/extension-dapp": "^0.46.5",
-    "@polkadot/extension-inject": "^0.46.5",
-    "@polkadot/util": "^12.3.2",
-    "@polkadot/util-crypto": "^12.3.2",
+    "@polkadot/api-contract": "^10.10.1",
+    "@polkadot/api-derive": "^10.10.1",
+    "@polkadot/api": "^10.10.1",
+    "@polkadot/util": "^12.5.1",
+    "@polkadot/util-crypto": "^12.5.1",
     "@talismn/connect-wallets": "^1.2.3"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.2.2"
   },
-  "packageManager": "pnpm@8.6.1"
+  "packageManager": "pnpm@8.10.5"
 }
