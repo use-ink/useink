@@ -22,8 +22,7 @@
   "scripts": {
     "build": "tsup",
     "watch": "tsup --watch",
-    "lint": "tsc",
-    "release": "pnpm run build && changeset publish"
+    "lint": "tsc"
   },
   "dependencies": {
     "nanoid": "3"
