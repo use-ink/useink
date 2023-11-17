@@ -82,7 +82,7 @@ export const HomePage: React.FC = () => {
     [],
     { defaultCaller: true },
   );
-  const flipTx = useTx<void>(cRococoContract, 'flip');
+  const flipTx = useTx(cRococoContract, 'flip');
   const flipDryRun = useDryRun<boolean>(cRococoContract, 'flip');
   const flipPaymentInfo = useTxPaymentInfo(cRococoContract, 'flip');
   const panic = useCall<boolean>(cRococoContract, 'panic');

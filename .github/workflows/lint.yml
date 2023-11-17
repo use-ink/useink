@@ -12,6 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
-      - run: pnpm install
+      - run: pnpm install --frozen-lockfile
       - name: Lint code
         run: pnpm lint:ci
