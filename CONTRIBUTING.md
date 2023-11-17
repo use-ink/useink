@@ -83,7 +83,7 @@ issue)
 We use the following tools to enforce linting rules, formatting and spell
 checking
 
-- [`yarn lint`](https://rome.tools/)
+- [`pnpm lint`](https://biomejs.dev/)
 - [`cspell`](https://cspell.org/)
 
 We encourage adding the [recommended](.vscode/extensions.json) (or similar)

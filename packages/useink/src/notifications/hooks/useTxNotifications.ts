@@ -1,7 +1,7 @@
+import { useEffect } from 'react';
 import { ChainId } from '../../chains/types.ts';
 import { Tx } from '../../index';
 import { useNotifications } from './useNotifications.ts';
-import { useEffect } from 'react';
 
 type TxInfo<T> = Pick<Tx<T>, 'status'> & Pick<Tx<T>, 'result'>;
 

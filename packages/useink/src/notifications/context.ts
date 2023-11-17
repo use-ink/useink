@@ -1,10 +1,10 @@
+import { createContext } from 'react';
 import {
   AddNotificationPayload,
   Config,
   DEFAULT_NOTIFICATIONS,
   Notifications,
 } from './model.ts';
-import { createContext } from 'react';
 
 export const NotificationsContext = createContext<{
   config?: Config;

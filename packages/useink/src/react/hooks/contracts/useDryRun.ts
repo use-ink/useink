@@ -1,3 +1,4 @@
+import { useMemo, useState } from 'react';
 import {
   DecodedTxResult,
   LazyCallOptions,
@@ -8,7 +9,6 @@ import { useDefaultCaller } from '../config/index';
 import { useWallet } from '../wallets/useWallet.ts';
 import { ChainContract } from './types.ts';
 import { useAbiMessage } from './useAbiMessage.ts';
-import { useMemo, useState } from 'react';
 
 export type DryRunResult<T> = DecodedTxResult<T>;
 
@@ -21,7 +21,7 @@ export interface DryRun<T> {
   send: Send<T>;
   isSubmitting: boolean;
   result?: DryRunResult<T>;
-  resolved: Boolean;
+  resolved: boolean;
   resetState: () => void;
 }
 
