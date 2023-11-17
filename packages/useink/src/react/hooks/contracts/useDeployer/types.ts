@@ -51,7 +51,7 @@ export type DeploySignAndSend<T> = (
 
 export type DeployTx = SubmittableExtrinsic<'promise', ISubmittableResult>;
 
-export interface Deploy<T> {
+export interface Deploy<_T> {
   dryRun: DeploySignAndSend<Promise<DeployTx | undefined>>;
   signAndSend: DeploySignAndSend<Promise<void>>;
   contractAddress: string | undefined;

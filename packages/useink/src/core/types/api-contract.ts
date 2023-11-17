@@ -28,7 +28,6 @@ export type {
 } from '@polkadot/api-contract/types';
 export { Abi, ContractPromise } from '@polkadot/api-contract';
 
-// biome-ignore lint/correctness/noUnusedVariables: The Release flow breaks when exporting from '@polkadot/api-contract/base/contract';
 export declare class ContractSubmittableResult extends SubmittableResult {
   readonly contractEvents?: DecodedEvent[] | undefined;
   constructor(result: ISubmittableResult, contractEvents?: DecodedEvent[]);

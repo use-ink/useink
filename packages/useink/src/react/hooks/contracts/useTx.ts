@@ -24,7 +24,7 @@ export type SignAndSend = (
   cb?: ContractSubmittableResultCallback,
 ) => void;
 
-export interface Tx<T> {
+export interface Tx<_T> {
   signAndSend: SignAndSend;
   status: TransactionStatus;
   result: ContractSubmittableResult | undefined;
