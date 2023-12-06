@@ -543,7 +543,7 @@ export const PhalaTestnet: IChain<'phala-testnet'> = {
   id: 'phala-testnet',
   name: 'Phala Testnet',
   account: '*25519',
-  rpcs: ['wss://poc5.phala.network/ws'],
+  rpcs: ['wss://poc6.phala.network/ws'],
 } as const;
 
 export const PhoenixTestnet: IChain<'phoenix-testnet'> = {
