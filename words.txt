@@ -138,6 +138,7 @@ IBTC
 icenetwork
 idents
 inherents
+inkathon
 instanceof
 integritee
 interbtc
@@ -287,6 +288,7 @@ rustup
 sakura
 schnorr
 schnorrkel
+scio
 secp
 serayuzgur
 serde
