@@ -8,5 +8,5 @@ jobs:
   spellcheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: streetsidesoftware/cspell-action@c5eae96241f654d2437c16bdfad146ff33a025cc # v2.7.0
