@@ -11,7 +11,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v3
       - run: pnpm install --frozen-lockfile
       - name: Lint code
         run: pnpm lint:ci
